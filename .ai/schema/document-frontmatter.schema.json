@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://viratdhara/.ai/schema/document-frontmatter.schema.json",
+  "title": "Document Frontmatter",
+  "description": "Required frontmatter block for every markdown document in this repository.",
+  "type": "object",
+  "required": [
+    "document_id",
+    "title",
+    "version",
+    "status",
+    "priority",
+    "depends_on",
+    "related_documents",
+    "related_entities",
+    "related_components",
+    "related_events",
+    "owner"
+  ],
+  "properties": {
+    "document_id": {
+      "type": "string",
+      "description": "Unique identifier for this document. Stable across renames; referenced by other documents' depends_on/related_documents."
+    },
+    "title": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["planned", "draft", "active", "deprecated"]
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["critical", "high", "medium", "low"]
+    },
+    "depends_on": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "document_id values this document cannot be understood without."
+    },
+    "related_documents": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "related_entities": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Entity names from ENTITY_REGISTRY.md."
+    },
+    "related_components": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Component names from COMPONENT_REGISTRY.md."
+    },
+    "related_events": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Event names from EVENT_REGISTRY.md."
+    },
+    "owner": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}
