@@ -17,6 +17,14 @@ owner: Product Architecture
 
 One entry per milestone/commit. Newest first.
 
+## Commit 5 — Design Foundation
+
+- Added all 9 planned `docs/02_DESIGN` documents: `DESIGN_PHILOSOPHY.md`, `DESIGN_SYSTEM_RULES.md`, `LAYOUT_SYSTEM.md`, `RESPONSIVE_SYSTEM.md` (draft), `COMPONENT_LIBRARY.md`, `ACCESSIBILITY.md`, `TYPOGRAPHY.md`, `MOTION.md` (draft), `UX_PATTERNS.md`.
+- Grounded in the actual built code (`apps/showcase/src/index.css` tokens, `packages/ui`/`packages/mobile` components) rather than re-describing the Figma design from scratch.
+- `RESPONSIVE_SYSTEM.md` and `MOTION.md` are intentionally `draft` — the product has no designed tablet/desktop breakpoint system and no real motion token system yet; both documents say so directly rather than inventing one.
+- `UX_PATTERNS.md`'s empty-state pattern directly addresses the literal `<Pooja Name>`/`<Merchandise>` placeholder text found during the original design review — future implementations must use `MobileEmptyState` instead.
+- This completes Milestones 1–5 (Bootstrap, Product, Architecture, AI, Design). Milestone 6+ (one feature at a time, starting with Authentication) is next.
+
 ## Commit 4 — AI Foundation
 
 - Added all 9 planned `docs/05_AI` documents: `AI_GLOBAL_RULES.md`, `AI_DESIGN_AGENT.md`, `AI_FRONTEND_AGENT.md`, `AI_BACKEND_AGENT.md`, `AI_DOCUMENTATION_AGENT.md`, `AI_TESTING_AGENT.md`, `AI_REVIEW_AGENT.md`, `AI_SECURITY_AGENT.md`, `PROMPT_LIBRARY.md`.

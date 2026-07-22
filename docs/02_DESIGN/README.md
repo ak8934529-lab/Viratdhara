@@ -1,8 +1,8 @@
 ---
 document_id: DOCS_02_DESIGN
 title: Design Documentation
-version: 1.0.0
-status: planned
+version: 1.1.0
+status: active
 priority: high
 depends_on:
   - DOCS_00_PRODUCT
@@ -23,15 +23,15 @@ Design system rules. Describes constraints and rationale, not implementation. Th
 
 | Document | Status |
 | --- | --- |
-| `DESIGN_PHILOSOPHY.md` | planned |
-| `DESIGN_SYSTEM_RULES.md` | planned |
-| `LAYOUT_SYSTEM.md` | planned |
-| `RESPONSIVE_SYSTEM.md` | planned |
-| `COMPONENT_LIBRARY.md` | planned |
-| `ACCESSIBILITY.md` | planned |
-| `TYPOGRAPHY.md` | planned |
-| `MOTION.md` | planned |
-| `UX_PATTERNS.md` | planned |
+| `DESIGN_PHILOSOPHY.md` | active |
+| `DESIGN_SYSTEM_RULES.md` | active |
+| `LAYOUT_SYSTEM.md` | active |
+| `RESPONSIVE_SYSTEM.md` | draft (mobile-only design, no breakpoint system exists yet) |
+| `COMPONENT_LIBRARY.md` | active |
+| `ACCESSIBILITY.md` | active |
+| `TYPOGRAPHY.md` | active |
+| `MOTION.md` | draft (minimal motion implemented, no motion token system yet) |
+| `UX_PATTERNS.md` | active |
 
 ## Rules
 

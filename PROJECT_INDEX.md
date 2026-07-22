@@ -66,7 +66,16 @@ Every document in this repository, by category. Updated in the same commit as an
 
 | Document | document_id | Status |
 | --- | --- | --- |
-| `README.md` | `DOCS_02_DESIGN` | planned |
+| `README.md` | `DOCS_02_DESIGN` | active |
+| `DESIGN_PHILOSOPHY.md` | `DESIGN_PHILOSOPHY` | active |
+| `DESIGN_SYSTEM_RULES.md` | `DESIGN_SYSTEM_RULES` | active |
+| `LAYOUT_SYSTEM.md` | `LAYOUT_SYSTEM` | active |
+| `RESPONSIVE_SYSTEM.md` | `RESPONSIVE_SYSTEM` | draft |
+| `COMPONENT_LIBRARY.md` | `COMPONENT_LIBRARY` | active |
+| `ACCESSIBILITY.md` | `ACCESSIBILITY` | active |
+| `TYPOGRAPHY.md` | `TYPOGRAPHY` | active |
+| `MOTION.md` | `MOTION` | draft |
+| `UX_PATTERNS.md` | `UX_PATTERNS` | active |
 
 ## docs/03_FEATURES
 
@@ -148,7 +157,7 @@ Every document in this repository, by category. Updated in the same commit as an
 
 ## Totals
 
-- Active: 53
-- Draft: 2
-- Planned: 8
-- Total: 63
+- Active: 61
+- Draft: 4
+- Planned: 7
+- Total: 72
