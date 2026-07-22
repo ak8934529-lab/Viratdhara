@@ -1,8 +1,8 @@
 ---
 document_id: DOCS_00_PRODUCT
 title: Product Foundation
-version: 1.0.0
-status: planned
+version: 1.1.0
+status: active
 priority: critical
 depends_on: []
 related_documents:
@@ -21,11 +21,11 @@ Foundation-level product definition. Every other document in this repository dep
 
 | Document | Status |
 | --- | --- |
-| `PRODUCT_CONTEXT.md` | planned |
-| `PRODUCT_VISION.md` | planned |
-| `PRODUCT_PHILOSOPHY.md` | planned |
-| `SUCCESS_METRICS.md` | planned |
-| `GLOSSARY.md` | planned |
+| `PRODUCT_CONTEXT.md` | active |
+| `PRODUCT_VISION.md` | active |
+| `PRODUCT_PHILOSOPHY.md` | active |
+| `SUCCESS_METRICS.md` | active |
+| `GLOSSARY.md` | active |
 
 ## Rules
 

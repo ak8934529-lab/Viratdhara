@@ -48,6 +48,22 @@ TEMPLATES
 DOCS_00_PRODUCT
 └── (root of the dependency graph — no depends_on)
 
+PRODUCT_CONTEXT
+├── related: PRODUCT_VISION, PRODUCT_PHILOSOPHY, GLOSSARY
+└── (root of the product-content graph — no depends_on)
+
+PRODUCT_VISION
+└── depends_on: PRODUCT_CONTEXT
+
+PRODUCT_PHILOSOPHY
+└── depends_on: PRODUCT_CONTEXT
+
+SUCCESS_METRICS
+└── depends_on: PRODUCT_CONTEXT, PRODUCT_VISION
+
+GLOSSARY
+└── related: PRODUCT_CONTEXT (referenced by, not dependent on)
+
 DOCS_01_ARCHITECTURE
 └── depends_on: DOCS_00_PRODUCT
 

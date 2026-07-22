@@ -34,7 +34,12 @@ Every document in this repository, by category. Updated in the same commit as an
 
 | Document | document_id | Status |
 | --- | --- | --- |
-| `README.md` | `DOCS_00_PRODUCT` | planned |
+| `README.md` | `DOCS_00_PRODUCT` | active |
+| `PRODUCT_CONTEXT.md` | `PRODUCT_CONTEXT` | active |
+| `PRODUCT_VISION.md` | `PRODUCT_VISION` | active |
+| `PRODUCT_PHILOSOPHY.md` | `PRODUCT_PHILOSOPHY` | active |
+| `SUCCESS_METRICS.md` | `SUCCESS_METRICS` | active |
+| `GLOSSARY.md` | `GLOSSARY` | active |
 
 ## docs/01_ARCHITECTURE
 
@@ -119,6 +124,6 @@ Every document in this repository, by category. Updated in the same commit as an
 
 ## Totals
 
-- Active: 24
-- Planned: 11
-- Total: 35
+- Active: 29
+- Planned: 10
+- Total: 39

@@ -38,3 +38,13 @@ Rules for AI agents contributing to Viratdhara. `AI_GLOBAL_RULES.md` applies to 
 
 - `AI_GLOBAL_RULES.md` is read before any per-agent document.
 - A per-agent document may narrow global rules for its domain; it may not override them.
+
+## Contributor Roles
+
+Preserved here from the source product-context document pending full write-up in `AI_GLOBAL_RULES.md` (Milestone 4):
+
+| Contributor | Role | Responsible for |
+| --- | --- | --- |
+| ChatGPT | Chief Product Architect | Business, architecture, product strategy, documentation strategy, knowledge design |
+| Claude Code | Repository Builder | Documentation, repository maintenance, cross-referencing, technical writing, documentation consistency |
+| Cursor | Implementation | Frontend, backend, refactoring, code generation, testing |

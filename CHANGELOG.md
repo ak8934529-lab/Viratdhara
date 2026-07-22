@@ -17,6 +17,15 @@ owner: Product Architecture
 
 One entry per milestone/commit. Newest first.
 
+## Commit 2 — Product Foundation
+
+- Added `docs/00_PRODUCT/PRODUCT_CONTEXT.md`, `PRODUCT_VISION.md`, `PRODUCT_PHILOSOPHY.md`, `SUCCESS_METRICS.md`, `GLOSSARY.md`.
+- Source: the user-authored `PROJECT_CONTEXT.md` (root), split across these five single-responsibility documents per the "one document, one concept" rule, rather than kept as one large file.
+- `docs/00_PRODUCT/README.md` and `PROJECT_INDEX.md` updated from `planned` to `active` for all five documents.
+- `DOCUMENT_GRAPH.md` updated with real edges replacing the `(planned)` placeholder nodes for this category.
+- Flagged, not resolved: the user's stated V1 scope excludes temple/pandit booking and merchandise (listed only under long-term direction in `PRODUCT_VISION.md`), while the reviewed Figma design is built substantially around those flows. Documentation is authoritative per `AI_INSTRUCTIONS.md`; this conflict needs an explicit decision before `03_FEATURES` content is written.
+- `SUCCESS_METRICS.md` intentionally contains no quantitative KPIs — none were supplied, and none were invented.
+
 ## Commit 1 — Repository Bootstrap
 
 - Added `README.md`, `AI_INSTRUCTIONS.md`, `CLAUDE.md`, `CURSOR.md`, `PROJECT_INDEX.md`, `DOCUMENT_GRAPH.md`, `CHANGELOG.md`.
