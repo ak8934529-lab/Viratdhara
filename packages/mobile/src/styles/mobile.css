@@ -1,0 +1,84 @@
+/**
+ * @dhara/mobile — PWA shell utilities.
+ *
+ * In app index.css:
+ *   @source "../../../packages/mobile/src";
+ *   @import "@dhara/mobile/styles/mobile.css";
+ *
+ * Also set on html/body/#root:
+ *   height: 100%; overflow: hidden;
+ */
+
+@layer base {
+  html,
+  body {
+    overscroll-behavior: none;
+    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    touch-action: manipulation;
+  }
+
+  input,
+  textarea,
+  [data-selectable] {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+
+  @media all and (display-mode: standalone) {
+    body {
+      overscroll-behavior-y: none;
+    }
+  }
+}
+
+@layer components {
+  .surface-card {
+    @apply rounded-2xl bg-card ring-1 ring-foreground/10;
+  }
+
+  .surface-tonal {
+    @apply rounded-2xl bg-muted/30;
+  }
+
+  .surface-elevated {
+    @apply rounded-2xl bg-card shadow-md shadow-black/20;
+  }
+
+  .touch-target {
+    @apply min-h-12 min-w-12;
+  }
+}
+
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer utilities {
+  .safe-top {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .mobile-shell {
+    @apply flex h-svh w-full flex-col overflow-hidden bg-background;
+  }
+
+  .text-app-title {
+    @apply text-[17px] font-semibold tracking-tight;
+  }
+
+  .text-detail-title {
+    @apply text-xl font-semibold leading-tight tracking-tight;
+  }
+}

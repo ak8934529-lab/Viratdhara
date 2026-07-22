@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "viratdhara-showcase",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "showcase", "dev"],
+      "port": 5180
+    }
+  ]
+}
