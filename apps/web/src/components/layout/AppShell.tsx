@@ -8,19 +8,21 @@ import { NAV_ITEMS } from "@/lib/nav-items"
 
 /**
  * Main App structural area shell (docs/01_ARCHITECTURE/INFORMATION_ARCHITECTURE.md).
- * Compact: BottomNav. Medium/Wide: SideNav. Per docs/02_DESIGN/RESPONSIVE_SYSTEM.md.
+ * Full-bleed desktop web layout (flush top bar + flush sidebar, no floating
+ * "app card" chrome) — Compact falls back to BottomNav. Per
+ * docs/02_DESIGN/RESPONSIVE_SYSTEM.md.
  */
 export function AppShell() {
   const { pathname } = useLocation()
   const current = NAV_ITEMS.find((item) => (item.path === "/" ? pathname === "/" : pathname.startsWith(item.path)))
 
   return (
-    <div className="mx-auto flex min-h-svh max-w-[1600px] gap-3 p-3">
+    <div className="min-h-svh">
       <BackgroundBloom />
-      <SideNav />
-      <div className="flex min-w-0 flex-1 flex-col pb-20 md:pb-0">
-        <TopBar title={current?.label ?? "Viratdhara"} />
-        <main className="min-w-0 flex-1">
+      <TopBar title={current?.label ?? "Viratdhara"} />
+      <div className="flex">
+        <SideNav />
+        <main className="min-w-0 flex-1 px-4 pb-24 pt-5 md:px-6 md:pb-8 lg:px-8">
           <Outlet />
         </main>
       </div>

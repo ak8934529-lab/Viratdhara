@@ -11,7 +11,7 @@
       "name": "viratdhara-web",
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["--filter", "web", "dev"],
-      "port": 5181,
+      "port": 5191,
       "autoPort": true
     }
   ]

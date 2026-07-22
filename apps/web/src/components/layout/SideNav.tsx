@@ -1,23 +1,20 @@
 import { NavLink } from "react-router-dom"
 
 import { cn } from "@dhara/utils"
-import { BrandMark } from "@/components/layout/BrandMark"
 import { NAV_ITEMS } from "@/lib/nav-items"
 
 /**
  * Medium (icon-rail) and Wide (expanded, labeled) breakpoint navigation, per
  * docs/02_DESIGN/RESPONSIVE_SYSTEM.md. Hidden below md (BottomNav takes over).
- * A fresh web-native implementation — packages/mobile is not reused here.
+ * Flush against the left edge (border-right, no floating card/margin) so the
+ * desktop layout reads as a web app, not a mobile app centered in a frame.
  */
 export function SideNav() {
   return (
     <nav
-      className="surface-glass-raised sticky top-3 z-20 hidden h-[calc(100svh-1.5rem)] w-[4.5rem] shrink-0 flex-col items-center gap-2 rounded-2xl py-4 md:flex xl:w-56 xl:items-stretch xl:px-3"
+      className="sticky top-16 hidden h-[calc(100svh-4rem)] w-16 shrink-0 flex-col items-center gap-1 overflow-y-auto border-r border-white/10 bg-card/15 py-4 backdrop-blur-xl md:flex xl:w-60 xl:items-stretch xl:px-3"
       aria-label="Main navigation"
     >
-      <div className="mb-4 flex items-center justify-center xl:justify-start xl:px-2">
-        <BrandMark size="sm" />
-      </div>
       {NAV_ITEMS.map((item) => {
         const Icon = item.icon
         return (

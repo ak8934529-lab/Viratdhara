@@ -3,6 +3,8 @@ import { Navigate, createBrowserRouter } from "react-router-dom"
 
 import { AppShell } from "@/components/layout/AppShell"
 import { useAuth } from "@/lib/auth-context"
+import { ContentDetailPage } from "@/pages/ContentDetailPage"
+import { HomePage } from "@/pages/HomePage"
 import { PlaceholderPage } from "@/pages/PlaceholderPage"
 import { LoginPage } from "@/pages/auth/LoginPage"
 import { OnboardingFormatPage } from "@/pages/auth/OnboardingFormatPage"
@@ -27,15 +29,16 @@ export const router = createBrowserRouter([
     path: "/",
     element: <RootRoute />,
     children: [
-      { index: true, element: <PlaceholderPage title="Home" note="Content Discovery not yet built in apps/web." /> },
-      { path: "suno", element: <PlaceholderPage title="Suno" note="Content Discovery not yet built in apps/web." /> },
+      { index: true, element: <HomePage /> },
+      { path: "suno", element: <PlaceholderPage title="Suno" note="Audio discovery not yet built in apps/web." /> },
       {
         path: "playing-now",
-        element: <PlaceholderPage title="Playing Now" note="Video Player not yet built in apps/web." />,
+        element: <PlaceholderPage title="Playing Now" note="Persistent player tab not yet built in apps/web." />,
       },
-      { path: "dekho", element: <PlaceholderPage title="Dekho" note="Content Discovery not yet built in apps/web." /> },
-      { path: "shorts", element: <PlaceholderPage title="Shorts" note="Content Discovery not yet built in apps/web." /> },
+      { path: "dekho", element: <PlaceholderPage title="Dekho" note="Video discovery not yet built in apps/web." /> },
+      { path: "shorts", element: <PlaceholderPage title="Shorts" note="Shorts feed not yet built in apps/web." /> },
       { path: "search", element: <PlaceholderPage title="Search" note="Search not yet built in apps/web." /> },
+      { path: "content/:id", element: <ContentDetailPage /> },
       { path: "settings", element: <PlaceholderPage title="Settings" note="User Settings not yet built in apps/web." /> },
     ],
   },
