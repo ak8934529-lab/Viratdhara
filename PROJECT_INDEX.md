@@ -229,6 +229,24 @@ Every document in this repository, by category. Updated in the same commit as an
 | `PROMPTS.md` | `ADVERTISEMENTS_PROMPTS` | active |
 | `CHANGELOG.md` | `ADVERTISEMENTS_CHANGELOG` | active |
 
+### Recommendation Engine
+
+| Document | document_id | Status |
+| --- | --- | --- |
+| `README.md` | `RECOMMENDATIONENGINE_README` | active |
+| `SPEC.md` | `RECOMMENDATIONENGINE_SPEC` | active |
+| `UI.md` | `RECOMMENDATIONENGINE_UI` | active |
+| `COMPONENTS.md` | `RECOMMENDATIONENGINE_COMPONENTS` | active |
+| `API.md` | `RECOMMENDATIONENGINE_API` | draft |
+| `DATABASE.md` | `RECOMMENDATIONENGINE_DATABASE` | active |
+| `STATES.md` | `RECOMMENDATIONENGINE_STATES` | active |
+| `VALIDATIONS.md` | `RECOMMENDATIONENGINE_VALIDATIONS` | active |
+| `EVENTS.md` | `RECOMMENDATIONENGINE_EVENTS` | active |
+| `EDGE_CASES.md` | `RECOMMENDATIONENGINE_EDGE_CASES` | active |
+| `TEST_CASES.md` | `RECOMMENDATIONENGINE_TEST_CASES` | active |
+| `PROMPTS.md` | `RECOMMENDATIONENGINE_PROMPTS` | active |
+| `CHANGELOG.md` | `RECOMMENDATIONENGINE_CHANGELOG` | active |
+
 ## docs/04_BACKEND
 
 | Document | document_id | Status |
@@ -303,7 +321,7 @@ Every document in this repository, by category. Updated in the same commit as an
 
 ## Totals
 
-- Active: 161
-- Draft: 11
+- Active: 173
+- Draft: 12
 - Planned: 6
-- Total: 178
+- Total: 191

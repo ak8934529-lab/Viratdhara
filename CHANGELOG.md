@@ -17,6 +17,13 @@ owner: Product Architecture
 
 One entry per milestone/commit. Newest first.
 
+## Commit 15 — Recommendation Engine Feature Knowledge Base
+
+- Added the full 13-file feature knowledge base at `docs/03_FEATURES/RecommendationEngine/`.
+- Clarified this feature decides *what* Content to surface per Account, not video streaming/delivery mechanics — despite "Video Streaming Algorithm" being this pass's working name for it.
+- Flagged the ranking/personalization algorithm as entirely undefined — the single largest open item across all features documented so far. Only the entity/API/event contract is specified; no algorithm is invented or assumed.
+- `FEATURE_REGISTRY.md` KB Status updated to `documented`.
+
 ## Commit 14 — Advertisements Feature Knowledge Base
 
 - Added the full 13-file feature knowledge base at `docs/03_FEATURES/Advertisements/`.
