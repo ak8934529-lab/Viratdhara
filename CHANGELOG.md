@@ -17,6 +17,14 @@ owner: Product Architecture
 
 One entry per milestone/commit. Newest first.
 
+## Commit 14 — Advertisements Feature Knowledge Base
+
+- Added the full 13-file feature knowledge base at `docs/03_FEATURES/Advertisements/`.
+- Scoped this pass to "Ads Between video" (pre-roll on Video Player sessions) per `MASTER_PRD.md`'s narrower working name — narrower than `FEATURE_REGISTRY.md`'s general Advertisements entry, which is noted, not silently reinterpreted.
+- Hard constraint established: ad unavailability/load-failure must never block Content playback.
+- Flagged 2 open gaps: placement frequency, skip timing.
+- `FEATURE_REGISTRY.md` KB Status updated to `documented`.
+
 ## Commit 13 — User Settings Feature Knowledge Base
 
 - Added the full 13-file feature knowledge base at `docs/03_FEATURES/UserSettings/`.

@@ -211,6 +211,24 @@ Every document in this repository, by category. Updated in the same commit as an
 | `PROMPTS.md` | `USERSETTINGS_PROMPTS` | active |
 | `CHANGELOG.md` | `USERSETTINGS_CHANGELOG` | active |
 
+### Advertisements
+
+| Document | document_id | Status |
+| --- | --- | --- |
+| `README.md` | `ADVERTISEMENTS_README` | active |
+| `SPEC.md` | `ADVERTISEMENTS_SPEC` | active |
+| `UI.md` | `ADVERTISEMENTS_UI` | active |
+| `COMPONENTS.md` | `ADVERTISEMENTS_COMPONENTS` | active |
+| `API.md` | `ADVERTISEMENTS_API` | draft |
+| `DATABASE.md` | `ADVERTISEMENTS_DATABASE` | active |
+| `STATES.md` | `ADVERTISEMENTS_STATES` | active |
+| `VALIDATIONS.md` | `ADVERTISEMENTS_VALIDATIONS` | active |
+| `EVENTS.md` | `ADVERTISEMENTS_EVENTS` | active |
+| `EDGE_CASES.md` | `ADVERTISEMENTS_EDGE_CASES` | active |
+| `TEST_CASES.md` | `ADVERTISEMENTS_TEST_CASES` | active |
+| `PROMPTS.md` | `ADVERTISEMENTS_PROMPTS` | active |
+| `CHANGELOG.md` | `ADVERTISEMENTS_CHANGELOG` | active |
+
 ## docs/04_BACKEND
 
 | Document | document_id | Status |
@@ -285,7 +303,7 @@ Every document in this repository, by category. Updated in the same commit as an
 
 ## Totals
 
-- Active: 149
-- Draft: 10
+- Active: 161
+- Draft: 11
 - Planned: 6
-- Total: 165
+- Total: 178
