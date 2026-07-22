@@ -1,7 +1,7 @@
 ---
 document_id: DOCS_03_FEATURES
 title: Feature Knowledge Bases
-version: 1.1.0
+version: 1.2.0
 status: active
 priority: critical
 depends_on:
@@ -51,9 +51,13 @@ Every feature is a self-contained knowledge base, one folder per feature, identi
 | `VideoPlayer` | documented |
 | `ContentCategorization` | documented |
 | `Sharing` | documented |
-| `CreatorStudio` | planned |
+| `CreatorStudio` | documented |
 | `CreatorProfile` | documented |
 | `UserSettings` | documented |
 | `Advertisements` | documented |
 
 Every feature listed here must also be registered in `FEATURE_REGISTRY.md` under `01_ARCHITECTURE`.
+
+## Status
+
+All 11 V1 features from `MASTER_PRD.md`'s Feature Scope table are `documented` as of Commit 17. "Documented" means the full 13-file knowledge base exists with real, specific content — it does not mean implementation-ready with zero open questions. See each feature's `EDGE_CASES.md` for its open gaps; `FEATURE_REGISTRY.md`'s KB Status column summarizes them per feature.

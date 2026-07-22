@@ -17,6 +17,15 @@ owner: Product Architecture
 
 One entry per milestone/commit. Newest first.
 
+## Commit 17 — Creator Studio Feature Knowledge Base (All 11 V1 Features Complete)
+
+- Added the full 13-file feature knowledge base at `docs/03_FEATURES/CreatorStudio/` — the 11th and final V1 feature from `MASTER_PRD.md`'s Feature Scope table.
+- Established the boundary with `Creator Profile`: this feature is private management/analytics (own Content only, enforced server-side); `Creator Profile` is the public-facing counterpart.
+- No major open gaps for this feature — unlike several others (Recommendation Engine's algorithm, Content Categorization's category list), Creator Studio's scope was fully specifiable from registries already in place.
+- `docs/03_FEATURES/README.md` updated: all 11 features now `documented`. "Documented" means a complete, specific 13-file knowledge base exists — not that every feature is free of open questions. Each feature's own `EDGE_CASES.md` and `FEATURE_REGISTRY.md`'s KB Status column are the record of what's still open, feature by feature.
+- **Repository stands at 217 documents** (197 active, 14 draft — mostly API/Error registries pending `04_BACKEND` architecture — 6 planned).
+- **Open items carried forward, not resolved in this pass**: password_minimum policy (Authentication), the "Booking" onboarding option (Authentication), V1 Category list (Content Categorization), query sanitization limits (Search), network/backgrounding/mid-playback-removal behavior (Video Player), unauthenticated share-recipient behavior (Sharing), Follow cleanup on role/account changes (Creator Profile), notification categories/storage limits/subscription tiers (User Settings), ad placement frequency/skip timing (Advertisements), the ranking algorithm itself (Recommendation Engine), and Recommendation-fallback/Home-curation behavior (Content Discovery).
+
 ## Commit 16 — Content Discovery Feature Knowledge Base
 
 - Added the full 13-file feature knowledge base at `docs/03_FEATURES/ContentDiscovery/`, covering Home/Suno/Dekho/Shorts.

@@ -265,6 +265,24 @@ Every document in this repository, by category. Updated in the same commit as an
 | `PROMPTS.md` | `CONTENTDISCOVERY_PROMPTS` | active |
 | `CHANGELOG.md` | `CONTENTDISCOVERY_CHANGELOG` | active |
 
+### Creator Studio
+
+| Document | document_id | Status |
+| --- | --- | --- |
+| `README.md` | `CREATORSTUDIO_README` | active |
+| `SPEC.md` | `CREATORSTUDIO_SPEC` | active |
+| `UI.md` | `CREATORSTUDIO_UI` | active |
+| `COMPONENTS.md` | `CREATORSTUDIO_COMPONENTS` | active |
+| `API.md` | `CREATORSTUDIO_API` | draft |
+| `DATABASE.md` | `CREATORSTUDIO_DATABASE` | active |
+| `STATES.md` | `CREATORSTUDIO_STATES` | active |
+| `VALIDATIONS.md` | `CREATORSTUDIO_VALIDATIONS` | active |
+| `EVENTS.md` | `CREATORSTUDIO_EVENTS` | active |
+| `EDGE_CASES.md` | `CREATORSTUDIO_EDGE_CASES` | active |
+| `TEST_CASES.md` | `CREATORSTUDIO_TEST_CASES` | active |
+| `PROMPTS.md` | `CREATORSTUDIO_PROMPTS` | active |
+| `CHANGELOG.md` | `CREATORSTUDIO_CHANGELOG` | active |
+
 ## docs/04_BACKEND
 
 | Document | document_id | Status |
@@ -339,7 +357,7 @@ Every document in this repository, by category. Updated in the same commit as an
 
 ## Totals
 
-- Active: 185
-- Draft: 13
+- Active: 197
+- Draft: 14
 - Planned: 6
-- Total: 204
+- Total: 217
