@@ -40,7 +40,7 @@ Every V1 feature, its structural area, and its knowledge-base status.
 | Search | V1 | Main App | Content Architecture | not started |
 | Recommendation Engine | V1 | Main App | Content Architecture, Authentication | not started |
 | Video Player | V1 | Main App | Content Architecture | not started |
-| Content Categorization | V1 | Main App | Content Architecture | not started |
+| Content Categorization | V1 | Main App | Content Architecture | documented (1 open gap: V1 Category list undefined) |
 | Sharing | V1 | Main App | Content Architecture | not started |
 | Creator Studio | V1 | Creator Studio | Authentication, Content Architecture | not started |
 | Creator Profile | V1 | Creator Studio + Main App (public view) | Authentication | not started |

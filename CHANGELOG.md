@@ -17,6 +17,12 @@ owner: Product Architecture
 
 One entry per milestone/commit. Newest first.
 
+## Commit 8 — Content Categorization Feature Knowledge Base
+
+- Added the full 13-file feature knowledge base at `docs/03_FEATURES/ContentCategorization/`.
+- Flagged one open gap, deliberately not resolved: the V1 Category list itself is undefined in any source document. Structural UI/data work can proceed against mock data; final Category names are a pending product decision.
+- `FEATURE_REGISTRY.md` KB Status updated to `documented` for this feature.
+
 ## Commit 7 — Master PRD + Web Design Foundation
 
 - Added root `MASTER_PRD.md` — the single entry point for building `apps/web` (a new web app, distinct from `apps/showcase`), synthesizing product/architecture/design/feature scope. Maps the user's working feature names (Onboarding Aspects, Content Listing, Video Streaming Algorithm, Video Categorization, Studio dashboard for analytics, Ads Between video, etc.) to the existing `FEATURE_REGISTRY.md` canonical names — no renaming of existing docs, just an explicit mapping.

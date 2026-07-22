@@ -103,6 +103,24 @@ Every document in this repository, by category. Updated in the same commit as an
 | `PROMPTS.md` | `AUTHENTICATION_PROMPTS` | active |
 | `CHANGELOG.md` | `AUTHENTICATION_CHANGELOG` | active |
 
+### Content Categorization
+
+| Document | document_id | Status |
+| --- | --- | --- |
+| `README.md` | `CONTENTCATEGORIZATION_README` | active |
+| `SPEC.md` | `CONTENTCATEGORIZATION_SPEC` | active |
+| `UI.md` | `CONTENTCATEGORIZATION_UI` | active |
+| `COMPONENTS.md` | `CONTENTCATEGORIZATION_COMPONENTS` | active |
+| `API.md` | `CONTENTCATEGORIZATION_API` | draft |
+| `DATABASE.md` | `CONTENTCATEGORIZATION_DATABASE` | active |
+| `STATES.md` | `CONTENTCATEGORIZATION_STATES` | active |
+| `VALIDATIONS.md` | `CONTENTCATEGORIZATION_VALIDATIONS` | active |
+| `EVENTS.md` | `CONTENTCATEGORIZATION_EVENTS` | active |
+| `EDGE_CASES.md` | `CONTENTCATEGORIZATION_EDGE_CASES` | active |
+| `TEST_CASES.md` | `CONTENTCATEGORIZATION_TEST_CASES` | active |
+| `PROMPTS.md` | `CONTENTCATEGORIZATION_PROMPTS` | active |
+| `CHANGELOG.md` | `CONTENTCATEGORIZATION_CHANGELOG` | active |
+
 ## docs/04_BACKEND
 
 | Document | document_id | Status |
@@ -177,7 +195,7 @@ Every document in this repository, by category. Updated in the same commit as an
 
 ## Totals
 
-- Active: 77
-- Draft: 4
+- Active: 89
+- Draft: 5
 - Planned: 6
-- Total: 87
+- Total: 100
