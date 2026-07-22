@@ -17,6 +17,15 @@ owner: Product Architecture
 
 One entry per milestone/commit. Newest first.
 
+## Commit 3 — Architecture Foundation
+
+- Added all 15 planned `docs/01_ARCHITECTURE` documents: `INFORMATION_ARCHITECTURE.md`, `DOMAIN_MODEL.md`, `CONTENT_ARCHITECTURE.md`, `NAVIGATION_MODEL.md`, `URL_STRUCTURE.md`, `FEATURE_REGISTRY.md`, `PERMISSION_MATRIX.md`, `DEPENDENCY_GRAPH.md`, `ENTITY_REGISTRY.md`, `COMPONENT_REGISTRY.md`, `EVENT_REGISTRY.md`, `STATE_REGISTRY.md`, `API_REGISTRY.md` (draft), `ERROR_REGISTRY.md` (draft), `VALIDATION_REGISTRY.md`.
+- `FEATURE_REGISTRY.md` formalizes the 11 V1 features from `PRODUCT_CONTEXT.md`; booking/commerce excluded per Commit 2.1.
+- `NAVIGATION_MODEL.md` fixes the nav-shell inconsistency found during the original design review (booking screens had no bottom nav; music screens did) — one shared model, both now moot since booking is descoped, but the model is the one all Main App screens use going forward.
+- `COMPONENT_REGISTRY.md` is populated directly from the actual code in `packages/ui`, `packages/mobile`, `packages/blocks` — not invented. Flags that `TempleLiveCard`, `PanditCard`, `ProductCard`, `BookingSummaryCard` are future-scoped components sitting in code ahead of their feature being promoted, and that `apps/showcase`'s demo content should eventually be swapped to V1-appropriate examples.
+- `API_REGISTRY.md` / `ERROR_REGISTRY.md` are intentionally `draft` — no backend architecture exists yet to finalize a contract against.
+- Absorbed and removed `Viratdhara_AI_Docs_Starter/DOMAIN_MODEL.md`, `INFORMATION_ARCHITECTURE.md`, `CONTENT_ARCHITECTURE.md`, `PRODUCT_CONTEXT.md`, `PROJECT_INDEX.md`, `README.md` — all fully superseded. Only `AI_GLOBAL_RULES.md`, `AI_INSTRUCTIONS.md`, `HANDOFF_TO_CLAUDE.md` remain in the starter folder, pending Milestone 4.
+
 ## Commit 2.1 — V1 Scope Conflict Resolved
 
 - Decision: temple/pandit booking and merchandise commerce are **not** V1. They are future/long-term scope, per `PRODUCT_VISION.md`.

@@ -1,8 +1,8 @@
 ---
 document_id: DOCS_01_ARCHITECTURE
 title: Architecture Documentation
-version: 1.0.0
-status: planned
+version: 1.1.0
+status: active
 priority: critical
 depends_on:
   - DOCS_00_PRODUCT
@@ -22,21 +22,21 @@ System-level structure: information architecture, domain model, and the registri
 
 | Document | Status |
 | --- | --- |
-| `INFORMATION_ARCHITECTURE.md` | planned |
-| `DOMAIN_MODEL.md` | planned |
-| `CONTENT_ARCHITECTURE.md` | planned |
-| `NAVIGATION_MODEL.md` | planned |
-| `URL_STRUCTURE.md` | planned |
-| `FEATURE_REGISTRY.md` | planned |
-| `PERMISSION_MATRIX.md` | planned |
-| `DEPENDENCY_GRAPH.md` | planned |
-| `ENTITY_REGISTRY.md` | planned |
-| `COMPONENT_REGISTRY.md` | planned |
-| `EVENT_REGISTRY.md` | planned |
-| `STATE_REGISTRY.md` | planned |
-| `API_REGISTRY.md` | planned |
-| `ERROR_REGISTRY.md` | planned |
-| `VALIDATION_REGISTRY.md` | planned |
+| `INFORMATION_ARCHITECTURE.md` | active |
+| `DOMAIN_MODEL.md` | active |
+| `CONTENT_ARCHITECTURE.md` | active |
+| `NAVIGATION_MODEL.md` | active |
+| `URL_STRUCTURE.md` | active |
+| `FEATURE_REGISTRY.md` | active |
+| `PERMISSION_MATRIX.md` | active |
+| `DEPENDENCY_GRAPH.md` | active |
+| `ENTITY_REGISTRY.md` | active |
+| `COMPONENT_REGISTRY.md` | active |
+| `EVENT_REGISTRY.md` | active |
+| `STATE_REGISTRY.md` | active |
+| `API_REGISTRY.md` | draft (groups only, no contract until 04_BACKEND exists) |
+| `ERROR_REGISTRY.md` | draft (same reason) |
+| `VALIDATION_REGISTRY.md` | active |
 
 ## Rules
 

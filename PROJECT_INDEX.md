@@ -45,7 +45,22 @@ Every document in this repository, by category. Updated in the same commit as an
 
 | Document | document_id | Status |
 | --- | --- | --- |
-| `README.md` | `DOCS_01_ARCHITECTURE` | planned |
+| `README.md` | `DOCS_01_ARCHITECTURE` | active |
+| `INFORMATION_ARCHITECTURE.md` | `INFORMATION_ARCHITECTURE` | active |
+| `DOMAIN_MODEL.md` | `DOMAIN_MODEL` | active |
+| `CONTENT_ARCHITECTURE.md` | `CONTENT_ARCHITECTURE` | active |
+| `NAVIGATION_MODEL.md` | `NAVIGATION_MODEL` | active |
+| `URL_STRUCTURE.md` | `URL_STRUCTURE` | active |
+| `FEATURE_REGISTRY.md` | `FEATURE_REGISTRY` | active |
+| `PERMISSION_MATRIX.md` | `PERMISSION_MATRIX` | active |
+| `DEPENDENCY_GRAPH.md` | `DEPENDENCY_GRAPH` | active |
+| `ENTITY_REGISTRY.md` | `ENTITY_REGISTRY` | active |
+| `COMPONENT_REGISTRY.md` | `COMPONENT_REGISTRY` | active |
+| `EVENT_REGISTRY.md` | `EVENT_REGISTRY` | active |
+| `STATE_REGISTRY.md` | `STATE_REGISTRY` | active |
+| `API_REGISTRY.md` | `API_REGISTRY` | draft |
+| `ERROR_REGISTRY.md` | `ERROR_REGISTRY` | draft |
+| `VALIDATION_REGISTRY.md` | `VALIDATION_REGISTRY` | active |
 
 ## docs/02_DESIGN
 
@@ -124,6 +139,7 @@ Every document in this repository, by category. Updated in the same commit as an
 
 ## Totals
 
-- Active: 29
-- Planned: 10
-- Total: 39
+- Active: 43
+- Draft: 2
+- Planned: 9
+- Total: 54
