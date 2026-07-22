@@ -1,0 +1,16 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@dhara/utils": ["../../packages/utils/src/index.ts"],
+      "@dhara/constants": ["../../packages/constants/src/index.ts"],
+      "@dhara/ui/*": ["../../packages/ui/src/*"]
+    }
+  }
+}

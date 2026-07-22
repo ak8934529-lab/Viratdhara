@@ -6,6 +6,13 @@
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["--filter", "showcase", "dev"],
       "port": 5180
+    },
+    {
+      "name": "viratdhara-web",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "web", "dev"],
+      "port": 5181,
+      "autoPort": true
     }
   ]
 }
