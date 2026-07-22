@@ -193,6 +193,24 @@ Every document in this repository, by category. Updated in the same commit as an
 | `PROMPTS.md` | `CREATORPROFILE_PROMPTS` | active |
 | `CHANGELOG.md` | `CREATORPROFILE_CHANGELOG` | active |
 
+### User Settings
+
+| Document | document_id | Status |
+| --- | --- | --- |
+| `README.md` | `USERSETTINGS_README` | active |
+| `SPEC.md` | `USERSETTINGS_SPEC` | active |
+| `UI.md` | `USERSETTINGS_UI` | active |
+| `COMPONENTS.md` | `USERSETTINGS_COMPONENTS` | active |
+| `API.md` | `USERSETTINGS_API` | draft |
+| `DATABASE.md` | `USERSETTINGS_DATABASE` | active |
+| `STATES.md` | `USERSETTINGS_STATES` | active |
+| `VALIDATIONS.md` | `USERSETTINGS_VALIDATIONS` | active |
+| `EVENTS.md` | `USERSETTINGS_EVENTS` | active |
+| `EDGE_CASES.md` | `USERSETTINGS_EDGE_CASES` | active |
+| `TEST_CASES.md` | `USERSETTINGS_TEST_CASES` | active |
+| `PROMPTS.md` | `USERSETTINGS_PROMPTS` | active |
+| `CHANGELOG.md` | `USERSETTINGS_CHANGELOG` | active |
+
 ## docs/04_BACKEND
 
 | Document | document_id | Status |
@@ -267,7 +285,7 @@ Every document in this repository, by category. Updated in the same commit as an
 
 ## Totals
 
-- Active: 137
-- Draft: 9
+- Active: 149
+- Draft: 10
 - Planned: 6
-- Total: 152
+- Total: 165

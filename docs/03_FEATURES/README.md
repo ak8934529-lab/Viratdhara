@@ -53,7 +53,7 @@ Every feature is a self-contained knowledge base, one folder per feature, identi
 | `Sharing` | documented |
 | `CreatorStudio` | planned |
 | `CreatorProfile` | documented |
-| `UserSettings` | planned |
+| `UserSettings` | documented |
 | `Advertisements` | planned |
 
 Every feature listed here must also be registered in `FEATURE_REGISTRY.md` under `01_ARCHITECTURE`.

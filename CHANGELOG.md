@@ -17,6 +17,13 @@ owner: Product Architecture
 
 One entry per milestone/commit. Newest first.
 
+## Commit 13 — User Settings Feature Knowledge Base
+
+- Added the full 13-file feature knowledge base at `docs/03_FEATURES/UserSettings/`.
+- Established the boundary with Authentication explicitly: this feature owns notification/downloads/subscription state; credential fields (email, password) stay with Authentication even though reached via the same Settings entry point in the reviewed design.
+- Flagged 3 open gaps: notification category list, downloads storage limit, subscription tier structure — none invented.
+- `FEATURE_REGISTRY.md` KB Status updated to `documented`.
+
 ## Commit 12 — Creator Profile Feature Knowledge Base
 
 - Added the full 13-file feature knowledge base at `docs/03_FEATURES/CreatorProfile/`.

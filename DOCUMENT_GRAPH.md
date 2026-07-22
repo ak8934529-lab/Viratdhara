@@ -463,6 +463,49 @@ CREATORPROFILE_CHANGELOG
 
 **Note on Milestone 12:** `DOMAIN_MODEL`, `ENTITY_REGISTRY`, `API_REGISTRY`, and `EVENT_REGISTRY` (all existing nodes above, under `01_ARCHITECTURE`) were updated in this same commit to add the `Follow` entity/API group/events. Their edges are unchanged; only their content grew.
 
+### 03_FEATURES / User Settings
+
+```
+USERSETTINGS_README
+└── depends_on: AUTHENTICATION_README, FEATURE_REGISTRY
+
+USERSETTINGS_SPEC
+└── depends_on: USERSETTINGS_README
+
+USERSETTINGS_UI
+└── depends_on: USERSETTINGS_SPEC, NAVIGATION_MODEL
+
+USERSETTINGS_COMPONENTS
+└── depends_on: USERSETTINGS_UI, COMPONENT_REGISTRY
+
+USERSETTINGS_API
+└── depends_on: USERSETTINGS_SPEC, API_REGISTRY
+
+USERSETTINGS_DATABASE
+└── depends_on: USERSETTINGS_SPEC, ENTITY_REGISTRY
+
+USERSETTINGS_STATES
+└── depends_on: USERSETTINGS_SPEC
+
+USERSETTINGS_VALIDATIONS
+└── depends_on: USERSETTINGS_SPEC
+
+USERSETTINGS_EVENTS
+└── depends_on: USERSETTINGS_SPEC
+
+USERSETTINGS_EDGE_CASES
+└── depends_on: USERSETTINGS_SPEC
+
+USERSETTINGS_TEST_CASES
+└── depends_on: USERSETTINGS_SPEC, USERSETTINGS_EDGE_CASES
+
+USERSETTINGS_PROMPTS
+└── depends_on: USERSETTINGS_README
+
+USERSETTINGS_CHANGELOG
+└── depends_on: USERSETTINGS_README
+```
+
 ## Notes
 
 - Documents marked `(planned)` above do not yet exist. Their node is reserved because another active document already references them.
