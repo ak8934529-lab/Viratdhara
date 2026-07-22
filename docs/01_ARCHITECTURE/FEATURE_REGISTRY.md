@@ -37,7 +37,7 @@ Every V1 feature, its structural area, and its knowledge-base status.
 | --- | --- | --- | --- | --- |
 | Authentication | V1 | Auth Area | — | documented (2 open gaps: `password_minimum`, "Booking" onboarding option) |
 | Content Discovery | V1 | Main App | Content Architecture, Recommendation Engine, Content Categorization | not started |
-| Search | V1 | Main App | Content Architecture | not started |
+| Search | V1 | Main App | Content Architecture | documented (1 open gap: query sanitization/length limits unspecified) |
 | Recommendation Engine | V1 | Main App | Content Architecture, Authentication | not started |
 | Video Player | V1 | Main App | Content Architecture | not started |
 | Content Categorization | V1 | Main App | Content Architecture | documented (1 open gap: V1 Category list undefined) |

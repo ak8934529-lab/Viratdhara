@@ -17,6 +17,13 @@ owner: Product Architecture
 
 One entry per milestone/commit. Newest first.
 
+## Commit 9 — Search Feature Knowledge Base
+
+- Added the full 13-file feature knowledge base at `docs/03_FEATURES/Search/`.
+- Defined a feature-local state machine (`idle`/`searching`/`results`/`no_results`/`error`) — not added to `STATE_REGISTRY.md` since it's not cross-feature.
+- Flagged one open gap: query sanitization/length limits are unspecified — a security/backend concern, not resolved by assumption.
+- `FEATURE_REGISTRY.md` KB Status updated to `documented`.
+
 ## Commit 8 — Content Categorization Feature Knowledge Base
 
 - Added the full 13-file feature knowledge base at `docs/03_FEATURES/ContentCategorization/`.

@@ -121,6 +121,24 @@ Every document in this repository, by category. Updated in the same commit as an
 | `PROMPTS.md` | `CONTENTCATEGORIZATION_PROMPTS` | active |
 | `CHANGELOG.md` | `CONTENTCATEGORIZATION_CHANGELOG` | active |
 
+### Search
+
+| Document | document_id | Status |
+| --- | --- | --- |
+| `README.md` | `SEARCH_README` | active |
+| `SPEC.md` | `SEARCH_SPEC` | active |
+| `UI.md` | `SEARCH_UI` | active |
+| `COMPONENTS.md` | `SEARCH_COMPONENTS` | active |
+| `API.md` | `SEARCH_API` | draft |
+| `DATABASE.md` | `SEARCH_DATABASE` | active |
+| `STATES.md` | `SEARCH_STATES` | active |
+| `VALIDATIONS.md` | `SEARCH_VALIDATIONS` | active |
+| `EVENTS.md` | `SEARCH_EVENTS` | active |
+| `EDGE_CASES.md` | `SEARCH_EDGE_CASES` | active |
+| `TEST_CASES.md` | `SEARCH_TEST_CASES` | active |
+| `PROMPTS.md` | `SEARCH_PROMPTS` | active |
+| `CHANGELOG.md` | `SEARCH_CHANGELOG` | active |
+
 ## docs/04_BACKEND
 
 | Document | document_id | Status |
@@ -195,7 +213,7 @@ Every document in this repository, by category. Updated in the same commit as an
 
 ## Totals
 
-- Active: 89
-- Draft: 5
+- Active: 101
+- Draft: 6
 - Planned: 6
-- Total: 100
+- Total: 113

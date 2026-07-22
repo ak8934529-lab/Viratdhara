@@ -289,6 +289,49 @@ CONTENTCATEGORIZATION_CHANGELOG
 └── depends_on: CONTENTCATEGORIZATION_README
 ```
 
+### 03_FEATURES / Search
+
+```
+SEARCH_README
+└── depends_on: CONTENT_ARCHITECTURE, FEATURE_REGISTRY
+
+SEARCH_SPEC
+└── depends_on: SEARCH_README
+
+SEARCH_UI
+└── depends_on: SEARCH_SPEC, NAVIGATION_MODEL, RESPONSIVE_SYSTEM
+
+SEARCH_COMPONENTS
+└── depends_on: SEARCH_UI, COMPONENT_REGISTRY
+
+SEARCH_API
+└── depends_on: SEARCH_SPEC, API_REGISTRY
+
+SEARCH_DATABASE
+└── depends_on: SEARCH_SPEC, ENTITY_REGISTRY
+
+SEARCH_STATES
+└── depends_on: SEARCH_SPEC
+
+SEARCH_VALIDATIONS
+└── depends_on: SEARCH_SPEC, VALIDATION_REGISTRY
+
+SEARCH_EVENTS
+└── depends_on: SEARCH_SPEC, EVENT_REGISTRY
+
+SEARCH_EDGE_CASES
+└── depends_on: SEARCH_SPEC
+
+SEARCH_TEST_CASES
+└── depends_on: SEARCH_SPEC, SEARCH_EDGE_CASES
+
+SEARCH_PROMPTS
+└── depends_on: SEARCH_README
+
+SEARCH_CHANGELOG
+└── depends_on: SEARCH_README
+```
+
 ## Notes
 
 - Documents marked `(planned)` above do not yet exist. Their node is reserved because another active document already references them.
