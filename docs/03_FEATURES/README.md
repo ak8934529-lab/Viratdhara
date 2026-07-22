@@ -50,7 +50,7 @@ Every feature is a self-contained knowledge base, one folder per feature, identi
 | `RecommendationEngine` | planned |
 | `VideoPlayer` | documented |
 | `ContentCategorization` | documented |
-| `Sharing` | planned |
+| `Sharing` | documented |
 | `CreatorStudio` | planned |
 | `CreatorProfile` | planned |
 | `UserSettings` | planned |

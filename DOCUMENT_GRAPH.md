@@ -375,6 +375,49 @@ VIDEOPLAYER_CHANGELOG
 └── depends_on: VIDEOPLAYER_README
 ```
 
+### 03_FEATURES / Sharing
+
+```
+SHARING_README
+└── depends_on: CONTENT_ARCHITECTURE, FEATURE_REGISTRY
+
+SHARING_SPEC
+└── depends_on: SHARING_README
+
+SHARING_UI
+└── depends_on: SHARING_SPEC, RESPONSIVE_SYSTEM
+
+SHARING_COMPONENTS
+└── depends_on: SHARING_UI, COMPONENT_REGISTRY
+
+SHARING_API
+└── depends_on: SHARING_SPEC, API_REGISTRY
+
+SHARING_DATABASE
+└── depends_on: SHARING_SPEC, ENTITY_REGISTRY
+
+SHARING_STATES
+└── depends_on: SHARING_SPEC
+
+SHARING_VALIDATIONS
+└── depends_on: SHARING_SPEC
+
+SHARING_EVENTS
+└── depends_on: SHARING_SPEC, EVENT_REGISTRY
+
+SHARING_EDGE_CASES
+└── depends_on: SHARING_SPEC
+
+SHARING_TEST_CASES
+└── depends_on: SHARING_SPEC, SHARING_EDGE_CASES
+
+SHARING_PROMPTS
+└── depends_on: SHARING_README
+
+SHARING_CHANGELOG
+└── depends_on: SHARING_README
+```
+
 ## Notes
 
 - Documents marked `(planned)` above do not yet exist. Their node is reserved because another active document already references them.

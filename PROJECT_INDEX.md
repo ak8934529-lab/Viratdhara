@@ -157,6 +157,24 @@ Every document in this repository, by category. Updated in the same commit as an
 | `PROMPTS.md` | `VIDEOPLAYER_PROMPTS` | active |
 | `CHANGELOG.md` | `VIDEOPLAYER_CHANGELOG` | active |
 
+### Sharing
+
+| Document | document_id | Status |
+| --- | --- | --- |
+| `README.md` | `SHARING_README` | active |
+| `SPEC.md` | `SHARING_SPEC` | active |
+| `UI.md` | `SHARING_UI` | active |
+| `COMPONENTS.md` | `SHARING_COMPONENTS` | active |
+| `API.md` | `SHARING_API` | draft |
+| `DATABASE.md` | `SHARING_DATABASE` | active |
+| `STATES.md` | `SHARING_STATES` | active |
+| `VALIDATIONS.md` | `SHARING_VALIDATIONS` | active |
+| `EVENTS.md` | `SHARING_EVENTS` | active |
+| `EDGE_CASES.md` | `SHARING_EDGE_CASES` | active |
+| `TEST_CASES.md` | `SHARING_TEST_CASES` | active |
+| `PROMPTS.md` | `SHARING_PROMPTS` | active |
+| `CHANGELOG.md` | `SHARING_CHANGELOG` | active |
+
 ## docs/04_BACKEND
 
 | Document | document_id | Status |
@@ -231,7 +249,7 @@ Every document in this repository, by category. Updated in the same commit as an
 
 ## Totals
 
-- Active: 113
-- Draft: 7
+- Active: 125
+- Draft: 8
 - Planned: 6
-- Total: 126
+- Total: 139

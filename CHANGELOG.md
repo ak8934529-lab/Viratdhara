@@ -17,6 +17,13 @@ owner: Product Architecture
 
 One entry per milestone/commit. Newest first.
 
+## Commit 11 — Sharing Feature Knowledge Base
+
+- Added the full 13-file feature knowledge base at `docs/03_FEATURES/Sharing/`.
+- Specified native platform share (`navigator.share` + copy-link fallback) as the mechanism — no custom share sheet or short-link service.
+- Flagged one open gap: whether an unauthenticated recipient can view shared Content or must log in first is unconfirmed.
+- `FEATURE_REGISTRY.md` KB Status updated to `documented`.
+
 ## Commit 10 — Video Player Feature Knowledge Base
 
 - Added the full 13-file feature knowledge base at `docs/03_FEATURES/VideoPlayer/`.
