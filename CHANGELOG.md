@@ -17,6 +17,13 @@ owner: Product Architecture
 
 One entry per milestone/commit. Newest first.
 
+## Commit 12 — Creator Profile Feature Knowledge Base
+
+- Added the full 13-file feature knowledge base at `docs/03_FEATURES/CreatorProfile/`.
+- **Real cross-milestone gap found and fixed**: `PRODUCT_CONTEXT.md` (Commit 2) stated Creators "interact with followers," but `DOMAIN_MODEL.md` (Commit 3) never modeled a Follow relationship. Added `Follow` to `DOMAIN_MODEL.md` and `ENTITY_REGISTRY.md`, a `Follow` API group to `API_REGISTRY.md`, and `creator_followed`/`creator_unfollowed` to `EVENT_REGISTRY.md` — all in this same commit, per `AI_DOCUMENTATION_AGENT.md`'s rule against partial registry updates.
+- Flagged 2 open gaps: Follow cleanup on Creator-role revocation, and cascade behavior on account deletion — both depend on features (role management, account deletion) that don't exist yet.
+- `FEATURE_REGISTRY.md` KB Status updated to `documented`.
+
 ## Commit 11 — Sharing Feature Knowledge Base
 
 - Added the full 13-file feature knowledge base at `docs/03_FEATURES/Sharing/`.

@@ -43,7 +43,7 @@ Every V1 feature, its structural area, and its knowledge-base status.
 | Content Categorization | V1 | Main App | Content Architecture | documented (1 open gap: V1 Category list undefined) |
 | Sharing | V1 | Main App | Content Architecture | documented (1 open gap: unauthenticated recipient behavior) |
 | Creator Studio | V1 | Creator Studio | Authentication, Content Architecture | not started |
-| Creator Profile | V1 | Creator Studio + Main App (public view) | Authentication | not started |
+| Creator Profile | V1 | Creator Studio + Main App (public view) | Authentication | documented (added Follow entity to DOMAIN_MODEL.md; 2 open gaps: role-revocation cleanup, account-deletion cascade) |
 | User Settings | V1 | Main App | Authentication | not started |
 | Advertisements | V1 | Main App (cross-cutting placement) | — | not started |
 

@@ -1,7 +1,7 @@
 ---
 document_id: ENTITY_REGISTRY
 title: Entity Registry
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: critical
 depends_on:
@@ -16,6 +16,7 @@ related_entities:
   - Playlist
   - Recommendation
   - Advertisement
+  - Follow
 related_components: []
 related_events: []
 owner: Product Architecture
@@ -47,6 +48,7 @@ The authoritative list of entities. An entity not listed here does not exist for
 | `Playlist` | User collection | active | `DOMAIN_MODEL.md` |
 | `Recommendation` | Generated association | active | `DOMAIN_MODEL.md` |
 | `Advertisement` | Ad unit | active | `DOMAIN_MODEL.md` |
+| `Follow` | Account-to-Creator relationship | active | `DOMAIN_MODEL.md` (added Milestone 12) |
 
 ## Dependencies
 

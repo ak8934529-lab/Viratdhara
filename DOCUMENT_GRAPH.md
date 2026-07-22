@@ -418,6 +418,51 @@ SHARING_CHANGELOG
 └── depends_on: SHARING_README
 ```
 
+### 03_FEATURES / Creator Profile
+
+```
+CREATORPROFILE_README
+└── depends_on: AUTHENTICATION_README, FEATURE_REGISTRY
+
+CREATORPROFILE_SPEC
+└── depends_on: CREATORPROFILE_README
+
+CREATORPROFILE_UI
+└── depends_on: CREATORPROFILE_SPEC, RESPONSIVE_SYSTEM
+
+CREATORPROFILE_COMPONENTS
+└── depends_on: CREATORPROFILE_UI, COMPONENT_REGISTRY
+
+CREATORPROFILE_API
+└── depends_on: CREATORPROFILE_SPEC, API_REGISTRY
+
+CREATORPROFILE_DATABASE
+└── depends_on: CREATORPROFILE_SPEC, ENTITY_REGISTRY
+
+CREATORPROFILE_STATES
+└── depends_on: CREATORPROFILE_SPEC
+
+CREATORPROFILE_VALIDATIONS
+└── depends_on: CREATORPROFILE_SPEC
+
+CREATORPROFILE_EVENTS
+└── depends_on: CREATORPROFILE_SPEC, EVENT_REGISTRY
+
+CREATORPROFILE_EDGE_CASES
+└── depends_on: CREATORPROFILE_SPEC
+
+CREATORPROFILE_TEST_CASES
+└── depends_on: CREATORPROFILE_SPEC, CREATORPROFILE_EDGE_CASES
+
+CREATORPROFILE_PROMPTS
+└── depends_on: CREATORPROFILE_README
+
+CREATORPROFILE_CHANGELOG
+└── depends_on: CREATORPROFILE_README
+```
+
+**Note on Milestone 12:** `DOMAIN_MODEL`, `ENTITY_REGISTRY`, `API_REGISTRY`, and `EVENT_REGISTRY` (all existing nodes above, under `01_ARCHITECTURE`) were updated in this same commit to add the `Follow` entity/API group/events. Their edges are unchanged; only their content grew.
+
 ## Notes
 
 - Documents marked `(planned)` above do not yet exist. Their node is reserved because another active document already references them.

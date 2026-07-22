@@ -1,7 +1,7 @@
 ---
 document_id: API_REGISTRY
 title: API Registry
-version: 1.0.0
+version: 1.1.0
 status: draft
 priority: medium
 depends_on:
@@ -43,6 +43,7 @@ The API groups V1 features will need, at the ownership/grouping level only. No e
 | Creator | Creator Studio, Creator Profile | Publish/manage own Content, read own analytics |
 | Settings | User Settings | Read/update Account settings |
 | Ads | Advertisements | Serve/track Advertisement |
+| Follow | Creator Profile | Create/remove the Account-to-Creator Follow relationship (added Milestone 12) |
 
 ## Dependencies
 

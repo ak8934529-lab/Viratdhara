@@ -1,7 +1,7 @@
 ---
 document_id: DOMAIN_MODEL
 title: Domain Model
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: critical
 depends_on:
@@ -20,6 +20,7 @@ related_entities:
   - Playlist
   - Recommendation
   - Advertisement
+  - Follow
 related_components: []
 related_events: []
 owner: Product Architecture
@@ -91,6 +92,15 @@ A unit shown to Accounts, owned/managed by an Administrator.
 
 - Not owned by a Creator. Distinct from Content — an Advertisement is never mistaken for or mixed into a Creator's Content list.
 
+### Follow
+
+A directional relationship: one Account follows one Creator. Added in Milestone 12 to formalize `PRODUCT_CONTEXT.md`'s statement that a Creator "interacts with followers" — that language existed since Milestone 2 without a corresponding entity until Creator Profile's `DATABASE.md` surfaced the gap.
+
+- An Account may follow zero or more Creators.
+- A Creator may be followed by zero or more Accounts.
+- Following is not mutual/symmetric — it does not imply the Creator follows back.
+- A Creator following another Creator is possible (a Creator-role Account can also hold the follow relationship as follower) — Follow relates Accounts to Creators, not "Users" to "Creators" as mutually exclusive categories.
+
 ## Dependencies
 
 - `PRODUCT_CONTEXT.md` — defines the three role types at product level; this document formalizes them as Account roles.
@@ -108,6 +118,7 @@ Content (many) ──belongs to──> (1) Category
 Content (many) ──tagged with──> (many) Tag
 Account (1) ──receives──> (many) Recommendation ──references──> (1) Content
 Account (1) ──shown──> (many) Advertisement
+Account (many) ──follows──> (many) Account (Creator)  [Follow — directional, not mutual]
 ```
 
 ## Constraints

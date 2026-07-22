@@ -52,7 +52,7 @@ Every feature is a self-contained knowledge base, one folder per feature, identi
 | `ContentCategorization` | documented |
 | `Sharing` | documented |
 | `CreatorStudio` | planned |
-| `CreatorProfile` | planned |
+| `CreatorProfile` | documented |
 | `UserSettings` | planned |
 | `Advertisements` | planned |
 

@@ -175,6 +175,24 @@ Every document in this repository, by category. Updated in the same commit as an
 | `PROMPTS.md` | `SHARING_PROMPTS` | active |
 | `CHANGELOG.md` | `SHARING_CHANGELOG` | active |
 
+### Creator Profile
+
+| Document | document_id | Status |
+| --- | --- | --- |
+| `README.md` | `CREATORPROFILE_README` | active |
+| `SPEC.md` | `CREATORPROFILE_SPEC` | active |
+| `UI.md` | `CREATORPROFILE_UI` | active |
+| `COMPONENTS.md` | `CREATORPROFILE_COMPONENTS` | active |
+| `API.md` | `CREATORPROFILE_API` | draft |
+| `DATABASE.md` | `CREATORPROFILE_DATABASE` | active |
+| `STATES.md` | `CREATORPROFILE_STATES` | active |
+| `VALIDATIONS.md` | `CREATORPROFILE_VALIDATIONS` | active |
+| `EVENTS.md` | `CREATORPROFILE_EVENTS` | active |
+| `EDGE_CASES.md` | `CREATORPROFILE_EDGE_CASES` | active |
+| `TEST_CASES.md` | `CREATORPROFILE_TEST_CASES` | active |
+| `PROMPTS.md` | `CREATORPROFILE_PROMPTS` | active |
+| `CHANGELOG.md` | `CREATORPROFILE_CHANGELOG` | active |
+
 ## docs/04_BACKEND
 
 | Document | document_id | Status |
@@ -249,7 +267,7 @@ Every document in this repository, by category. Updated in the same commit as an
 
 ## Totals
 
-- Active: 125
-- Draft: 8
+- Active: 137
+- Draft: 9
 - Planned: 6
-- Total: 139
+- Total: 152

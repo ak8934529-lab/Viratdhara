@@ -1,7 +1,7 @@
 ---
 document_id: EVENT_REGISTRY
 title: Event Registry
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: medium
 depends_on:
@@ -28,6 +28,8 @@ related_events:
   - creator_content_published
   - ad_impression
   - ad_clicked
+  - creator_followed
+  - creator_unfollowed
 owner: Product Architecture
 ---
 
@@ -66,6 +68,8 @@ The authoritative list of domain/analytics events in V1. An event not listed her
 | `creator_content_published` | Creator Studio | A Creator published a new Content item. |
 | `ad_impression` | Advertisements | An Advertisement was shown to an Account. |
 | `ad_clicked` | Advertisements | An Account interacted with an Advertisement. |
+| `creator_followed` | Creator Profile | An Account started following a Creator. |
+| `creator_unfollowed` | Creator Profile | An Account stopped following a Creator. |
 
 ## Dependencies
 
