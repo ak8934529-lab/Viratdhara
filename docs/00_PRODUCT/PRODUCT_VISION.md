@@ -1,7 +1,7 @@
 ---
 document_id: PRODUCT_VISION
 title: Product Vision
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: critical
 depends_on:
@@ -56,8 +56,13 @@ Potential future modules, in no particular sequence or priority:
 - Daily Rituals
 - Festival Experiences
 - Personalized Recommendations
+- Merchandise / Spiritual Commerce (pooja samagri, jewellery, temple merchandise)
 
 Documentation for current and future work should be written with this direction in mind even where a module is not yet in scope — see `PRODUCT_PHILOSOPHY.md`, Scalability principle.
+
+### Resolved Scope Note
+
+The reviewed Figma design file includes temple/pandit booking and merchandise commerce screens built out in significant detail. This has been explicitly confirmed as **future/long-term scope**, mapped to the **Temples**, **Donations**, and **Merchandise / Spiritual Commerce** modules above — not V1. `docs/03_FEATURES` must not include a booking or commerce feature folder until one of these modules is promoted to `FEATURE_REGISTRY.md`. Screens for these flows exist in the design file for reference only; they are not an implementation commitment.
 
 ## Constraints
 

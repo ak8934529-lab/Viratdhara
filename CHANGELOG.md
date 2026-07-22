@@ -17,6 +17,13 @@ owner: Product Architecture
 
 One entry per milestone/commit. Newest first.
 
+## Commit 2.1 — V1 Scope Conflict Resolved
+
+- Decision: temple/pandit booking and merchandise commerce are **not** V1. They are future/long-term scope, per `PRODUCT_VISION.md`.
+- Confirmed the reviewed Figma design's booking/commerce screens (75 screens total, same content previously reviewed as a combined PDF export) map to the **Temples**, **Donations**, and a newly added **Merchandise / Spiritual Commerce** module under Long-Term Product Direction.
+- `docs/03_FEATURES` must not gain a booking or commerce feature folder until one of these modules is promoted to `FEATURE_REGISTRY.md`.
+- Closes the conflict flagged in Commit 2.
+
 ## Commit 2 — Product Foundation
 
 - Added `docs/00_PRODUCT/PRODUCT_CONTEXT.md`, `PRODUCT_VISION.md`, `PRODUCT_PHILOSOPHY.md`, `SUCCESS_METRICS.md`, `GLOSSARY.md`.
