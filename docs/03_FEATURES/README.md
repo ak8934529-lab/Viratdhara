@@ -1,8 +1,8 @@
 ---
 document_id: DOCS_03_FEATURES
 title: Feature Knowledge Bases
-version: 1.0.0
-status: planned
+version: 1.1.0
+status: active
 priority: critical
 depends_on:
   - DOCS_00_PRODUCT
@@ -44,7 +44,7 @@ Every feature is a self-contained knowledge base, one folder per feature, identi
 
 | Feature | Status |
 | --- | --- |
-| `Authentication` | planned |
+| `Authentication` | documented |
 | `ContentDiscovery` | planned |
 | `Search` | planned |
 | `RecommendationEngine` | planned |

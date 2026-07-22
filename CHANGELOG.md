@@ -17,6 +17,13 @@ owner: Product Architecture
 
 One entry per milestone/commit. Newest first.
 
+## Commit 6 — Authentication Feature Knowledge Base
+
+- Added the full 13-file feature knowledge base at `docs/03_FEATURES/Authentication/`, copied from `templates/FEATURE_TEMPLATE/` and filled in per `PROMPT_LIBRARY.md`'s "Start a new V1 feature's knowledge base" prompt.
+- `FEATURE_REGISTRY.md` KB Status updated: Authentication is now `documented`, with 2 open gaps flagged rather than resolved by assumption: (1) `password_minimum` validation rule unspecified, (2) the reviewed design's "Booking" onboarding option needs a product decision (hide vs. repurpose) since booking is out of V1 scope.
+- `AUTHENTICATION_API.md` is `draft`, matching `API_REGISTRY.md`'s own draft status pending backend architecture.
+- First feature to move through the full template — confirms the template structure holds for a real feature without needing changes.
+
 ## Commit 5 — Design Foundation
 
 - Added all 9 planned `docs/02_DESIGN` documents: `DESIGN_PHILOSOPHY.md`, `DESIGN_SYSTEM_RULES.md`, `LAYOUT_SYSTEM.md`, `RESPONSIVE_SYSTEM.md` (draft), `COMPONENT_LIBRARY.md`, `ACCESSIBILITY.md`, `TYPOGRAPHY.md`, `MOTION.md` (draft), `UX_PATTERNS.md`.

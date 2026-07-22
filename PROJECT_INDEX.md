@@ -81,7 +81,25 @@ Every document in this repository, by category. Updated in the same commit as an
 
 | Document | document_id | Status |
 | --- | --- | --- |
-| `README.md` | `DOCS_03_FEATURES` | planned |
+| `README.md` | `DOCS_03_FEATURES` | active |
+
+### Authentication
+
+| Document | document_id | Status |
+| --- | --- | --- |
+| `README.md` | `AUTHENTICATION_README` | active |
+| `SPEC.md` | `AUTHENTICATION_SPEC` | active |
+| `UI.md` | `AUTHENTICATION_UI` | active |
+| `COMPONENTS.md` | `AUTHENTICATION_COMPONENTS` | active |
+| `API.md` | `AUTHENTICATION_API` | draft |
+| `DATABASE.md` | `AUTHENTICATION_DATABASE` | active |
+| `STATES.md` | `AUTHENTICATION_STATES` | active |
+| `VALIDATIONS.md` | `AUTHENTICATION_VALIDATIONS` | active |
+| `EVENTS.md` | `AUTHENTICATION_EVENTS` | active |
+| `EDGE_CASES.md` | `AUTHENTICATION_EDGE_CASES` | active |
+| `TEST_CASES.md` | `AUTHENTICATION_TEST_CASES` | active |
+| `PROMPTS.md` | `AUTHENTICATION_PROMPTS` | active |
+| `CHANGELOG.md` | `AUTHENTICATION_CHANGELOG` | active |
 
 ## docs/04_BACKEND
 
@@ -157,7 +175,7 @@ Every document in this repository, by category. Updated in the same commit as an
 
 ## Totals
 
-- Active: 61
-- Draft: 4
-- Planned: 7
-- Total: 72
+- Active: 74
+- Draft: 5
+- Planned: 6
+- Total: 85

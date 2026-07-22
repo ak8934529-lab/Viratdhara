@@ -1,7 +1,7 @@
 ---
 document_id: FEATURE_REGISTRY
 title: Feature Registry
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: critical
 depends_on:
@@ -35,7 +35,7 @@ Every V1 feature, its structural area, and its knowledge-base status.
 
 | Feature | Scope | Structural Area | Depends On | KB Status |
 | --- | --- | --- | --- | --- |
-| Authentication | V1 | Auth Area | — | not started |
+| Authentication | V1 | Auth Area | — | documented (2 open gaps: `password_minimum`, "Booking" onboarding option) |
 | Content Discovery | V1 | Main App | Content Architecture, Recommendation Engine, Content Categorization | not started |
 | Search | V1 | Main App | Content Architecture | not started |
 | Recommendation Engine | V1 | Main App | Content Architecture, Authentication | not started |
