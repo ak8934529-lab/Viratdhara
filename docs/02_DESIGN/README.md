@@ -1,7 +1,7 @@
 ---
 document_id: DOCS_02_DESIGN
 title: Design Documentation
-version: 1.1.0
+version: 1.2.0
 status: active
 priority: high
 depends_on:
@@ -26,7 +26,8 @@ Design system rules. Describes constraints and rationale, not implementation. Th
 | `DESIGN_PHILOSOPHY.md` | active |
 | `DESIGN_SYSTEM_RULES.md` | active |
 | `LAYOUT_SYSTEM.md` | active |
-| `RESPONSIVE_SYSTEM.md` | draft (mobile-only design, no breakpoint system exists yet) |
+| `RESPONSIVE_SYSTEM.md` | active (real breakpoint system for apps/web as of Milestone 7; packages/mobile stays letterboxed) |
+| `SURFACE_SYSTEM.md` | active (glass/depth treatment for apps/web) |
 | `COMPONENT_LIBRARY.md` | active |
 | `ACCESSIBILITY.md` | active |
 | `TYPOGRAPHY.md` | active |

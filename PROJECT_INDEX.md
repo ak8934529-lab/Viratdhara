@@ -29,6 +29,7 @@ Every document in this repository, by category. Updated in the same commit as an
 | `PROJECT_INDEX.md` | `PROJECT_INDEX` | active |
 | `DOCUMENT_GRAPH.md` | `DOCUMENT_GRAPH` | active |
 | `CHANGELOG.md` | `CHANGELOG` | active |
+| `MASTER_PRD.md` | `MASTER_PRD` | active |
 
 ## docs/00_PRODUCT
 
@@ -70,7 +71,8 @@ Every document in this repository, by category. Updated in the same commit as an
 | `DESIGN_PHILOSOPHY.md` | `DESIGN_PHILOSOPHY` | active |
 | `DESIGN_SYSTEM_RULES.md` | `DESIGN_SYSTEM_RULES` | active |
 | `LAYOUT_SYSTEM.md` | `LAYOUT_SYSTEM` | active |
-| `RESPONSIVE_SYSTEM.md` | `RESPONSIVE_SYSTEM` | draft |
+| `RESPONSIVE_SYSTEM.md` | `RESPONSIVE_SYSTEM` | active |
+| `SURFACE_SYSTEM.md` | `SURFACE_SYSTEM` | active |
 | `COMPONENT_LIBRARY.md` | `COMPONENT_LIBRARY` | active |
 | `ACCESSIBILITY.md` | `ACCESSIBILITY` | active |
 | `TYPOGRAPHY.md` | `TYPOGRAPHY` | active |
@@ -175,7 +177,7 @@ Every document in this repository, by category. Updated in the same commit as an
 
 ## Totals
 
-- Active: 74
-- Draft: 5
+- Active: 77
+- Draft: 4
 - Planned: 6
-- Total: 85
+- Total: 87

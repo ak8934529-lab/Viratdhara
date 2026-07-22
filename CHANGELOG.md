@@ -17,6 +17,14 @@ owner: Product Architecture
 
 One entry per milestone/commit. Newest first.
 
+## Commit 7 — Master PRD + Web Design Foundation
+
+- Added root `MASTER_PRD.md` — the single entry point for building `apps/web` (a new web app, distinct from `apps/showcase`), synthesizing product/architecture/design/feature scope. Maps the user's working feature names (Onboarding Aspects, Content Listing, Video Streaming Algorithm, Video Categorization, Studio dashboard for analytics, Ads Between video, etc.) to the existing `FEATURE_REGISTRY.md` canonical names — no renaming of existing docs, just an explicit mapping.
+- `RESPONSIVE_SYSTEM.md` rewritten (v2.0.0): now carries two coexisting strategies — `packages/mobile`/`apps/showcase` stay letterboxed-mobile-only (unchanged), while `apps/web` gets a real 3-breakpoint system (Compact/Medium/Wide) with distinct navigation and grid layouts per breakpoint.
+- Added `docs/02_DESIGN/SURFACE_SYSTEM.md` — the glass/depth visual language for `apps/web` (frosted translucent panels, background gradient blooms, 3 surface tiers), explicitly layered on the existing color tokens rather than introducing a new palette, and explicitly not applied to `packages/mobile`'s existing opaque surfaces.
+- Decision recorded: `apps/web` does not reuse `packages/mobile` (phone-chrome shell) — it gets its own web-native layout/navigation components, reading the same `NAVIGATION_MODEL.md` route model.
+- Next: rich, implementation-ready feature specs for the remaining 10 features, one feature per commit, per `MASTER_PRD.md`'s Feature Scope table.
+
 ## Commit 6 — Authentication Feature Knowledge Base
 
 - Added the full 13-file feature knowledge base at `docs/03_FEATURES/Authentication/`, copied from `templates/FEATURE_TEMPLATE/` and filled in per `PROMPT_LIBRARY.md`'s "Start a new V1 feature's knowledge base" prompt.
