@@ -17,6 +17,14 @@ owner: Product Architecture
 
 One entry per milestone/commit. Newest first.
 
+## Commit 10 — Video Player Feature Knowledge Base
+
+- Added the full 13-file feature knowledge base at `docs/03_FEATURES/VideoPlayer/`.
+- Clarified this feature plays both Video and Audio Content types despite its name (carried over from the reviewed design's "Playing Now" tab).
+- Flagged 3 open gaps: network-interruption handling, background audio playback, and content-removed-mid-playback behavior — none resolved by assumption.
+- Noted the full-player transport controls (`apps/showcase/PlayerScreen.tsx`) need extraction into a registered component before this feature is implementation-complete.
+- `FEATURE_REGISTRY.md` KB Status updated to `documented`.
+
 ## Commit 9 — Search Feature Knowledge Base
 
 - Added the full 13-file feature knowledge base at `docs/03_FEATURES/Search/`.

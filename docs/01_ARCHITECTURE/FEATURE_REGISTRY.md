@@ -39,7 +39,7 @@ Every V1 feature, its structural area, and its knowledge-base status.
 | Content Discovery | V1 | Main App | Content Architecture, Recommendation Engine, Content Categorization | not started |
 | Search | V1 | Main App | Content Architecture | documented (1 open gap: query sanitization/length limits unspecified) |
 | Recommendation Engine | V1 | Main App | Content Architecture, Authentication | not started |
-| Video Player | V1 | Main App | Content Architecture | not started |
+| Video Player | V1 | Main App | Content Architecture | documented (3 open gaps: network interruption, background audio, mid-playback removal) |
 | Content Categorization | V1 | Main App | Content Architecture | documented (1 open gap: V1 Category list undefined) |
 | Sharing | V1 | Main App | Content Architecture | not started |
 | Creator Studio | V1 | Creator Studio | Authentication, Content Architecture | not started |

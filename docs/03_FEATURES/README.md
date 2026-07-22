@@ -48,7 +48,7 @@ Every feature is a self-contained knowledge base, one folder per feature, identi
 | `ContentDiscovery` | planned |
 | `Search` | documented |
 | `RecommendationEngine` | planned |
-| `VideoPlayer` | planned |
+| `VideoPlayer` | documented |
 | `ContentCategorization` | documented |
 | `Sharing` | planned |
 | `CreatorStudio` | planned |
