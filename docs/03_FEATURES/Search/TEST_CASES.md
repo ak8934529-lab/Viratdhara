@@ -1,7 +1,7 @@
 ---
 document_id: SEARCH_TEST_CASES
 title: Search — Test Cases
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: medium
 depends_on:
@@ -33,6 +33,8 @@ Test cases for this feature.
 | 3 | Empty query submission | `VALIDATIONS.md` | No request fires, state stays `idle` |
 | 4 | Query with zero matches | `EDGE_CASES.md` | `no_results` state, `MobileEmptyState` shown |
 | 5 | Search request fails (network/server error) | `STATES.md` | `error` state shown, distinct from `no_results` |
+| 6 | Query longer than 200 characters | `VALIDATIONS.md` `query_max_length` | Truncated to 200 chars before submission |
+| 7 | Query containing emoji/symbols | `EDGE_CASES.md` | Treated as literal text, no special error |
 
 ## Dependencies
 
@@ -48,8 +50,8 @@ None beyond tracing every case to a rule.
 
 ## Acceptance
 
-All 5 cases pass.
+All 7 cases pass.
 
 ## Future Scope
 
-Query-sanitization test cases pending the open gap in `EDGE_CASES.md`.
+None currently open for this feature.

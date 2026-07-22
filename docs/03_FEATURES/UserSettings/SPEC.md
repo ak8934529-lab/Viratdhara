@@ -1,7 +1,7 @@
 ---
 document_id: USERSETTINGS_SPEC
 title: User Settings — Specification
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: medium
 depends_on:
@@ -32,18 +32,21 @@ Four sub-surfaces under the Settings entry point.
 
 ### Notifications
 
-- Toggles for notification categories (exact category list not confirmed — see `EDGE_CASES.md`).
-- Each toggle is independently persisted per Account.
+- Toggles for exactly 3 V1 notification categories (resolved, Commit 18):
+  1. **New content from followed Creators** — a Content item is published by a Creator the Account follows (`Follow`, `DOMAIN_MODEL.md`).
+  2. **Engagement on your activity** — replies/interactions related to the Account's own activity (Playlist, Follow-back, etc. as those concepts exist).
+  3. **Product & platform announcements** — Viratdhara-initiated communication, not per-Content.
+- Each toggle is independently persisted per Account. All three default to enabled.
 
 ### Downloads
 
-- Lists downloaded Content for offline access, with per-item remove and a storage-usage indicator.
+- Lists downloaded Content for offline access, with a per-item remove action.
+- **No storage limit is enforced in V1** (resolved, Commit 18) — no cap on count or size. No storage-usage indicator is required since there's no limit to show progress against. Revisit if real usage patterns make this a problem.
 - Actual download/offline-playback mechanism is not specified here — this feature owns the management UI for downloads, not the offline-storage/sync implementation, which would be a Video Player or platform-level concern if built.
 
 ### Subscriptions
 
-- Displays current subscription tier/status and a Buy/Upgrade action.
-- Actual payment processing is out of scope (`README.md` Constraints) — this feature only presents subscription state and initiates a purchase flow that hands off to a payment provider.
+- **Deliberately deferred in full** (Commit 18, user decision) — no tier structure, pricing, or even a placeholder is specified. This sub-screen's scope is limited to whatever payment-integration scoping produces later; do not build a Buy/Upgrade flow against an invented tier structure.
 
 ## Dependencies
 

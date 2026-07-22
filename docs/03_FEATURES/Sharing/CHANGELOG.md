@@ -1,7 +1,7 @@
 ---
 document_id: SHARING_CHANGELOG
 title: Sharing — Changelog
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: low
 depends_on:
@@ -17,4 +17,5 @@ owner: Product Architecture
 
 | Date | Change | Document(s) |
 | --- | --- | --- |
+| 2026-07-23 | Resolved the unauthenticated-recipient gap (Commit 18): apply existing Auth Area/Main App architecture consistently — require login, then deep-link to the shared Content. | `SPEC.md`, `EDGE_CASES.md`, `TEST_CASES.md` |
 | 2026-07-22 | Initial feature knowledge base created (Milestone 11). Flagged one open gap: unauthenticated share-link recipient behavior unconfirmed. | All 13 files |

@@ -1,7 +1,7 @@
 ---
 document_id: USERSETTINGS_VALIDATIONS
 title: User Settings — Validations
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: low
 depends_on:
@@ -28,7 +28,7 @@ Validation rules owned by this feature.
 
 | Rule | Condition | Failure Handling |
 | --- | --- | --- |
-| `notification_toggle_valid` (feature-owned) | Toggled category must be one of the confirmed notification categories. | `VALIDATION_FAILED` — moot until the category list is confirmed (`EDGE_CASES.md`). |
+| `notification_toggle_valid` (feature-owned) | Toggled category must be one of the 3 confirmed V1 categories (`SPEC.md`): new content from followed Creators, engagement on your activity, product & platform announcements. | `VALIDATION_FAILED` |
 
 ## Dependencies
 
@@ -44,8 +44,8 @@ None beyond the above.
 
 ## Acceptance
 
-No setting is persisted with a value outside its confirmed valid set.
+No setting is persisted with a notification category outside the 3 confirmed values.
 
 ## Future Scope
 
-Depends on the notification-category list being confirmed.
+None.

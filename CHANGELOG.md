@@ -17,6 +17,32 @@ owner: Product Architecture
 
 One entry per milestone/commit. Newest first.
 
+## Commit 18 — Gap Resolution Pass
+
+Resolved nearly every open gap flagged across Commits 6–17, split into two categories per `AI_GLOBAL_RULES.md`'s never-invent principle:
+
+**Business/content decisions — required user input, obtained this commit:**
+- V1 Content Categories: explicit 5-item **placeholder** (Bhajans & Kirtan, Discourses & Satsang, Aarti & Rituals, Devotional Stories, Festival Specials) — not a final taxonomy, but unblocks all structural work. (`CONTENT_ARCHITECTURE.md`, `ContentCategorization/*`)
+- Subscription tiers: **deliberately deferred**, by explicit choice — not even a placeholder structure. (`UserSettings/*`)
+- Notification categories: 3 fixed categories (new content from followed Creators, engagement on your activity, product & platform announcements). (`UserSettings/*`)
+- Downloads storage limit: **none for V1**. (`UserSettings/*`)
+
+**Technical defaults — resolved directly, each cited/labeled as a default rather than silently assumed:**
+- `password_minimum`: NIST 800-63B-based (8–128 chars, no forced composition, breach-list check). (`VALIDATION_REGISTRY.md`, `Authentication/*`)
+- "Booking" onboarding option: hidden entirely for V1. (`Authentication/*`)
+- Session expiry: silent refresh, then forced re-login on failure. (`Authentication/*`)
+- Search query sanitization: 200-char client truncation, parameterized queries required server-side. (`Search/*`)
+- Video Player: stall-indicator + backoff-retry on network loss; Audio continues in background, Video pauses; moderated Content finishes its current session but blocks new ones. (`VideoPlayer/*`)
+- Sharing: unauthenticated recipients are routed through the existing Auth Area (no new exception), then deep-linked to the shared Content. (`Sharing/*`)
+- Creator Profile: `Follow` records cascade-delete on Account deletion or Creator-role revocation. (`CreatorProfile/*`)
+- Advertisements: one ad per Video Player session, skip available at 5 seconds — both explicitly tunable, not fixed law. (`Advertisements/*`)
+- **Recommendation Engine: the ranking algorithm gap (the single largest open item in the repository) resolved with an explicit V1 placeholder heuristic** — Category-recency match, falling back to global recency for cold-start/low-volume — clearly labeled as temporary, not a real recommendation system. (`RecommendationEngine/*`)
+- Content Discovery: Home's featured section and the Recommendation-fallback question both resolve automatically as a consequence of the above — Home uses Recommendation Engine's output directly, which now always returns something. (`ContentDiscovery/*`)
+
+**Only one gap remains open by deliberate choice**: User Settings' subscription tier structure, deferred pending real payment-integration scoping.
+
+Every affected feature's `SPEC.md`/`EDGE_CASES.md`/`VALIDATIONS.md`/`TEST_CASES.md`/`CHANGELOG.md` was updated in this commit; `FEATURE_REGISTRY.md` KB Status column reflects the resolution per feature.
+
 ## Commit 17 — Creator Studio Feature Knowledge Base (All 11 V1 Features Complete)
 
 - Added the full 13-file feature knowledge base at `docs/03_FEATURES/CreatorStudio/` — the 11th and final V1 feature from `MASTER_PRD.md`'s Feature Scope table.

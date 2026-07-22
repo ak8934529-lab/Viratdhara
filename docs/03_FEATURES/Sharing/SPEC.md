@@ -1,7 +1,7 @@
 ---
 document_id: SHARING_SPEC
 title: Sharing — Specification
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: medium
 depends_on:
@@ -32,6 +32,7 @@ Generating and resolving a shareable reference to a Content item.
 - The share mechanism is the platform's native share sheet (web: `navigator.share` with a URL/text fallback to copy-link) — this feature does not build a custom multi-platform share UI beyond that.
 - Emits `content_shared` (`EVENT_REGISTRY.md`) when a share action is initiated (not necessarily completed — most native share sheets don't report completion reliably).
 - A resolved share link that points at non-`published` Content shows the same "not available" treatment as any other broken/removed Content reference (`EDGE_CASES.md`), not a share-specific error.
+- An unauthenticated recipient opening a share link is routed to Authentication first, then deep-linked to the Content after login (`EDGE_CASES.md`) — no pre-authentication viewing exception exists.
 
 ## Dependencies
 

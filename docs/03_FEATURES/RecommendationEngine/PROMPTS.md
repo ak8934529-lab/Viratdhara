@@ -1,7 +1,7 @@
 ---
 document_id: RECOMMENDATIONENGINE_PROMPTS
 title: Recommendation Engine — Prompts
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: low
 depends_on:
@@ -28,7 +28,7 @@ Feature-specific prompts.
 
 ### Implement the Recommendation contract
 
-> Build the entity, API contract, and events per `SPEC.md`/`DATABASE.md`/`EVENTS.md`. Do not implement a specific ranking algorithm (collaborative filtering, popularity-based, etc.) as if it were a final product decision — stub it with a simple, clearly-labeled placeholder (e.g. "most recent published Content") and flag that real ranking design is pending, per `EDGE_CASES.md`.
+> Build the entity, API contract, and events per `SPEC.md`/`DATABASE.md`/`EVENTS.md`. Implement the V1 placeholder heuristic exactly as specified in `EDGE_CASES.md` (Category-recency, falling back to global recency) — label it clearly as a placeholder in code comments. Do not implement a real ML/collaborative-filtering algorithm as part of this task; that is a separate, larger effort.
 
 ## Dependencies
 

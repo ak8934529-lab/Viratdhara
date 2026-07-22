@@ -1,7 +1,7 @@
 ---
 document_id: AUTHENTICATION_VALIDATIONS
 title: Authentication — Validations
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: high
 depends_on:
@@ -31,7 +31,7 @@ Validation rules for signup and login, combining shared registry rules with this
 | Rule | Source | Condition |
 | --- | --- | --- |
 | `email_format` | `VALIDATION_REGISTRY.md` | Email must be syntactically valid. |
-| `password_minimum` | `VALIDATION_REGISTRY.md` | **Unspecified** — see Future Scope. Not enforced with an assumed value. |
+| `password_minimum` | `VALIDATION_REGISTRY.md` | Resolved: 8–128 characters, no forced composition rules, breach-list check if feasible (NIST 800-63B-based, Commit 18). |
 | Email uniqueness | Feature-owned | An email/password signup fails with `CONFLICT` if the email is already registered (via any auth method). |
 | Social provider linkage | Feature-owned | A social signup with an email matching an existing email/password Account links to that Account rather than creating a duplicate — see `EDGE_CASES.md` for the collision this can create. |
 
@@ -45,7 +45,7 @@ Validation rules for signup and login, combining shared registry rules with this
 
 ## Constraints
 
-- `password_minimum` is not implemented with a guessed value (e.g. "8 characters, one number") — that would be inventing a business rule, which `AI_GLOBAL_RULES.md` forbids. It stays an open, visible gap until specified.
+None beyond the shared registry rule.
 
 ## Acceptance
 
@@ -53,4 +53,4 @@ Every signup/login validation failure maps to a code in `ERROR_REGISTRY.md` and 
 
 ## Future Scope
 
-`password_minimum`'s exact condition needs a product/security decision — see `AI_SECURITY_AGENT.md` for the rule against filling this gap by assumption.
+`password_minimum` may be revisited if `07_SECURITY` warrants a stricter policy later — see `VALIDATION_REGISTRY.md` Future Scope.

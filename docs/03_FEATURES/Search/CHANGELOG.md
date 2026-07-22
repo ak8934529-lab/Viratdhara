@@ -1,7 +1,7 @@
 ---
 document_id: SEARCH_CHANGELOG
 title: Search — Changelog
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: low
 depends_on:
@@ -17,4 +17,5 @@ owner: Product Architecture
 
 | Date | Change | Document(s) |
 | --- | --- | --- |
+| 2026-07-23 | Resolved query sanitization gap (Commit 18): 200-char client-side truncation, parameterized queries required server-side. | `VALIDATIONS.md`, `EDGE_CASES.md`, `TEST_CASES.md` |
 | 2026-07-22 | Initial feature knowledge base created (Milestone 9). Flagged one open gap: query sanitization/length limits unspecified. | All 13 files |

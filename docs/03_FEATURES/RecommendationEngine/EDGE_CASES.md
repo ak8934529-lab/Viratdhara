@@ -1,7 +1,7 @@
 ---
 document_id: RECOMMENDATIONENGINE_EDGE_CASES
 title: Recommendation Engine — Edge Cases
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: high
 depends_on:
@@ -25,20 +25,20 @@ Known edge cases and their resolution.
 
 ## Rules
 
-### New Account with no interaction history ("cold start")
+### Ranking algorithm — resolved with an explicit V1 placeholder heuristic
 
-**Condition:** A newly signed-up Account has no playback/search/follow history to personalize from.
-**Resolution:** Not specified — likely falls back to some non-personalized default (e.g. popular/trending Content), but no fallback source is confirmed.
+**Condition:** No document specified how Content is selected/ranked into Recommendations for a given Account.
+**Resolution:** Resolved (Commit 18) with a deliberately simple, clearly-labeled **placeholder heuristic** — explicitly not a real recommendation system:
 
-### Ranking algorithm is undefined
+1. If the Account has playback/view history: recommend the most-recently-published `published` Content whose Category matches a Category the Account has previously viewed/played, ordered by publish recency.
+2. If the Account has no history ("cold start") or step 1 yields fewer than a usable minimum: fall back to the most-recently-published `published` Content across all Categories, ordered by publish recency.
 
-**Condition:** No document specifies how Content is selected/ranked into Recommendations for a given Account.
-**Resolution:** Not resolved — this is the central open item for this feature. Structural work (entity, API contract, events) can proceed; actual personalization cannot be considered complete without this.
+**Rationale:** This is a real, implementable, deterministic rule — not a business decision requiring product input, and not a genuine ML/collaborative-filtering system either. It exists so `apps/web` can be built and demoed end-to-end without an open dependency on a data-science project. It is explicitly temporary.
 
 ### Insufficient Content volume
 
 **Condition:** Too few `published` Content items exist to generate meaningful personalized recommendations.
-**Resolution:** Not specified — likely the same fallback as cold start.
+**Resolution:** Same fallback as cold start (step 2 above) — most-recently-published Content across all Categories.
 
 ## Dependencies
 
@@ -50,12 +50,13 @@ None beyond the above.
 
 ## Constraints
 
-- The algorithm gap is the single largest open item across all features documented so far — it should be prioritized for a product/data decision before this feature is considered launch-ready.
+- The placeholder heuristic must be labeled as a placeholder everywhere it's referenced (code comments, this document) — it must never be presented as real personalization to stakeholders or users.
+- Replacing it with a real ranking system (collaborative filtering, ML-based, etc.) is a substantial follow-on project, not a documentation change — this resolution unblocks structural/demo work, it does not close the real data-science work.
 
 ## Acceptance
 
-Cold-start and low-volume cases are explicitly flagged as depending on the ranking-algorithm decision, not silently assumed to "just work."
+Cold-start and low-volume cases both resolve to the same deterministic fallback; the primary case uses the Category-recency heuristic. No case is left unhandled.
 
 ## Future Scope
 
-Ranking algorithm design.
+Replacing the placeholder heuristic with a real recommendation system is a substantial, separate engineering effort — likely warranting its own dedicated scoping pass, not a quick follow-up.

@@ -1,7 +1,7 @@
 ---
 document_id: SEARCH_VALIDATIONS
 title: Search — Validations
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: low
 depends_on:
@@ -30,6 +30,7 @@ Validation rules for the search query input.
 | Rule | Condition | Failure Handling |
 | --- | --- | --- |
 | `query_non_empty` (feature-owned) | Query must contain at least one non-whitespace character. | Submission is a no-op (no request fires) rather than a `VALIDATION_FAILED` error — this is a UI-level guard, not a server round-trip failure. |
+| `query_max_length` (feature-owned, resolved Commit 18) | Query is truncated to 200 characters client-side before submission. | No error — truncation is silent and automatic. |
 
 ## Dependencies
 

@@ -1,7 +1,7 @@
 ---
 document_id: AUTHENTICATION_SPEC
 title: Authentication — Specification
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: critical
 depends_on:
@@ -35,7 +35,7 @@ Functional behavior for signup, login, session, and onboarding.
 - An Account may be created via: email + password, or a social provider (Google, Facebook, Apple), per the reviewed design's "Continue with Google/Facebook/Apple" options.
 - A new Account is granted the User role by default (`DOMAIN_MODEL.md` — Creator/Administrator are additive, granted separately, out of this feature's scope).
 - Successful signup emits `account_signed_up` (`EVENT_REGISTRY.md`) and immediately transitions the session to `logged_in` (`STATE_REGISTRY.md`).
-- Signup is followed by onboarding: language selection, then content-format selection ("Suno Dekho" / "Live Darshan" / "Booking" per the reviewed design — note the "Booking" option in this onboarding step is a UI label carried over from the design file; since booking is out of V1 scope (`PRODUCT_VISION.md`), this option must not be wired to a real booking flow — see `EDGE_CASES.md`).
+- Signup is followed by onboarding: language selection, then content-format selection — **"Suno Dekho" and "Live Darshan" only** (resolved, Commit 18: the reviewed design's third "Booking" option is hidden entirely for V1 — see `EDGE_CASES.md`).
 
 ### Login
 

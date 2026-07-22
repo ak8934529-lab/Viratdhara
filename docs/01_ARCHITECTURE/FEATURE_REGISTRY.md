@@ -1,7 +1,7 @@
 ---
 document_id: FEATURE_REGISTRY
 title: Feature Registry
-version: 1.1.0
+version: 1.2.0
 status: active
 priority: critical
 depends_on:
@@ -35,17 +35,17 @@ Every V1 feature, its structural area, and its knowledge-base status.
 
 | Feature | Scope | Structural Area | Depends On | KB Status |
 | --- | --- | --- | --- | --- |
-| Authentication | V1 | Auth Area | — | documented (2 open gaps: `password_minimum`, "Booking" onboarding option) |
-| Content Discovery | V1 | Main App | Content Architecture, Recommendation Engine, Content Categorization | documented (2 open gaps: Recommendation-fallback behavior, Home featured-content source) |
-| Search | V1 | Main App | Content Architecture | documented (1 open gap: query sanitization/length limits unspecified) |
-| Recommendation Engine | V1 | Main App | Content Architecture, Authentication | documented (1 major open gap: ranking algorithm entirely undefined) |
-| Video Player | V1 | Main App | Content Architecture | documented (3 open gaps: network interruption, background audio, mid-playback removal) |
-| Content Categorization | V1 | Main App | Content Architecture | documented (1 open gap: V1 Category list undefined) |
-| Sharing | V1 | Main App | Content Architecture | documented (1 open gap: unauthenticated recipient behavior) |
-| Creator Studio | V1 | Creator Studio | Authentication, Content Architecture | documented (no major open gaps) |
-| Creator Profile | V1 | Creator Studio + Main App (public view) | Authentication | documented (added Follow entity to DOMAIN_MODEL.md; 2 open gaps: role-revocation cleanup, account-deletion cascade) |
-| User Settings | V1 | Main App | Authentication | documented (3 open gaps: notification categories, downloads storage limit, subscription tiers) |
-| Advertisements | V1 | Main App (cross-cutting placement) | — | documented (this pass scoped to "Ads Between video" / pre-roll only; 2 open gaps: placement frequency, skip timing) |
+| Authentication | V1 | Auth Area | — | documented, gaps resolved (Commit 18) |
+| Content Discovery | V1 | Main App | Content Architecture, Recommendation Engine, Content Categorization | documented, gaps resolved (Commit 18) |
+| Search | V1 | Main App | Content Architecture | documented, gaps resolved (Commit 18) |
+| Recommendation Engine | V1 | Main App | Content Architecture, Authentication | documented — ranking algorithm resolved as an explicit V1 placeholder heuristic (Commit 18); a real recommendation system remains a separate future effort |
+| Video Player | V1 | Main App | Content Architecture | documented, gaps resolved (Commit 18) |
+| Content Categorization | V1 | Main App | Content Architecture | documented — V1 Category list resolved as an explicit 5-item placeholder (Commit 18), not yet a confirmed final taxonomy |
+| Sharing | V1 | Main App | Content Architecture | documented, gaps resolved (Commit 18) |
+| Creator Studio | V1 | Creator Studio | Authentication, Content Architecture | documented, no open gaps |
+| Creator Profile | V1 | Creator Studio + Main App (public view) | Authentication | documented, gaps resolved (Commit 18) |
+| User Settings | V1 | Main App | Authentication | documented — notification categories and downloads limit resolved (Commit 18); subscription tier structure remains deliberately deferred pending payment-integration scoping |
+| Advertisements | V1 | Main App (cross-cutting placement) | — | documented, gaps resolved with tunable defaults (Commit 18) |
 
 ## Dependencies
 

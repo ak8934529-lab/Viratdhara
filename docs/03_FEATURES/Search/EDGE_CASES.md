@@ -1,7 +1,7 @@
 ---
 document_id: SEARCH_EDGE_CASES
 title: Search — Edge Cases
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: medium
 depends_on:
@@ -40,10 +40,10 @@ Known edge cases and their resolution.
 **Condition:** A query matches a Content item's title, but that item is `removed_by_creator`/`removed_by_moderation`.
 **Resolution:** Treated identically to zero matches — non-published Content is invisible to Search, per `SPEC.md`.
 
-### Special characters / very long query
+### Special characters / very long query — resolved
 
 **Condition:** Query contains symbols, emoji, or is unusually long.
-**Resolution:** Not specified — no length cap or sanitization rule exists yet. Flagged as an open item for `04_BACKEND`/security review rather than assumed safe.
+**Resolution:** Resolved (Commit 18): query is truncated to 200 characters client-side before submission; emoji/symbols are permitted as literal text in the match (no special handling needed since matching is substring-based, not query-language parsing); the server-side implementation must use parameterized queries — free-text search input is never concatenated into a query string. This last point is a baseline engineering requirement (SQL/NoSQL injection prevention), not a product decision, so it is stated as a hard constraint rather than a "gap."
 
 ## Dependencies
 
@@ -55,12 +55,12 @@ Known edge cases and their resolution.
 
 ## Constraints
 
-- The special-character/length gap must be resolved before this feature is considered launch-ready — not silently left to whatever the underlying database driver happens to do.
+- Search queries are never used to construct a query string via concatenation, in any implementation, on any backend.
 
 ## Acceptance
 
-Every case above has a resolution or an explicitly flagged gap.
+Every case above has a resolution.
 
 ## Future Scope
 
-Query sanitization/length limits — see `AI_SECURITY_AGENT.md` for the rule against assuming a "reasonable default" here.
+None currently open for this feature.

@@ -1,7 +1,7 @@
 ---
 document_id: ADVERTISEMENTS_STATES
 title: Advertisements — States
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: low
 depends_on:
@@ -31,7 +31,7 @@ A feature-local ad presentation state — not added to `STATE_REGISTRY.md` since
 none ──(ad selected)──> loading
 loading ──(ad ready)──> showing (fires ad_impression)
 loading ──(no ad available / load failure)──> skipped_unavailable
-showing ──(skip tapped or duration elapsed)──> dismissed
+showing ──(skip tapped, available after 5s — EDGE_CASES.md resolved default)──> dismissed
 dismissed/skipped_unavailable ──> Video Player session begins (STATE_REGISTRY.md Playback: idle → playing)
 ```
 

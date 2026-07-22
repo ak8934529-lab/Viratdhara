@@ -1,7 +1,7 @@
 ---
 document_id: USERSETTINGS_EDGE_CASES
 title: User Settings — Edge Cases
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: medium
 depends_on:
@@ -17,7 +17,7 @@ owner: Product Architecture
 
 ## Why
 
-Three sub-screens (Notifications, Downloads, Subscriptions) each have an unconfirmed underlying data model — worth naming each gap explicitly rather than letting implementation invent one silently.
+Notifications and Downloads had unconfirmed data models; Subscriptions remains an intentional exception, deferred rather than resolved.
 
 ## What
 
@@ -25,20 +25,20 @@ Known edge cases and their resolution.
 
 ## Rules
 
-### Notification category list is undefined
+### Notification category list — resolved
 
-**Condition:** `SPEC.md` requires toggles "per category" but no document specifies which categories.
-**Resolution:** Not resolved — flagged as a product decision needed before this sub-screen is implementation-complete.
+**Condition:** `SPEC.md` requires toggles "per category" but no document specified which categories.
+**Resolution:** Resolved (user decision, Commit 18): 3 categories — new content from followed Creators, engagement on your activity, product & platform announcements. See `SPEC.md`, `VALIDATIONS.md`.
 
-### Downloads storage limit
+### Downloads storage limit — resolved
 
-**Condition:** A user attempts to download Content beyond some storage limit.
-**Resolution:** Not specified — whether a limit exists at all is unconfirmed.
+**Condition:** A user attempts to download Content; whether a storage limit exists was unconfirmed.
+**Resolution:** Resolved (user decision, Commit 18): **no limit in V1.** Revisit only if real usage patterns make this a problem.
 
-### Subscription state beyond free/paid
+### Subscription state beyond free/paid — deliberately still open
 
-**Condition:** Whether there are multiple paid tiers, trial periods, or just a binary free/paid state is unconfirmed.
-**Resolution:** Not specified — this feature's UI should be built to accommodate an unknown-but-bounded set of tiers rather than hardcode a binary assumption, per `AI_GLOBAL_RULES.md` Never Invent.
+**Condition:** Whether there are multiple paid tiers, trial periods, or just a binary free/paid state.
+**Resolution:** **Deliberately deferred** (user decision, Commit 18) — not resolved even with a placeholder. Do not build a Subscriptions UI against an assumed tier structure; this sub-screen waits for real payment-integration scoping.
 
 ## Dependencies
 
@@ -50,12 +50,12 @@ None beyond the above.
 
 ## Constraints
 
-- None of the three gaps may be resolved by an implementation guess presented as final.
+- The Subscriptions gap may not be resolved by an implementation guess — it is deferred by explicit choice, not oversight.
 
 ## Acceptance
 
-Each gap is either resolved or explicitly flagged — none silently assumed.
+Notifications and Downloads have no open gaps. Subscriptions remains open by design.
 
 ## Future Scope
 
-All three gaps are open product-decision items for this feature.
+Subscription tier structure, once payment integration is scoped.

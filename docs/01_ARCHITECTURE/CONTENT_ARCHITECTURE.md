@@ -1,7 +1,7 @@
 ---
 document_id: CONTENT_ARCHITECTURE
 title: Content Architecture
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: critical
 depends_on:
@@ -53,6 +53,16 @@ V1 supports two Content types:
 - Tags (zero or more)
 - Duration
 - Publish state — see `STATE_REGISTRY.md`
+
+### V1 Category List (placeholder)
+
+**Status: placeholder, not confirmed.** No Administrator tooling or product decision has produced a real Category taxonomy yet. This list is a reasonable starting set — grounded in the reviewed Figma design's genre filters (bhajans, discourses, satsang-style content) and `PRODUCT_VISION.md`'s long-term modules — so structural work (feeds, browse screens, tests) isn't blocked. It must be replaced with a confirmed list before launch, not treated as final.
+
+1. Bhajans & Kirtan
+2. Discourses & Satsang
+3. Aarti & Rituals
+4. Devotional Stories
+5. Festival Specials
 
 ### Discoverability
 

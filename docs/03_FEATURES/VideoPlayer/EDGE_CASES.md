@@ -1,7 +1,7 @@
 ---
 document_id: VIDEOPLAYER_EDGE_CASES
 title: Video Player — Edge Cases
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: high
 depends_on:
@@ -25,20 +25,23 @@ Known edge cases and their resolution.
 
 ## Rules
 
-### Network interruption during playback
+### Network interruption during playback — resolved
 
 **Condition:** Connectivity drops while `playing`.
-**Resolution:** Not fully specified — should surface a stalled/error indication rather than silently freezing, but exact retry/backoff behavior is a `04_BACKEND`/client-implementation decision not made here.
+**Resolution:** Resolved (Commit 18, standard pattern): show a stalled indicator, auto-retry with exponential backoff (e.g. 1s, 2s, 4s, capped) up to a bounded number of attempts; if retries are exhausted, transition to an explicit error state with a manual "Retry" action. Playback position is preserved across the interruption.
+**Rationale:** Standard media-playback resilience pattern, not a Viratdhara-specific business decision.
 
-### App backgrounded during audio playback
+### App backgrounded during audio playback — resolved
 
 **Condition:** User backgrounds the app (or switches browser tab) while an Audio item plays.
-**Resolution:** Not specified — whether audio continues in background is an open product decision (common for music apps, not confirmed here as a Viratdhara requirement).
+**Resolution:** Resolved (Commit 18): **Audio continues playing in the background**; Video pauses when backgrounded and does not auto-resume on foreground (resumes only on explicit user action).
+**Rationale:** Matches near-universal user expectation for audio/music apps (background listening is core to the "Suno" experience), while video pausing on background matches standard video-app behavior and avoids unexpected data/battery use for content the user isn't watching.
 
-### Content removed/moderated mid-playback
+### Content removed/moderated mid-playback — resolved
 
 **Condition:** A Content item transitions to `removed_by_creator`/`removed_by_moderation` (`STATE_REGISTRY.md`) while a user is actively playing it.
-**Resolution:** Not specified — whether playback is force-stopped immediately or allowed to finish the current session is an open decision.
+**Resolution:** Resolved (Commit 18): the current playback session is allowed to finish uninterrupted (not yanked away mid-listen/watch); the item becomes unavailable for any new playback session immediately after moderation/removal takes effect.
+**Rationale:** Kinder UX than an abrupt mid-session stop; the removal's practical effect (no new plays) still takes hold immediately.
 
 ## Dependencies
 
@@ -50,12 +53,12 @@ None beyond the above.
 
 ## Constraints
 
-- None of the three gaps above may be resolved by an implementation guess presented as final — each needs an explicit product decision first.
+- All three resolutions above are defaults grounded in standard patterns/product-genre norms, not untouchable — revisit if real usage reveals a problem.
 
 ## Acceptance
 
-Each edge case above is either resolved or explicitly flagged open — none silently unhandled.
+Each edge case above has a stated resolution — no open gaps remain for this feature.
 
 ## Future Scope
 
-All three open items here are strong candidates for the next product-clarification pass on this feature.
+None currently open for this feature.

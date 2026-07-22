@@ -1,7 +1,7 @@
 ---
 document_id: AUTHENTICATION_EDGE_CASES
 title: Authentication — Edge Cases
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: high
 depends_on:
@@ -18,7 +18,7 @@ owner: Product Architecture
 
 ## Why
 
-Auth is the one feature where an unhandled edge case (a duplicate Account, a stuck onboarding option) blocks every downstream feature, since nothing else works without a valid session.
+Auth is the one feature where an unhandled edge case blocks every downstream feature, since nothing else works without a valid session.
 
 ## What
 
@@ -32,23 +32,23 @@ Known edge cases and their resolution.
 **Resolution:** Link the social identity to the existing Account rather than creating a duplicate (`VALIDATIONS.md`). The user can subsequently log in via either method.
 **Rationale:** Prevents split identity/history for what is really one person.
 
-### Onboarding format option includes "Booking"
+### Onboarding format option includes "Booking" — resolved
 
 **Condition:** The reviewed Figma design's onboarding format-selection screen includes a "Booking" option alongside "Suno Dekho" and "Live Darshan," carried over from the source design.
-**Resolution:** The option may remain visible for design consistency with the reference, but must not route to any real booking flow — booking is out of V1 scope (`PRODUCT_VISION.md`). Selecting it should either be hidden entirely for V1 or fall back to the default content experience. This is flagged, not silently resolved — a product decision is needed on whether to hide it or repurpose it.
-**Rationale:** Directly follows from the Commit 2.1 scope decision; an unresolved onboarding option pointing nowhere is worse than removing it.
+**Resolution:** Resolved (Commit 18): **hide the "Booking" option entirely for V1.** Onboarding format selection presents only "Suno Dekho" and "Live Darshan."
+**Rationale:** Booking is out of V1 scope (`PRODUCT_VISION.md`, Commit 2.1); a visible option pointing nowhere is worse than removing it, and repurposing it risks confusing users expecting booking functionality.
 
-### `password_minimum` has no specified rule
+### `password_minimum` — resolved
 
-**Condition:** A signup/login form needs a client-side password rule to enforce, but `VALIDATION_REGISTRY.md` leaves this unspecified.
-**Resolution:** Do not implement an assumed rule. Surface this as a blocking gap for product/security to resolve before signup validation is finalized.
-**Rationale:** `AI_GLOBAL_RULES.md` — never invent a business rule to fill a gap.
+**Condition:** A signup/login form needs a client-side password rule to enforce.
+**Resolution:** Resolved (Commit 18): 8–128 characters, no forced composition rules, breach-list check if feasible. See `VALIDATION_REGISTRY.md`.
+**Rationale:** NIST 800-63B-based default, cited explicitly rather than an arbitrary guess.
 
-### Session expires mid-use
+### Session expires mid-use — resolved with a default
 
 **Condition:** A `logged_in` session becomes invalid while the user is active in the Main App (token expiry, revoked session).
-**Resolution:** Not yet specified — no re-authentication flow (silent refresh vs. forced re-login) has been designed.
-**Rationale:** Flagged as an open gap rather than assumed.
+**Resolution:** Resolved with a standard pattern (Commit 18): attempt a silent token refresh first; if refresh fails, transition to `logged_out` and route to the Auth Area's Login screen (not Signup), preserving the user's last location to return to after re-login if straightforward to implement.
+**Rationale:** Standard session-management pattern, not a product-specific business decision — silent refresh minimizes disruption, forced re-login is the safe fallback.
 
 ## Dependencies
 
@@ -60,12 +60,12 @@ Known edge cases and their resolution.
 
 ## Constraints
 
-- No edge case above may be "resolved" by an implementation detail invented ad hoc during coding — the ones marked as gaps stay open until a product decision is recorded.
+- None of the four resolutions above are treated as beyond revision — they're reasonable defaults, not untouchable.
 
 ## Acceptance
 
-Each edge case above has either a stated resolution or an explicitly flagged open gap — none are silently unhandled.
+Each edge case above has a stated resolution — no open gaps remain for this feature.
 
 ## Future Scope
 
-The "Booking" onboarding option and session-expiry handling both need explicit product decisions before this feature is considered complete.
+None currently open for this feature.

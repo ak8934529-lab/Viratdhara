@@ -1,7 +1,7 @@
 ---
 document_id: CREATORPROFILE_DATABASE
 title: Creator Profile — Database
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: high
 depends_on:
@@ -31,6 +31,7 @@ The `Follow` entity's fields, at the level this document owns (relationship exis
 - `Follow` is a directional relationship: one Account (follower) → one Account with Creator role (followed).
 - Minimum fields: follower Account reference, followed Creator (Account) reference, created timestamp.
 - No "unfollow history" is retained as a separate record — unfollowing deletes the `Follow` relationship, it does not soft-delete/archive it (no requirement for that has been stated).
+- Cascade delete (resolved, Commit 18, see `EDGE_CASES.md`): a `Follow` record is deleted when either referenced Account is deleted, or when the followed Account's Creator role is revoked.
 
 ## Dependencies
 

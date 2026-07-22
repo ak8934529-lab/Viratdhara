@@ -1,7 +1,7 @@
 ---
 document_id: SHARING_EDGE_CASES
 title: Sharing — Edge Cases
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: medium
 depends_on:
@@ -30,10 +30,11 @@ Known edge cases and their resolution.
 **Condition:** Content was `published` when shared, later transitions to `removed_by_creator`/`removed_by_moderation` (`STATE_REGISTRY.md`).
 **Resolution:** The link resolves to a "content not available" state (`MobileEmptyState` or equivalent), never a raw 404/error page or a broken render.
 
-### Recipient is unauthenticated
+### Recipient is unauthenticated — resolved
 
-**Condition:** A shared link is opened by someone without a Viratdhara Account.
-**Resolution:** Not specified — whether Content is viewable without login, or the recipient is routed through Authentication first, is an open product decision. `INFORMATION_ARCHITECTURE.md`'s Auth Area vs. Main App split implies login is required before Main App access, which would mean a logged-out recipient hits the Auth Area first — but this hasn't been explicitly confirmed for the share-link case specifically.
+**Condition:** A shared link is opened by someone without a Viratdhara Account (or not currently `logged_in`).
+**Resolution:** Resolved (Commit 18), consistent with existing architecture rather than a new rule: the recipient is routed to the Auth Area (Login/Signup) first, per `INFORMATION_ARCHITECTURE.md`'s existing Auth Area vs. Main App split — no exception is carved out for share links. After successful authentication, the recipient is deep-linked forward to the shared Content item (`/content/:id`) rather than dropped at the Home tab.
+**Rationale:** This isn't a new business decision — `INFORMATION_ARCHITECTURE.md` already establishes that Main App content requires a `logged_in` session. Applying that consistently to share links (rather than carving out a public-viewing exception) is the smaller, more consistent change.
 
 ## Dependencies
 
@@ -45,12 +46,12 @@ Known edge cases and their resolution.
 
 ## Constraints
 
-- The unauthenticated-recipient gap should be resolved before this feature is considered launch-ready.
+- No Content is ever viewable via share link without authentication — no exception path is introduced.
 
 ## Acceptance
 
-A removed-Content link never shows a broken/raw error state. The unauthenticated case is explicitly flagged, not silently assumed either way.
+A removed-Content link never shows a broken/raw error state. An unauthenticated recipient reaches the shared Content immediately after logging in.
 
 ## Future Scope
 
-Confirm whether any Content is viewable pre-authentication via share link, or whether login is always required first.
+A public/pre-authentication preview of shared Content (e.g. an Open Graph card) is not specified — out of scope for this pass.

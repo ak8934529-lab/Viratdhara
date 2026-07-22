@@ -1,7 +1,7 @@
 ---
 document_id: CONTENTDISCOVERY_SPEC
 title: Content Discovery — Specification
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: critical
 depends_on:
@@ -32,7 +32,7 @@ Feed composition for Home, Suno, Dekho, and Shorts.
 
 ## Rules
 
-- **Home**: mixed Content type, composed of a featured/highlighted section plus a Recommendation Engine-sourced section. (The reviewed design's temple-live carousel is out of scope per the V1 booking/commerce exclusion — `PRODUCT_VISION.md`; Home's actual V1 composition is narrower than what was visually reviewed.)
+- **Home**: mixed Content type, composed entirely of Recommendation Engine output (resolved, Commit 18: no separate editorial "featured" source in V1 — see `EDGE_CASES.md`). (The reviewed design's temple-live carousel is out of scope per the V1 booking/commerce exclusion — `PRODUCT_VISION.md`; Home's actual V1 composition is narrower than what was visually reviewed.)
 - **Suno**: Audio Content only, composed of Category-browsable sections (`Content Categorization`) plus Recommendation Engine output scoped to Audio.
 - **Dekho**: Video Content only (excluding short-format), same composition pattern as Suno scoped to Video.
 - **Shorts**: Video Content with `format: short` (`CONTENT_ARCHITECTURE.md`), typically a single-column vertical feed.
@@ -58,4 +58,4 @@ Each of the 4 tabs shows only Content of its stated type/format, sourced only fr
 
 ## Future Scope
 
-Whether Home needs its own distinct "featured" curation mechanism (editorial vs. algorithmic) beyond Recommendation Engine is unconfirmed.
+A distinct editorial "featured" curation mechanism for Home, beyond Recommendation Engine's output, is not V1 — see `EDGE_CASES.md`.

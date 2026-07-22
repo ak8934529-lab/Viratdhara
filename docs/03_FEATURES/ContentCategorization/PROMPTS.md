@@ -1,7 +1,7 @@
 ---
 document_id: CONTENTCATEGORIZATION_PROMPTS
 title: Content Categorization — Prompts
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: low
 depends_on:
@@ -28,7 +28,7 @@ Feature-specific prompts.
 
 ### Implement the Category browse screen
 
-> Build against mock Category/Tag data structurally identical to `DOMAIN_MODEL.md`'s entities. Do not invent or hardcode a "final" Category list — use clearly-marked placeholder names and flag in the PR/commit that real Category data is pending a product decision (`EDGE_CASES.md`).
+> Build against the 5-item placeholder Category list in `CONTENT_ARCHITECTURE.md`. It is a real, usable list for structural/testing purposes — but it is explicitly not final; do not present it in product copy or documentation as a confirmed taxonomy.
 
 ## Dependencies
 
@@ -40,7 +40,7 @@ Feature-specific prompts.
 
 ## Constraints
 
-- No prompt here resolves the undefined-Category-list gap — it stays open.
+- No prompt here treats the placeholder list as permanent.
 
 ## Acceptance
 

@@ -1,7 +1,7 @@
 ---
 document_id: VALIDATION_REGISTRY
 title: Validation Registry
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: medium
 depends_on:
@@ -37,7 +37,7 @@ Validation rules shared across more than one feature. Rules used by only one fea
 | Rule | Applies To | Condition | Failure Code |
 | --- | --- | --- | --- |
 | `email_format` | Account (Authentication) | Must be a syntactically valid email address. | `VALIDATION_FAILED` |
-| `password_minimum` | Account (Authentication) | Minimum length and complexity — exact rule not yet specified by product; placeholder until defined. | `VALIDATION_FAILED` |
+| `password_minimum` | Account (Authentication) | Resolved Commit 18: minimum 8 characters, maximum 128, no forced composition rules (no mandatory mixed-case/digit/symbol), checked against a common-password/breach blocklist if feasible, no mandatory periodic rotation — per NIST 800-63B guidance. | `VALIDATION_FAILED` |
 | `content_title_required` | Content (Creator Studio) | Title must be non-empty. | `VALIDATION_FAILED` |
 | `content_category_required` | Content (Creator Studio) | Exactly one Category must be set, per `CONTENT_ARCHITECTURE.md`. | `VALIDATION_FAILED` |
 | `playlist_name_required` | Playlist (Content Discovery, User Settings) | Name must be non-empty. | `VALIDATION_FAILED` |
@@ -60,4 +60,4 @@ Any two features that both validate email format, password rules, content title,
 
 ## Future Scope
 
-`password_minimum`'s exact condition is unspecified pending a product/security decision — see `07_SECURITY` once it has content. This is a known gap, not an assumption to fill in.
+`password_minimum` may be revisited once `07_SECURITY` has real content, if a stricter policy is warranted (e.g. regulatory requirement). The NIST 800-63B-based default adopted in Commit 18 is a defensible starting point, not assumed permanent.

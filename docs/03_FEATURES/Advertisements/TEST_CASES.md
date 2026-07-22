@@ -1,7 +1,7 @@
 ---
 document_id: ADVERTISEMENTS_TEST_CASES
 title: Advertisements — Test Cases
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: medium
 depends_on:
@@ -31,8 +31,10 @@ Test cases for this feature.
 | 1 | Ad available before Video Player session | `SPEC.md` | Ad shown, `ad_impression` fires, then Content plays |
 | 2 | No ad available | `EDGE_CASES.md` | Content plays immediately, no impression fires, no block |
 | 3 | Ad fails to load | `EDGE_CASES.md` | Same as case 2 — no block |
-| 4 | Skip the ad | `STATES.md` | Ad dismissed, Content playback begins |
-| 5 | Tap/click the ad | `SPEC.md` | `ad_clicked` fires |
+| 4 | Attempt to skip before 5 seconds | `EDGE_CASES.md` resolved | Skip control not yet available |
+| 5 | Skip the ad at/after 5 seconds | `STATES.md` | Ad dismissed, Content playback begins |
+| 6 | Tap/click the ad | `SPEC.md` | `ad_clicked` fires |
+| 7 | Second Video Player session in the same visit | `SPEC.md` resolved (one ad per session) | A new ad is shown again (not skipped due to "already seen one this visit") |
 
 ## Dependencies
 
@@ -44,12 +46,12 @@ None beyond the above.
 
 ## Constraints
 
-- Placement-frequency and skip-timing-specific cases deferred until those gaps are resolved.
+None — all cases now test resolved default behavior.
 
 ## Acceptance
 
-All 5 cases pass.
+All 7 cases pass.
 
 ## Future Scope
 
-Additional cases pending `EDGE_CASES.md`'s open items.
+Cases should be revisited if placement frequency or skip timing defaults are tuned later.

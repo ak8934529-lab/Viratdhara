@@ -1,7 +1,7 @@
 ---
 document_id: RECOMMENDATIONENGINE_SPEC
 title: Recommendation Engine — Specification
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: high
 depends_on:
@@ -32,7 +32,7 @@ Generating and serving personalized `Recommendation` records.
 - A `Recommendation` belongs to exactly one Account and references exactly one `published` Content item (`DOMAIN_MODEL.md`, `STATE_REGISTRY.md`).
 - Recommendations are consumed by Content Discovery, not rendered by this feature directly (`README.md`).
 - Serving a Recommendation to an Account (i.e. it becomes visible in Content Discovery's feed) emits `recommendation_served`; the Account acting on it emits `recommendation_clicked`.
-- The ranking/selection logic producing which Content becomes a Recommendation for a given Account is **not specified** — this document defines the entity contract and events only.
+- The ranking/selection logic uses the V1 placeholder heuristic in `EDGE_CASES.md` (Category-recency match, falling back to global recency) — explicitly a placeholder, not a real recommendation system.
 
 ## Dependencies
 
@@ -45,12 +45,12 @@ Generating and serving personalized `Recommendation` records.
 ## Constraints
 
 - No `Recommendation` ever references non-`published` Content.
-- No specific algorithm is assumed or implemented as a placeholder "final" version — see `EDGE_CASES.md`.
+- The placeholder heuristic (`EDGE_CASES.md`) must never be presented as a finished recommendation system.
 
 ## Acceptance
 
-Recommendations served to any Account reference only `published` Content, and both events fire correctly.
+Recommendations served to any Account reference only `published` Content, use the placeholder heuristic, and both events fire correctly.
 
 ## Future Scope
 
-Ranking algorithm design is the primary open item — see `README.md` Future Scope.
+A real ranking/recommendation system to replace the placeholder heuristic — see `EDGE_CASES.md` Future Scope.

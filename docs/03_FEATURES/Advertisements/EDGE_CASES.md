@@ -1,7 +1,7 @@
 ---
 document_id: ADVERTISEMENTS_EDGE_CASES
 title: Advertisements — Edge Cases
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: medium
 depends_on:
@@ -35,15 +35,17 @@ Known edge cases and their resolution.
 **Condition:** An ad was selected but fails to render/load.
 **Resolution:** Same as no-ad-available — proceed to Content, do not block.
 
-### Placement frequency
+### Placement frequency — resolved with a starting default
 
-**Condition:** Whether every Video Player session shows an ad, or only some (e.g. every Nth session, time-based), is unconfirmed.
-**Resolution:** Not resolved — open product decision.
+**Condition:** Whether every Video Player session shows an ad, or only some (e.g. every Nth session, time-based).
+**Resolution:** Resolved (Commit 18): **one ad per Video Player session** (every session, pre-roll) as the V1 starting point — the simplest rule to implement and reason about.
+**Rationale:** This is a monetization-tuning parameter, not a fixed product law — treat it as a starting default to be adjusted once real usage/revenue data exists, not a permanent decision. Flagged clearly as such rather than left unspecified, since "every session" is still a concrete, testable behavior.
 
-### Skip timing
+### Skip timing — resolved with a starting default
 
-**Condition:** Whether the skip control appears immediately or after a countdown, and how long, is unconfirmed.
-**Resolution:** Not resolved — open product decision, though `PRODUCT_PHILOSOPHY.md`'s calm principle argues against a long forced-view duration.
+**Condition:** Whether the skip control appears immediately or after a countdown, and how long.
+**Resolution:** Resolved (Commit 18): **skip control becomes available after 5 seconds.**
+**Rationale:** Consistent with `PRODUCT_PHILOSOPHY.md`'s calm principle (short forced view, not a long ad-gate); 5 seconds is a common, unaggressive industry default. Same caveat as placement frequency — a tunable starting point, not fixed forever.
 
 ## Dependencies
 
@@ -55,13 +57,13 @@ Known edge cases and their resolution.
 
 ## Constraints
 
-- The two failure cases (no ad / load failure) must never block Content access — this is a hard constraint, not an open decision.
-- Placement frequency and skip timing remain open decisions, not resolved by an implementation guess.
+- The two failure cases (no ad / load failure) must never block Content access — this is a hard constraint.
+- Placement frequency and skip timing are tunable parameters, not hardcoded product law — an eventual Administrator ad-config tool (not yet built) should be able to adjust both without a documentation/code change.
 
 ## Acceptance
 
-Ad unavailability/failure never prevents playback; the two open decisions are visibly flagged, not silently assumed.
+Ad unavailability/failure never prevents playback; placement is one-per-session and skip is available at 5 seconds, both as adjustable defaults.
 
 ## Future Scope
 
-Placement frequency and skip timing are the two items to resolve before this feature is launch-ready.
+Both defaults should be revisited with real usage/revenue data once the feature is live — see Constraints re: eventual configurability.

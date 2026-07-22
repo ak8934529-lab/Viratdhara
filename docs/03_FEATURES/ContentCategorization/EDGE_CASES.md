@@ -1,7 +1,7 @@
 ---
 document_id: CONTENTCATEGORIZATION_EDGE_CASES
 title: Content Categorization — Edge Cases
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: medium
 depends_on:
@@ -25,11 +25,11 @@ Known edge cases and their resolution.
 
 ## Rules
 
-### The V1 Category list itself is undefined
+### The V1 Category list was undefined — now resolved with an explicit placeholder
 
-**Condition:** No document specifies the authoritative V1 Category list (`SPEC.md`).
-**Resolution:** Not resolved here — flagged as blocking. Implementation of the Category browse screen can be built structurally (grid, filter row) against a placeholder/mock list, but must not ship with an invented "final" list.
-**Rationale:** `AI_GLOBAL_RULES.md` — never invent a business rule/taxonomy.
+**Condition:** No document specified the authoritative V1 Category list.
+**Resolution:** Resolved (user decision, Commit 18): use the 5-item placeholder list in `CONTENT_ARCHITECTURE.md` ("V1 Category List (placeholder)") — Bhajans & Kirtan, Discourses & Satsang, Aarti & Rituals, Devotional Stories, Festival Specials. This is explicitly a placeholder, not a final content-taxonomy decision — it unblocks structural work (UI, tests, seed data) without claiming to be the launch-ready list.
+**Rationale:** The user chose "placeholder starter set" over supplying a real list now, so structural work isn't blocked. Must still be replaced with a confirmed list before launch.
 
 ### Empty Category
 
@@ -51,12 +51,12 @@ Known edge cases and their resolution.
 
 ## Constraints
 
-- The undefined-Category-list gap blocks final launch, not structural UI work — these are not the same thing and should not be conflated.
+- The placeholder Category list is not final — it blocks final launch (a real list must replace it), but no longer blocks structural implementation or testing.
 
 ## Acceptance
 
-Every edge case above has a stated resolution or an explicitly flagged blocking gap.
+Every edge case above has a stated resolution.
 
 ## Future Scope
 
-The V1 Category list decision is the main open item for this feature.
+Replacing the placeholder Category list with a confirmed, Administrator-authored one is the remaining open item for this feature.

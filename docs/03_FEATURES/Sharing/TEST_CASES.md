@@ -1,7 +1,7 @@
 ---
 document_id: SHARING_TEST_CASES
 title: Sharing — Test Cases
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: low
 depends_on:
@@ -29,8 +29,9 @@ Test cases for this feature.
 | # | Case | Traces To | Expected |
 | --- | --- | --- | --- |
 | 1 | Share a published Content item | `SPEC.md` | Native share sheet opens with a working link, `content_shared` fires |
-| 2 | Open a share link to published Content | `SPEC.md` | Resolves to the Content detail screen |
+| 2 | Open a share link to published Content while logged in | `SPEC.md` | Resolves to the Content detail screen |
 | 3 | Open a share link to removed/moderated Content | `EDGE_CASES.md` | "Not available" state shown, not a raw error |
+| 4 | Open a share link while logged out | `EDGE_CASES.md` resolved | Routed to Authentication; after login, lands on the shared Content, not Home |
 
 ## Dependencies
 
@@ -42,12 +43,12 @@ None beyond the above.
 
 ## Constraints
 
-- Unauthenticated-recipient test case deferred until that gap (`EDGE_CASES.md`) is resolved.
+None — all cases now test resolved behavior.
 
 ## Acceptance
 
-All 3 cases pass.
+All 4 cases pass.
 
 ## Future Scope
 
-Unauthenticated-recipient case pending product decision.
+None currently open for this feature.
