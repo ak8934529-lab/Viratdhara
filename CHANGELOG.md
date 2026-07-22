@@ -17,6 +17,14 @@ owner: Product Architecture
 
 One entry per milestone/commit. Newest first.
 
+## Commit 16 — Content Discovery Feature Knowledge Base
+
+- Added the full 13-file feature knowledge base at `docs/03_FEATURES/ContentDiscovery/`, covering Home/Suno/Dekho/Shorts.
+- Clarified Home's composition is narrower than what was visually reviewed in the Figma design — the temple-live carousel is out of scope per the V1 booking exclusion (Commit 2.1).
+- Flagged 2 open gaps: Recommendation-fallback behavior when Recommendation Engine has nothing to serve, and Home's featured-content source.
+- Noted `apps/showcase`'s `QuickActionTile` demo content should be updated to real V1 subject matter once this feature's categories/sections are finalized (previously flagged in `COMPONENT_REGISTRY.md`, Milestone 3).
+- `FEATURE_REGISTRY.md` KB Status updated to `documented`.
+
 ## Commit 15 — Recommendation Engine Feature Knowledge Base
 
 - Added the full 13-file feature knowledge base at `docs/03_FEATURES/RecommendationEngine/`.

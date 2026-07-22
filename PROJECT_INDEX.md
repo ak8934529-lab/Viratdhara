@@ -247,6 +247,24 @@ Every document in this repository, by category. Updated in the same commit as an
 | `PROMPTS.md` | `RECOMMENDATIONENGINE_PROMPTS` | active |
 | `CHANGELOG.md` | `RECOMMENDATIONENGINE_CHANGELOG` | active |
 
+### Content Discovery
+
+| Document | document_id | Status |
+| --- | --- | --- |
+| `README.md` | `CONTENTDISCOVERY_README` | active |
+| `SPEC.md` | `CONTENTDISCOVERY_SPEC` | active |
+| `UI.md` | `CONTENTDISCOVERY_UI` | active |
+| `COMPONENTS.md` | `CONTENTDISCOVERY_COMPONENTS` | active |
+| `API.md` | `CONTENTDISCOVERY_API` | draft |
+| `DATABASE.md` | `CONTENTDISCOVERY_DATABASE` | active |
+| `STATES.md` | `CONTENTDISCOVERY_STATES` | active |
+| `VALIDATIONS.md` | `CONTENTDISCOVERY_VALIDATIONS` | active |
+| `EVENTS.md` | `CONTENTDISCOVERY_EVENTS` | active |
+| `EDGE_CASES.md` | `CONTENTDISCOVERY_EDGE_CASES` | active |
+| `TEST_CASES.md` | `CONTENTDISCOVERY_TEST_CASES` | active |
+| `PROMPTS.md` | `CONTENTDISCOVERY_PROMPTS` | active |
+| `CHANGELOG.md` | `CONTENTDISCOVERY_CHANGELOG` | active |
+
 ## docs/04_BACKEND
 
 | Document | document_id | Status |
@@ -321,7 +339,7 @@ Every document in this repository, by category. Updated in the same commit as an
 
 ## Totals
 
-- Active: 173
-- Draft: 12
+- Active: 185
+- Draft: 13
 - Planned: 6
-- Total: 191
+- Total: 204
