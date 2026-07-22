@@ -1,8 +1,8 @@
 ---
 document_id: DOCS_05_AI
 title: AI Documentation
-version: 1.0.0
-status: planned
+version: 1.1.0
+status: active
 priority: critical
 depends_on:
   - DOCS_00_PRODUCT
@@ -24,15 +24,15 @@ Rules for AI agents contributing to Viratdhara. `AI_GLOBAL_RULES.md` applies to 
 
 | Document | Status |
 | --- | --- |
-| `AI_GLOBAL_RULES.md` | planned |
-| `AI_DESIGN_AGENT.md` | planned |
-| `AI_FRONTEND_AGENT.md` | planned |
-| `AI_BACKEND_AGENT.md` | planned |
-| `AI_DOCUMENTATION_AGENT.md` | planned |
-| `AI_TESTING_AGENT.md` | planned |
-| `AI_REVIEW_AGENT.md` | planned |
-| `AI_SECURITY_AGENT.md` | planned |
-| `PROMPT_LIBRARY.md` | planned |
+| `AI_GLOBAL_RULES.md` | active |
+| `AI_DESIGN_AGENT.md` | active |
+| `AI_FRONTEND_AGENT.md` | active |
+| `AI_BACKEND_AGENT.md` | active |
+| `AI_DOCUMENTATION_AGENT.md` | active |
+| `AI_TESTING_AGENT.md` | active |
+| `AI_REVIEW_AGENT.md` | active |
+| `AI_SECURITY_AGENT.md` | active |
+| `PROMPT_LIBRARY.md` | active |
 
 ## Rules
 
@@ -41,7 +41,7 @@ Rules for AI agents contributing to Viratdhara. `AI_GLOBAL_RULES.md` applies to 
 
 ## Contributor Roles
 
-Preserved here from the source product-context document pending full write-up in `AI_GLOBAL_RULES.md` (Milestone 4):
+Preserved here from the source product-context document. This is an org-chart concern (who does what), distinct from the behavioral rules in `AI_GLOBAL_RULES.md`, so it stays here rather than being merged into that document.
 
 | Contributor | Role | Responsible for |
 | --- | --- | --- |

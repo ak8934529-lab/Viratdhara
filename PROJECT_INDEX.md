@@ -84,7 +84,16 @@ Every document in this repository, by category. Updated in the same commit as an
 
 | Document | document_id | Status |
 | --- | --- | --- |
-| `README.md` | `DOCS_05_AI` | planned |
+| `README.md` | `DOCS_05_AI` | active |
+| `AI_GLOBAL_RULES.md` | `AI_GLOBAL_RULES` | active |
+| `AI_DESIGN_AGENT.md` | `AI_DESIGN_AGENT` | active |
+| `AI_FRONTEND_AGENT.md` | `AI_FRONTEND_AGENT` | active |
+| `AI_BACKEND_AGENT.md` | `AI_BACKEND_AGENT` | active |
+| `AI_DOCUMENTATION_AGENT.md` | `AI_DOCUMENTATION_AGENT` | active |
+| `AI_TESTING_AGENT.md` | `AI_TESTING_AGENT` | active |
+| `AI_REVIEW_AGENT.md` | `AI_REVIEW_AGENT` | active |
+| `AI_SECURITY_AGENT.md` | `AI_SECURITY_AGENT` | active |
+| `PROMPT_LIBRARY.md` | `PROMPT_LIBRARY` | active |
 
 ## docs/06_ANALYTICS
 
@@ -139,7 +148,7 @@ Every document in this repository, by category. Updated in the same commit as an
 
 ## Totals
 
-- Active: 43
+- Active: 53
 - Draft: 2
-- Planned: 9
-- Total: 54
+- Planned: 8
+- Total: 63

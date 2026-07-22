@@ -17,6 +17,13 @@ owner: Product Architecture
 
 One entry per milestone/commit. Newest first.
 
+## Commit 4 — AI Foundation
+
+- Added all 9 planned `docs/05_AI` documents: `AI_GLOBAL_RULES.md`, `AI_DESIGN_AGENT.md`, `AI_FRONTEND_AGENT.md`, `AI_BACKEND_AGENT.md`, `AI_DOCUMENTATION_AGENT.md`, `AI_TESTING_AGENT.md`, `AI_REVIEW_AGENT.md`, `AI_SECURITY_AGENT.md`, `PROMPT_LIBRARY.md`.
+- `AI_GLOBAL_RULES.md` elaborates (does not duplicate) the root `AI_INSTRUCTIONS.md` read-order/never-invent rules with rationale; every per-agent document narrows it without contradicting it.
+- `AI_DOCUMENTATION_AGENT.md` formalizes, as explicit rules, the process actually followed while building this repository (frontmatter schema, index/graph/changelog updated together, absorb-fully-then-delete for seed content, flag-don't-silently-resolve conflicts).
+- Absorbed and removed the last 3 files in `Viratdhara_AI_Docs_Starter/` (`AI_GLOBAL_RULES.md`, `AI_INSTRUCTIONS.md`, `HANDOFF_TO_CLAUDE.md`). The starter folder is now fully absorbed and removed.
+
 ## Commit 3 — Architecture Foundation
 
 - Added all 15 planned `docs/01_ARCHITECTURE` documents: `INFORMATION_ARCHITECTURE.md`, `DOMAIN_MODEL.md`, `CONTENT_ARCHITECTURE.md`, `NAVIGATION_MODEL.md`, `URL_STRUCTURE.md`, `FEATURE_REGISTRY.md`, `PERMISSION_MATRIX.md`, `DEPENDENCY_GRAPH.md`, `ENTITY_REGISTRY.md`, `COMPONENT_REGISTRY.md`, `EVENT_REGISTRY.md`, `STATE_REGISTRY.md`, `API_REGISTRY.md` (draft), `ERROR_REGISTRY.md` (draft), `VALIDATION_REGISTRY.md`.
