@@ -13,7 +13,7 @@ export function OnboardingLanguagePage() {
   const [selected, setSelected] = useState("English")
 
   return (
-    <AuthLayout>
+    <AuthLayout width="wide">
       <div className="flex flex-col items-center gap-6 text-center">
         <BrandMark />
         <h1 className="text-xl font-semibold">Select the Language of Your Devotion</h1>

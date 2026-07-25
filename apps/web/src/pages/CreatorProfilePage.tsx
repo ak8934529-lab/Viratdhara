@@ -6,6 +6,7 @@ import { Avatar, AvatarFallback } from "@dhara/ui/avatar"
 import { Button } from "@dhara/ui/button"
 import { EmptyState } from "@/components/content/EmptyState"
 import { VideoCard } from "@/components/content/VideoCard"
+import { posterBackground } from "@/lib/poster-art"
 import { useAuth } from "@/lib/auth-context"
 import { CURRENT_CREATOR, getCreatorBySlug, getPublishedContentByCreator } from "@/lib/mock-creator"
 
@@ -39,39 +40,65 @@ export function CreatorProfilePage() {
 
   return (
     <div className="mx-auto flex max-w-[1400px] flex-col gap-6">
-      <div className="flex items-center gap-2">
-        <Button variant="ghost" size="icon-sm" asChild aria-label="Back">
-          <Link to="/">
-            <ArrowLeft className="size-5" />
-          </Link>
-        </Button>
-      </div>
-
       {/*
         Header. At Wide, UI.md permits it sitting alongside the grid rather than
         stacked above — kept stacked here, which the spec allows ("may").
+
+        The banner uses generated artwork derived from the creator's own id. Note
+        this is a *surface treatment*, not new content: UI.md specifies no banner,
+        bio, or stats for this screen, and none is introduced — the header still
+        carries exactly avatar + display name + Follow.
       */}
-      <header className="flex flex-wrap items-center gap-4">
-        <Avatar size="lg">
-          <AvatarFallback>{creator.displayName.charAt(0)}</AvatarFallback>
-        </Avatar>
+      <header
+        className="relative -mx-4 -mt-5 overflow-hidden md:-mx-6 md:mt-0 md:rounded-2xl lg:-mx-8"
+        style={{
+          backgroundImage: posterBackground("Bhajans & Kirtan", creator.id, "landscape"),
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div aria-hidden className="scrim-bottom absolute inset-0" />
+        <div aria-hidden className="absolute inset-0 bg-background/45" />
 
-        <div className="min-w-0 flex-1">
-          <h1 className="truncate text-xl font-semibold leading-tight text-foreground">
-            {creator.displayName}
-          </h1>
+        <div className="relative flex flex-col gap-4 p-5 md:p-8">
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            asChild
+            aria-label="Back"
+            className="-ml-1 w-fit text-white/80 hover:text-white"
+          >
+            <Link to="/">
+              <ArrowLeft className="size-5" />
+            </Link>
+          </Button>
+
+          <div className="flex flex-wrap items-center gap-4">
+            <Avatar size="lg" className="ring-2 ring-white/25">
+              <AvatarFallback>{creator.displayName.charAt(0)}</AvatarFallback>
+            </Avatar>
+
+            <div className="min-w-0 flex-1">
+              <h1 className="truncate text-2xl font-semibold leading-tight tracking-tight text-white md:text-3xl">
+                {creator.displayName}
+              </h1>
+              <p className="mt-1 text-xs text-white/65">
+                {items.length} published item{items.length === 1 ? "" : "s"}
+              </p>
+            </div>
+
+            <FollowButton
+              isOwnProfile={isOwnProfile}
+              isAuthenticated={isAuthenticated}
+              following={following}
+              onToggle={() => setFollowing((value) => !value)}
+            />
+          </div>
         </div>
-
-        <FollowButton
-          isOwnProfile={isOwnProfile}
-          isAuthenticated={isAuthenticated}
-          following={following}
-          onToggle={() => setFollowing((value) => !value)}
-        />
       </header>
 
       {items.length > 0 ? (
-        <div className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-x-5 gap-y-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {items.map((item) => (
             <VideoCard key={item.id} content={item} />
           ))}

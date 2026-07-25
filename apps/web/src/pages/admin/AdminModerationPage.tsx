@@ -4,9 +4,9 @@ import { useState } from "react"
 import { Badge } from "@dhara/ui/badge"
 import { Button } from "@dhara/ui/button"
 import { cn } from "@dhara/utils"
-import { CATEGORY_GRADIENT } from "@/components/content/category-visuals"
 import { EmptyState } from "@/components/content/EmptyState"
 import { GlassPanel } from "@/components/glass/GlassPanel"
+import { posterBackground } from "@/lib/poster-art"
 import { formatDuration } from "@/lib/mock-content"
 import { ADMIN_MODERATION_QUEUE } from "@/lib/mock-admin"
 
@@ -74,10 +74,12 @@ export function AdminModerationPage() {
           return (
             <div key={content.id} className={cn("flex items-center gap-3 p-3 md:gap-4 md:p-4", isModerated && "opacity-70")}>
               <span
-                className={cn(
-                  "hidden aspect-video w-24 shrink-0 rounded-lg bg-gradient-to-br md:block",
-                  CATEGORY_GRADIENT[content.category]
-                )}
+                className="hidden aspect-video w-24 shrink-0 rounded-lg ring-1 ring-white/10 md:block"
+                style={{
+                  backgroundImage: posterBackground(content.category, content.id, "landscape"),
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
                 aria-hidden
               />
 

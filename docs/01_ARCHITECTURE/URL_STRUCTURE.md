@@ -1,7 +1,7 @@
 ---
 document_id: URL_STRUCTURE
 title: URL Structure
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: high
 depends_on:
@@ -51,17 +51,20 @@ The route table for Viratdhara V1, grouped by structural area (`INFORMATION_ARCH
 | --- | --- | --- |
 | `/` (authenticated) | Home | Home |
 | `/suno` | Audio discovery | Suno |
-| `/playing-now` | Full player | Playing Now |
 | `/dekho` | Video discovery | Dekho |
 | `/shorts` | Shorts feed | Shorts |
 | `/search` | Search | — (top bar entry) |
-| `/content/:id` | Content detail | — (pushed) |
+| `/content/:id` | Content detail **and playback surface** | — (pushed) |
 | `/category/:id` | Category browse | — (pushed) |
 | `/playlist/:id` | Playlist detail | — (pushed) |
 | `/settings` | Settings | — (top bar entry) |
 | `/settings/subscriptions` | Subscriptions | — (pushed) |
 | `/settings/downloads` | Downloads | — (pushed) |
 | `/settings/notifications` | Notifications | — (pushed) |
+
+`/content/:id` is not merely a detail screen. It is the playback surface for both Content types — the full player is composed inside it (`VideoPlayer/UI.md`), and the docked mini player opens it for whatever is loaded. It is a pushed screen, not a tab root.
+
+**`/playing-now` no longer exists.** It was the "Playing Now" tab's full-player route, removed by explicit product direction when playback moved into `/content/:id`; the bottom nav went from 5 tabs to 4 in the same change (`NAVIGATION_MODEL.md`, `CHANGELOG.md` Milestone 25). No route replaces it — playback has no route of its own.
 
 ### Creator Studio
 

@@ -1,7 +1,7 @@
 ---
 document_id: VIDEOPLAYER_PROMPTS
 title: Video Player — Prompts
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: low
 depends_on:
@@ -18,7 +18,7 @@ owner: Product Architecture
 
 ## Why
 
-The full-player transport controls are the one piece of this feature not yet a registered component — worth a standing prompt to extract it properly rather than leave it ad hoc.
+The playback surface is easy to get structurally wrong: an agent reading this feature's name, or the reviewed design, will reach for a standalone player screen that no longer exists. A standing prompt points it at the real surface and keeps the transport controls inside a registered component rather than ad hoc per screen.
 
 ## What
 
@@ -26,9 +26,9 @@ Feature-specific prompts.
 
 ## Prompts
 
-### Implement the full "Playing Now" screen
+### Compose the playback surface inside `/content/:id`
 
-> Extract transport controls, seek bar, and artwork panel into a named, reusable component and register it in `COMPONENT_REGISTRY.md` — do not leave it as one-off screen markup, per `COMPONENTS.md`. Implement the Playback state machine exactly as in `STATES.md`; do not re-fire `content_played` on resume from pause.
+> There is no "Playing Now" screen and no playback route — do not create one. The playback surface is `PlaybackStage`, composed inside `/content/:id` (`UI.md`, `COMPONENTS.md`, `URL_STRUCTURE.md`), and it is one 16:9 video element for both Content types; Audio supplies its artwork as the `poster` frame rather than getting a layout of its own. Keep transport controls and seek bar inside that named component and registered in `COMPONENT_REGISTRY.md` — do not leave them as one-off screen markup. Implement the Playback state machine exactly as in `STATES.md`; do not re-fire `content_played` on resume from pause.
 
 ### Resolve an open edge case before shipping
 

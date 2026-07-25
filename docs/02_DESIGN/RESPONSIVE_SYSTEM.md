@@ -1,7 +1,7 @@
 ---
 document_id: RESPONSIVE_SYSTEM
 title: Responsive System
-version: 2.0.0
+version: 2.1.0
 status: active
 priority: high
 depends_on:
@@ -41,7 +41,7 @@ Two responsive strategies, scoped to two different surfaces:
 
 | Breakpoint | Range | Navigation | Content Layout |
 | --- | --- | --- | --- |
-| Compact | `< 768px` | Bottom tab bar (mirrors `NAVIGATION_MODEL.md`'s 5 tabs, web-native implementation, not a reuse of `packages/mobile`'s component) | Single column |
+| Compact | `< 768px` | Bottom tab bar (mirrors `NAVIGATION_MODEL.md`'s 4 tabs, web-native implementation, not a reuse of `packages/mobile`'s component) | Single column |
 | Medium | `768–1279px` | Collapsible/icon-rail side navigation | 2-column grids for listing surfaces (Content Discovery, Search results) |
 | Wide | `≥ 1280px` | Persistent expanded side navigation with labels | 3+ column grids, persistent secondary panel where relevant (e.g. Video Player detail + up-next list side by side) |
 

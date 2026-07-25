@@ -7,6 +7,7 @@ import { BottomNav } from "@/components/layout/BottomNav"
 import { MiniPlayer } from "@/components/layout/MiniPlayer"
 import { TopBar } from "@/components/layout/TopBar"
 import { NAV_ITEMS } from "@/lib/nav-items"
+import { usePlayer } from "@/lib/player-context"
 
 /**
  * Main App structural area shell (docs/01_ARCHITECTURE/INFORMATION_ARCHITECTURE.md).
@@ -14,28 +15,37 @@ import { NAV_ITEMS } from "@/lib/nav-items"
  * "app card" chrome) — Compact falls back to BottomNav. Per
  * docs/02_DESIGN/RESPONSIVE_SYSTEM.md.
  *
- * The top bar is present on every Main App screen EXCEPT the full Playing Now
- * player, per NAVIGATION_MODEL.md — that screen uses a minimize control instead.
- * The bottom nav always stays, so no screen ever omits both.
+ * The top bar is now present on every Main App screen without exception. Its one
+ * former exception was the full "Playing Now" player, which used a minimize
+ * control instead; that tab and route were removed, and playback moved into the
+ * Content detail page, so the exception no longer exists.
  */
 export function AppShell() {
   const { pathname } = useLocation()
+  const { current: playing, playback } = usePlayer()
   const current = NAV_ITEMS.find((item) => (item.path === "/" ? pathname === "/" : pathname.startsWith(item.path)))
 
-  const isFullPlayer = pathname === "/playing-now"
+  /**
+   * The mini player is fixed, so the scroll container has to reserve room for it
+   * or the last row of content sits underneath. Reserved only while a session
+   * exists, so pages don't carry dead space when nothing is playing.
+   */
+  const hasMiniPlayer =
+    Boolean(playing) && playback !== "idle" && pathname !== `/content/${playing?.id}`
 
   return (
     <div className="min-h-svh">
       <BackgroundBloom />
-      {!isFullPlayer ? <TopBar title={current?.label ?? "Viratdhara"} /> : null}
+      <TopBar title={current?.label ?? "Viratdhara"} />
       <div className="flex">
-        <SideNav hasTopBar={!isFullPlayer} />
+        <SideNav />
         <main
           className={cn(
-            "min-w-0 flex-1 px-4 pb-24 pt-5 md:px-6 md:pb-8 lg:px-8",
-            // The full player has no top bar, so it keeps bottom clearance for
-            // the nav at every breakpoint rather than the usual md:pb-8.
-            isFullPlayer && "md:pb-24"
+            "min-w-0 flex-1 px-4 pt-5 md:px-6 lg:px-8",
+            // Compact clears the floating bottom nav; wider viewports have none.
+            "pb-24 md:pb-10",
+            // Extra clearance for the fixed mini player when a session exists.
+            hasMiniPlayer && "pb-40 md:pb-28"
           )}
         >
           <Outlet />

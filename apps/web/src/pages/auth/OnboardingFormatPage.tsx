@@ -19,7 +19,7 @@ export function OnboardingFormatPage() {
   const [selected, setSelected] = useState("suno-dekho")
 
   return (
-    <AuthLayout>
+    <AuthLayout width="wide">
       <div className="flex flex-col items-center gap-6 text-center">
         <BrandMark />
         <h1 className="text-xl font-semibold">Select the Format for Darshan</h1>

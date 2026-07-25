@@ -1,7 +1,7 @@
 ---
 document_id: PROJECT_INDEX
 title: Project Index
-version: 1.0.0
+version: 1.0.1
 status: active
 priority: critical
 depends_on: []
@@ -357,7 +357,13 @@ Every document in this repository, by category. Updated in the same commit as an
 
 ## Totals
 
-- Active: 197
+- Active: 198
 - Draft: 14
-- Planned: 6
+- Planned: 5
 - Total: 217
+
+Milestone 24 added and removed no documents. It changed content only, in `COMPONENT_REGISTRY.md`, `DESIGN_SYSTEM_RULES.md`, `SURFACE_SYSTEM.md`, `TYPOGRAPHY.md`, and `COMPONENT_LIBRARY.md` — all already `active`, so no status changed either.
+
+The Active/Planned split above was corrected in the same pass: the rows in this file total 198 active and 5 planned (the five `README.md` files under `04_BACKEND`, `06_ANALYTICS`, `07_SECURITY`, `08_TESTING`, `99_REFERENCE`), against a previously recorded 197 and 6. The Total of 217 was already correct and matches the filesystem.
+
+Known discrepancy, left as-is: the 14 files under `templates/` carry `status: draft` in their own frontmatter but are listed `active` in the table above, because a template skeleton is an active template whose *content* is a draft. They are counted as active here. A validation script (`AI_DOCUMENTATION_AGENT.md` Future Scope) would need to special-case them.

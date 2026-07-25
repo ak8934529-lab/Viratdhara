@@ -1,7 +1,7 @@
 ---
 document_id: DOCUMENT_GRAPH
 title: Document Graph
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: critical
 depends_on: []
@@ -96,6 +96,7 @@ DEPENDENCY_GRAPH
 
 COMPONENT_REGISTRY
 └── (no depends_on — indexes existing code directly)
+└── related: COMPONENT_LIBRARY, FEATURE_REGISTRY, SURFACE_SYSTEM, URL_STRUCTURE (last two added Milestone 24 — apps/web components registered with their tiers and routes)
 
 EVENT_REGISTRY
 └── depends_on: DOMAIN_MODEL, FEATURE_REGISTRY
@@ -120,6 +121,7 @@ DESIGN_PHILOSOPHY
 
 DESIGN_SYSTEM_RULES
 └── depends_on: DESIGN_PHILOSOPHY
+└── related: COMPONENT_REGISTRY, COMPONENT_LIBRARY, SURFACE_SYSTEM, TYPOGRAPHY (last two added Milestone 24 — apps/web token range + elevation ramp)
 
 LAYOUT_SYSTEM
 └── depends_on: DESIGN_SYSTEM_RULES
@@ -130,12 +132,14 @@ RESPONSIVE_SYSTEM
 
 COMPONENT_LIBRARY
 └── depends_on: DESIGN_SYSTEM_RULES
+└── related: COMPONENT_REGISTRY, SURFACE_SYSTEM, TYPOGRAPHY (last two added Milestone 24 — apps/web primitives + generative poster artwork)
 
 ACCESSIBILITY
 └── depends_on: PRODUCT_PHILOSOPHY, DESIGN_SYSTEM_RULES
 
 TYPOGRAPHY
 └── depends_on: DESIGN_SYSTEM_RULES
+└── related: SURFACE_SYSTEM, COMPONENT_LIBRARY (added Milestone 24 — display scale needs the scrims, and CinematicHero is its only consumer)
 
 MOTION
 └── depends_on: DESIGN_PHILOSOPHY
@@ -200,8 +204,10 @@ MASTER_PRD
 
 SURFACE_SYSTEM
 └── depends_on: DESIGN_SYSTEM_RULES, DESIGN_PHILOSOPHY
-└── related: MASTER_PRD, RESPONSIVE_SYSTEM, COMPONENT_LIBRARY
+└── related: MASTER_PRD, RESPONSIVE_SYSTEM, COMPONENT_LIBRARY, COMPONENT_REGISTRY (last added Milestone 24 — GlassPanel/BackgroundBloom now registered)
 ```
+
+**Note on Milestone 24:** the design-system overhaul changed content in five existing nodes above — `DESIGN_SYSTEM_RULES`, `SURFACE_SYSTEM`, `TYPOGRAPHY`, `COMPONENT_LIBRARY` (all `02_DESIGN`) and `COMPONENT_REGISTRY` (`01_ARCHITECTURE`). No node was added or removed. The new edges are all `related`, forming a mutual cluster across the four `02_DESIGN` documents plus `COMPONENT_REGISTRY`: the token range, the surface treatment, the type scale, and the component catalog can no longer be read independently of one another, but none of them requires another to be read *first*, so no new `depends_on` edge was created and no cycle was introduced. `COMPONENT_REGISTRY` remains without `depends_on`, since it still indexes code directly.
 
 ### 03_FEATURES / Authentication
 

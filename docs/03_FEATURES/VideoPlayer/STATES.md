@@ -1,7 +1,7 @@
 ---
 document_id: VIDEOPLAYER_STATES
 title: Video Player — States
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: critical
 depends_on:
@@ -47,7 +47,7 @@ playing ──(reaches end)──> content_completed ──> idle
 ## Relationships
 
 - `EVENT_REGISTRY.md` — `content_played`, `content_paused` trigger the transitions above.
-- `NAVIGATION_MODEL.md` — the "Playing Now" tab is active whenever state is `playing`/`paused`.
+- `NAVIGATION_MODEL.md` — no bottom-nav tab is driven by this machine. Tab activity is determined by the current route alone. What this machine governs instead is the **docked mini player's visibility**: the mini player is shown whenever state is `playing`/`paused`, and absent in `idle`. The one exception is spatial, not stateful — the bar is suppressed on the loaded item's own `/content/:id` page, where the playback surface is already on screen (`UI.md`); the state is unchanged there.
 
 ## Constraints
 

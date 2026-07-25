@@ -2,10 +2,10 @@ import { Bookmark, Heart, MoreHorizontal, Play } from "lucide-react"
 import { useState } from "react"
 
 import { cn } from "@dhara/utils"
-import { CATEGORY_GRADIENT } from "@/components/content/category-visuals"
 import { ShareButton } from "@/components/content/ShareButton"
 import { SHORTS_CONTENT, formatCompactCount } from "@/lib/mock-content"
 import type { ContentItem } from "@/lib/mock-content"
+import { categoryGlyph, posterBackground } from "@/lib/poster-art"
 
 /**
  * Shorts tab — `format: short` Video only, in a single-column, full-height,
@@ -61,14 +61,25 @@ function ShortItem({ content }: { content: ContentItem }) {
       <div
         className={cn(
           "relative h-full w-full max-w-[min(100%,26rem)] overflow-hidden rounded-2xl",
-          "border border-white/15 bg-gradient-to-br",
-          CATEGORY_GRADIENT[content.category]
+          "ring-1 ring-white/15 shadow-[var(--shadow-cinema)]"
         )}
+        style={{
+          backgroundImage: posterBackground(content.category, content.id, "portrait"),
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
       >
-        {/* Placeholder frame — the sample media is landscape, so the vertical
-            frame shows the category gradient rather than a letterboxed clip. */}
+        {/* Placeholder frame — no vertical sample media exists, so the generated
+            portrait artwork stands in for the clip itself. */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-[14%] text-center text-5xl font-semibold text-white/20"
+        >
+          {categoryGlyph(content.category, content.id)}
+        </span>
+
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="flex size-16 items-center justify-center rounded-full border border-white/50 bg-black/20 backdrop-blur-sm">
+          <span className="flex size-16 items-center justify-center rounded-full border border-white/50 bg-black/25 backdrop-blur-sm transition-transform hover:scale-105">
             <Play className="size-7 translate-x-0.5 fill-white text-white" />
           </span>
         </div>

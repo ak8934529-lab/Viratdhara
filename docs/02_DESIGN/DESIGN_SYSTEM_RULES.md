@@ -1,7 +1,7 @@
 ---
 document_id: DESIGN_SYSTEM_RULES
 title: Design System Rules
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: critical
 depends_on:
@@ -9,6 +9,8 @@ depends_on:
 related_documents:
   - COMPONENT_REGISTRY.md
   - COMPONENT_LIBRARY.md
+  - SURFACE_SYSTEM.md
+  - TYPOGRAPHY.md
 related_entities: []
 related_components: []
 related_events: []
@@ -45,7 +47,9 @@ React 19 + Tailwind CSS v4 (CSS-first, no `tailwind.config.js`) + `class-varianc
 - Every styled element's classes are composed through `cn()`, never string-concatenated manually.
 - Variants (visual options like `variant="outline"`) use `cva`, never inline conditional className logic.
 
-### Tokens (current values — see `apps/showcase/src/index.css`)
+### Tokens (baseline values — see `apps/showcase/src/index.css`)
+
+This is the palette `packages/ui`, `packages/mobile`, and `packages/blocks` render against, via `apps/showcase`'s stylesheet.
 
 | Token | Value | Use |
 | --- | --- | --- |
@@ -57,6 +61,43 @@ React 19 + Tailwind CSS v4 (CSS-first, no `tailwind.config.js`) + `class-varianc
 | `--radius` | `1rem` base; primary buttons use `rounded-full` explicitly | Pill CTA aesthetic — see `DESIGN_PHILOSOPHY.md` |
 
 Tokens are CSS custom properties, mapped to Tailwind utilities via a `@theme inline` block — never hardcoded hex values inside a component's className.
+
+### Tokens — `apps/web` range (see `apps/web/src/index.css`)
+
+`apps/web` has its own stylesheet and its own token values. The brand hues are identical; what differs is the *range* the hues sit in — a deeper near-black base and a darker card tone, so the glass tiers (`SURFACE_SYSTEM.md`) and the generative poster artwork (`COMPONENT_LIBRARY.md`) have contrast to sit against.
+
+| Token | Baseline | `apps/web` | Direction |
+| --- | --- | --- | --- |
+| `--primary` | `#be5339` | `#be5339` | unchanged |
+| `--accent` | `#d3932f` | `#d3932f` | unchanged |
+| `--ring` | `#d3932f` | `#d3932f` | unchanged |
+| `--background` | `#0d0d0d` | `#08060a` | deepened |
+| `--card` / `--popover` | `#271611` | `#1b0f0c` | deepened |
+| `--accent-foreground` | `#271611` | `#1b0f0c` | tracks `--card` |
+| `--secondary` | `oklch(0.24 0.02 40)` | `oklch(0.22 0.02 40)` | darkened |
+| `--muted` | `oklch(0.24 0.02 40)` | `oklch(0.21 0.015 40)` | darkened |
+| `--foreground` | `oklch(0.96 0.01 70)` | `oklch(0.97 0.01 70)` | brightened |
+| `--muted-foreground` | `oklch(0.65 0.02 50)` | `oklch(0.68 0.02 55)` | brightened |
+
+The two foreground tokens move *up* as the surfaces move *down* — the widened gap is what holds contrast on a darker base, per `ACCESSIBILITY.md`.
+
+### Elevation ramp (`apps/web`)
+
+One shadow ramp, so a card and a panel cannot invent their own depth. Applied via `shadow-[var(--shadow-*)]`, or by a glass tier that already carries one.
+
+| Token | Use |
+| --- | --- |
+| `--shadow-sink` | Barely-raised base panels — the default glass tier |
+| `--shadow-lift` | Content cards, accent panels, hover-resting state |
+| `--shadow-float` | Raised chrome (mini player, bottom nav, modals) and card hover |
+| `--shadow-cinema` | Full-bleed media surfaces (the player stage, Shorts viewport) |
+| `--glow-accent` | Accent ring plus bloom, for a focused or active media surface |
+
+A component that needs depth uses a ramp token. It does not write its own `box-shadow` value.
+
+### Token scope boundary
+
+`apps/web`'s token values live only in `apps/web/src/index.css`. `packages/mobile` and `apps/showcase` do not import that stylesheet, so a change to it cannot reach them. Two stylesheets holding two ranges of one palette is the deliberate arrangement, not drift: `MASTER_PRD.md` gives `apps/web` its own layout and surface layer, and `SURFACE_SYSTEM.md` already scopes the glass treatment the same way.
 
 ### Font
 
@@ -70,15 +111,21 @@ Inter Variable (`@fontsource-variable/inter`) — a deliberate choice, not an ov
 
 - `COMPONENT_REGISTRY.md` (`01_ARCHITECTURE`) — the existence/scope index for every component built to these rules.
 - `COMPONENT_LIBRARY.md` — the design-facing catalog of variants/states.
+- `SURFACE_SYSTEM.md` — the glass/depth treatment layered over these tokens in `apps/web`; consumes the elevation ramp above.
+- `TYPOGRAPHY.md` — the type scale, including `apps/web`'s display steps.
 
 ## Constraints
 
 - No component may hardcode a color, radius, or spacing value that has a corresponding token. Use the token.
 - No new package layer may be introduced without updating this document.
+- The brand hues (`--primary`, `--accent`, `--ring`) are the same in every stylesheet. A surface or foreground token may differ per app; a brand hue may not.
+- A token added to `apps/web/src/index.css` is documented here before use, in the table for the layer it belongs to.
 
 ## Acceptance
 
 Any component in `packages/ui`, `packages/mobile`, or `packages/blocks` can be checked against: correct layer, correct file/naming convention, tokens not hardcoded values, `cva` for variants.
+
+Any `apps/web` component can be checked against: token not literal for color, ramp token not literal for shadow, brand hues matching the baseline.
 
 ## Future Scope
 

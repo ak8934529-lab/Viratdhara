@@ -1,12 +1,14 @@
-import { AlertTriangle, ArrowLeft, Search as SearchIcon, SearchX } from "lucide-react"
+import { AlertTriangle, Search as SearchIcon, SearchX } from "lucide-react"
 import { useEffect, useMemo, useRef, useState } from "react"
-import { Link, useSearchParams } from "react-router-dom"
+import { useSearchParams } from "react-router-dom"
 
 import { Button } from "@dhara/ui/button"
-import { cn } from "@dhara/utils"
 import { CategoryTile } from "@/components/content/CategoryTile"
 import { EmptyState } from "@/components/content/EmptyState"
 import { VideoCard } from "@/components/content/VideoCard"
+import { GlassPanel } from "@/components/glass/GlassPanel"
+import { SectionHeader } from "@/components/ui/CarouselRow"
+import { PageHeader } from "@/components/ui/StatTile"
 import { CONTENT_CATEGORIES, MOCK_CONTENT } from "@/lib/mock-content"
 import type { ContentItem } from "@/lib/mock-content"
 
@@ -95,14 +97,7 @@ export function SearchPage() {
   return (
     <div className="mx-auto flex max-w-[1100px] flex-col gap-6">
       {/* Pushed-screen chrome: back arrow, per UI.md. */}
-      <div className="flex items-center gap-2">
-        <Button variant="ghost" size="icon-sm" asChild aria-label="Back">
-          <Link to="/">
-            <ArrowLeft className="size-5" />
-          </Link>
-        </Button>
-        <p className="text-[17px] font-semibold tracking-tight text-foreground">Search</p>
-      </div>
+      <PageHeader title="Search" backTo="/" />
 
       <form
         onSubmit={(event) => {
@@ -111,17 +106,18 @@ export function SearchPage() {
         }}
         role="search"
       >
-        {/* White pill input, per the mobile Search design. */}
-        <div className="flex items-center gap-3 rounded-full bg-white px-4 py-3 shadow-lg shadow-black/20">
+        {/* Bright pill input, echoing the mobile Search design's high-contrast field
+            while staying on the glass surface system. */}
+        <div className="flex items-center gap-3 rounded-full bg-white/95 px-5 py-3.5 shadow-[var(--shadow-float)] ring-1 ring-white/20 transition-shadow focus-within:shadow-[var(--glow-accent)]">
           <SearchIcon className="size-5 shrink-0 text-primary" />
           <input
             ref={inputRef}
             value={input}
             onChange={(event) => setInput(event.target.value)}
             maxLength={QUERY_MAX_LENGTH}
-            placeholder="Songs, Artists, Podcasts &amp; More"
+            placeholder="Bhajans, discourses, creators &amp; more"
             aria-label="Search Viratdhara"
-            className="w-full bg-transparent text-sm text-neutral-900 outline-none placeholder:text-neutral-500"
+            className="w-full bg-transparent text-sm font-medium text-neutral-900 outline-none placeholder:font-normal placeholder:text-neutral-500"
           />
         </div>
       </form>
@@ -144,8 +140,8 @@ export function SearchPage() {
  */
 function IdleState() {
   return (
-    <section className="flex flex-col gap-3">
-      <h2 className="text-lg font-semibold text-foreground">Browse All</h2>
+    <section className="flex flex-col gap-4">
+      <SectionHeader title="Browse all" eyebrow="Explore" />
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
         {CONTENT_CATEGORIES.map((category) => (
           <CategoryTile key={category} category={category} />
@@ -216,8 +212,8 @@ function NoResultsState({ query }: { query: string }) {
  */
 function ErrorState({ onRetry }: { onRetry: () => void }) {
   return (
-    <div className={cn("surface-glass-base flex flex-col items-center gap-3 px-6 py-10 text-center")}>
-      <span className="flex size-14 items-center justify-center rounded-full bg-destructive/15 text-destructive">
+    <GlassPanel tier="base" className="flex flex-col items-center gap-3 px-6 py-10 text-center">
+      <span className="flex size-14 items-center justify-center rounded-full bg-destructive/15 text-destructive ring-1 ring-destructive/25">
         <AlertTriangle className="size-6" />
       </span>
       <p className="text-sm font-semibold text-foreground">Search is unavailable right now</p>
@@ -227,6 +223,6 @@ function ErrorState({ onRetry }: { onRetry: () => void }) {
       <Button size="sm" variant="outline" onClick={onRetry}>
         Retry
       </Button>
-    </div>
+    </GlassPanel>
   )
 }

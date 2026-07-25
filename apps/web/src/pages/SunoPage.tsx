@@ -1,35 +1,33 @@
 import { useMemo, useState } from "react"
 
-import { cn } from "@dhara/utils"
+import { CinematicHero } from "@/components/content/CinematicHero"
 import { PosterCard } from "@/components/content/PosterCard"
-import { SectionRow } from "@/components/content/SectionRow"
+import { CarouselRow, SectionHeader } from "@/components/ui/CarouselRow"
+import { Chip } from "@/components/ui/Chip"
+import { categorySlug } from "@/lib/category-slug"
 import { AUDIO_CONTENT, getContentByCategory } from "@/lib/mock-content"
-import type { ContentItem } from "@/lib/mock-content"
+import type { ContentCategory, ContentItem } from "@/lib/mock-content"
 
 /**
  * Suno tab — Audio Content only, per docs/03_FEATURES/ContentDiscovery/SPEC.md:
  * "composed of Category-browsable sections (Content Categorization) plus
  * Recommendation Engine output scoped to Audio."
  *
- * Same sectioned layout pattern as Dekho (UI.md: "one layout pattern, varied
- * only by which sections/Content-type each tab includes"), with the design's
- * taller portrait cards for playlist-style rows.
+ * Same sectioned carousel pattern as Dekho (UI.md: "one layout pattern, varied
+ * only by which sections/Content-type each tab includes"), with portrait poster
+ * cards for the playlist-style rows.
  *
  * FLAGGED — the mobile Suno design opens with a "Genre" chip row labelled
  * Lofi bhajan / On drive / Sleep music / Meditation music. Those are a genre
  * taxonomy, and no such concept exists in any document: CONTENT_ARCHITECTURE.md
  * defines 5 placeholder Categories and forbids inventing names beyond them. The
- * chip row below therefore filters on **Tags**, which CONTENT_ARCHITECTURE.md
- * does define ("Tags (zero or more)") and which happen to carry the design's
- * labels in the placeholder dataset. Reconciling "genre" vs. Tag vs. Category is
- * an open product decision, not something resolved here.
- *
- * Section titles other than "Recommended for you" are likewise not specified —
- * UI.md defers section ordering/curation entirely.
+ * chip row below therefore filters on **Tags**, which that document does define
+ * and which carry the design's labels in the placeholder dataset. Reconciling
+ * "genre" vs. Tag vs. Category is an open product decision.
  */
 const GENRE_TAGS = ["Lofi bhajan", "On drive", "Sleep music", "Meditation music"]
 
-function audioIn(category: Parameters<typeof getContentByCategory>[0]): ContentItem[] {
+function audioIn(category: ContentCategory): ContentItem[] {
   return getContentByCategory(category).filter((item) => item.type === "audio")
 }
 
@@ -41,57 +39,47 @@ export function SunoPage() {
     [activeTag]
   )
 
-  /** Recommendation Engine output scoped to Audio — recency, per the V1 heuristic. */
-  const recommended = useMemo(
-    () => [...AUDIO_CONTENT].sort((a, b) => a.publishedDaysAgo - b.publishedDaysAgo).slice(0, 8),
+  const recent = useMemo(
+    () => [...AUDIO_CONTENT].sort((a, b) => a.publishedDaysAgo - b.publishedDaysAgo),
     []
   )
+  const trending = useMemo(() => [...AUDIO_CONTENT].sort((a, b) => b.views - a.views).slice(0, 10), [])
+  const hero = recent[0]
 
-  const trending = useMemo(() => [...AUDIO_CONTENT].sort((a, b) => b.views - a.views).slice(0, 8), [])
-
-  const sections: { title: string; items: ContentItem[] }[] = [
-    { title: "Recommended for you", items: recommended },
-    { title: "Trending bhajans", items: trending },
-    { title: "Bhajans & Kirtan", items: audioIn("Bhajans & Kirtan") },
-    { title: "Aarti & Rituals", items: audioIn("Aarti & Rituals") },
-    { title: "Discourses & Satsang", items: audioIn("Discourses & Satsang") },
+  const sections: { title: string; eyebrow?: string; items: ContentItem[]; seeAllTo?: string }[] = [
+    { title: "Trending bhajans", eyebrow: "Most played", items: trending },
+    { title: "New releases", items: recent.slice(0, 10) },
+    ...(["Bhajans & Kirtan", "Aarti & Rituals", "Discourses & Satsang"] as ContentCategory[]).map((category) => ({
+      title: category,
+      items: audioIn(category),
+      seeAllTo: `/category/${categorySlug(category)}`,
+    })),
   ].filter((section) => section.items.length > 0)
 
   return (
-    <div className="flex flex-col gap-6">
-      {/* Genre-style chip row, driven by Tags — see the flag above. */}
-      <div className="flex flex-col gap-2">
-        <h2 className="text-base font-semibold text-foreground md:text-lg">Genre</h2>
+    <div className="flex flex-col gap-8">
+      {hero ? <CinematicHero content={hero} eyebrow="Listen now" size="compact" /> : null}
+
+      <div className="flex flex-col gap-3">
+        <SectionHeader title="Genre" />
         <div
-          className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 md:mx-0 md:px-0"
+          className="scrollbar-none -mx-4 flex gap-2 overflow-x-auto px-4 md:mx-0 md:px-0"
           role="tablist"
           aria-label="Filter by genre"
         >
           {[null, ...GENRE_TAGS].map((tag) => (
-            <button
-              key={tag ?? "all"}
-              type="button"
-              role="tab"
-              aria-selected={activeTag === tag}
-              onClick={() => setActiveTag(tag)}
-              className={cn(
-                "shrink-0 rounded-full border px-3.5 py-1.5 text-xs font-semibold transition-colors",
-                activeTag === tag
-                  ? "border-accent bg-accent/20 text-foreground"
-                  : "border-border/60 bg-card/20 text-muted-foreground hover:text-foreground"
-              )}
-            >
+            <Chip key={tag ?? "all"} active={activeTag === tag} onClick={() => setActiveTag(tag)}>
               {tag ?? "All"}
-            </button>
+            </Chip>
           ))}
         </div>
       </div>
 
       {filtered ? (
         filtered.length > 0 ? (
-          <div className="grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          <div className="grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
             {filtered.map((item) => (
-              <PosterCard key={item.id} content={item} shape="portrait" />
+              <PosterCard key={item.id} content={item} shape="portrait" size="sm" />
             ))}
           </div>
         ) : (
@@ -99,11 +87,17 @@ export function SunoPage() {
         )
       ) : (
         sections.map((section) => (
-          <SectionRow key={section.title} title={section.title}>
+          <CarouselRow
+            key={section.title}
+            title={section.title}
+            eyebrow={section.eyebrow}
+            seeAllTo={section.seeAllTo}
+            gap="tight"
+          >
             {section.items.map((item) => (
               <PosterCard key={item.id} content={item} shape="portrait" />
             ))}
-          </SectionRow>
+          </CarouselRow>
         ))
       )}
     </div>

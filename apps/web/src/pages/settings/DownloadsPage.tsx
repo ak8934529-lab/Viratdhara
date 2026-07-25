@@ -1,11 +1,11 @@
-import { ArrowLeft, DownloadCloud, Trash2 } from "lucide-react"
+import { DownloadCloud, Trash2 } from "lucide-react"
 import { useState } from "react"
-import { Link } from "react-router-dom"
 
 import { Button } from "@dhara/ui/button"
 import { EmptyState } from "@/components/content/EmptyState"
 import { GlassPanel } from "@/components/glass/GlassPanel"
 import { SettingsRow } from "@/components/settings/SettingsRow"
+import { PageHeader } from "@/components/ui/StatTile"
 import { MOCK_CONTENT, formatDuration } from "@/lib/mock-content"
 
 /**
@@ -30,14 +30,7 @@ export function DownloadsPage() {
 
   return (
     <div className="mx-auto flex max-w-[720px] flex-col gap-5">
-      <div className="flex items-center gap-2">
-        <Button variant="ghost" size="icon-sm" asChild aria-label="Back to settings">
-          <Link to="/settings">
-            <ArrowLeft className="size-5" />
-          </Link>
-        </Button>
-        <h1 className="text-xl font-semibold leading-tight text-foreground">Downloads</h1>
-      </div>
+      <PageHeader title="Downloads" backTo="/settings" backLabel="Back to settings" />
 
       {items.length > 0 ? (
         <GlassPanel tier="base" className="divide-y divide-white/5 p-0">

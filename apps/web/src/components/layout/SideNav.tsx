@@ -3,27 +3,21 @@ import { NavLink } from "react-router-dom"
 import { cn } from "@dhara/utils"
 import { NAV_ITEMS } from "@/lib/nav-items"
 
-export interface SideNavProps {
-  /**
-   * Whether a top bar sits above this rail. False only on the full Playing Now
-   * player, which has no top bar (NAVIGATION_MODEL.md) — the rail then spans
-   * the full viewport height instead of being offset by the bar.
-   */
-  hasTopBar?: boolean
-}
-
 /**
  * Medium (icon-rail) and Wide (expanded, labeled) breakpoint navigation, per
  * docs/02_DESIGN/RESPONSIVE_SYSTEM.md. Hidden below md (BottomNav takes over).
  * Flush against the left edge (border-right, no floating card/margin) so the
  * desktop layout reads as a web app, not a mobile app centered in a frame.
+ *
+ * Always offset by the top bar's height, which is now present on every Main App
+ * screen — the full-player exception that needed a full-height rail was removed
+ * along with the Playing Now tab.
  */
-export function SideNav({ hasTopBar = true }: SideNavProps) {
+export function SideNav() {
   return (
     <nav
       className={cn(
-        "sticky hidden w-16 shrink-0 flex-col items-center gap-1 overflow-y-auto border-r border-white/10 bg-card/15 py-4 backdrop-blur-xl md:flex xl:w-60 xl:items-stretch xl:px-3",
-        hasTopBar ? "top-16 h-[calc(100svh-4rem)]" : "top-0 h-svh"
+        "sticky top-16 hidden h-[calc(100svh-4rem)] w-16 shrink-0 flex-col items-center gap-1 overflow-y-auto border-r border-white/10 bg-card/15 py-4 backdrop-blur-xl md:flex xl:w-60 xl:items-stretch xl:px-3"
       )}
       aria-label="Main navigation"
     >

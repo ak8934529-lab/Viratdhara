@@ -1,7 +1,7 @@
 ---
 document_id: INFORMATION_ARCHITECTURE
 title: Information Architecture
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: critical
 depends_on:
@@ -29,7 +29,7 @@ Before any screen or route exists, the app needs one shared map of its structura
 Viratdhara V1 has three structural areas. Every screen belongs to exactly one.
 
 1. **Auth Area** — unauthenticated entry: splash, login, signup, onboarding (language/format selection).
-2. **Main App** — the authenticated experience, available to every Account (User role): the bottom-tab surfaces (Home, Suno, Playing Now, Dekho, Shorts), Search, Settings, Sharing.
+2. **Main App** — the authenticated experience, available to every Account (User role): the bottom-tab surfaces (Home, Suno, Dekho, Shorts), Search, Settings, Sharing, and Content detail — which is also the playback surface, not a tab of its own (`NAVIGATION_MODEL.md`, `URL_STRUCTURE.md`).
 3. **Creator Studio** — available only to Accounts holding the Creator role: content publishing, analytics, profile management.
 
 There is no separate Administrator-facing area defined in V1 screens; Administrator capabilities (moderation, category/ad management — see `PERMISSION_MATRIX.md`) are assumed to require tooling but no UI for them has been designed yet. This is a known gap, not a decision that Administrators have no interface.

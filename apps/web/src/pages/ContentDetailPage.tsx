@@ -1,24 +1,48 @@
 import { ThumbsUp, UserPlus } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link, Navigate, useParams } from "react-router-dom"
 
 import { Avatar, AvatarFallback } from "@dhara/ui/avatar"
 import { Button } from "@dhara/ui/button"
 import { AdInterstitial } from "@/components/ads/AdInterstitial"
+import { ListRowCard } from "@/components/content/ListRowCard"
+import { PlaybackStage } from "@/components/content/PlaybackStage"
 import { ShareButton } from "@/components/content/ShareButton"
-import { VideoCard } from "@/components/content/VideoCard"
+import { Chip } from "@/components/ui/Chip"
 import { formatViews, getContentById, MOCK_CONTENT } from "@/lib/mock-content"
 import { creatorSlug } from "@/lib/mock-creator"
+import { usePlayer } from "@/lib/player-context"
 
 /**
  * Content detail / watch page (`/content/:id`, docs/01_ARCHITECTURE/URL_STRUCTURE.md).
- * Player surface per docs/03_FEATURES/VideoPlayer/UI.md, adapted for on-demand
- * video (real <video> playback) rather than the persistent "Playing Now" tab.
- * Video files are public-domain sample films — placeholder media only.
+ *
+ * This is now the **single playback surface** for both Content types. The former
+ * standalone "Playing Now" tab and its `/playing-now` route were removed by
+ * product direction, and the docked mini player opens this page rather than a
+ * separate full-player screen. Audio and Video therefore both render here, via
+ * `PlaybackStage`.
+ *
+ * NOTE — this diverges from documentation and the divergence is deliberate, not an
+ * oversight: NAVIGATION_MODEL.md specifies 5 fixed tabs including Playing Now
+ * ("never more or fewer than 5"), URL_STRUCTURE.md defines `/playing-now`, and
+ * VideoPlayer/UI.md specifies a full player there with a minimize control. Those
+ * documents were updated in the same change so the repository stays coherent.
+ *
+ * Media files are public-domain sample films — placeholder media only.
  */
 export function ContentDetailPage() {
   const { id } = useParams<{ id: string }>()
   const content = id ? getContentById(id) : undefined
+  const { load } = usePlayer()
+
+  /**
+   * Opening a Content page makes it the current session so the mini player tracks
+   * it. Deliberately does not auto-play — browsers block unpromoted autoplay, and
+   * `load` preserves position when the already-loaded item is re-opened.
+   */
+  useEffect(() => {
+    if (id) load(id)
+  }, [id, load])
 
   /**
    * One pre-roll ad per Video Player session (Advertisements/EDGE_CASES.md V1
@@ -45,13 +69,12 @@ export function ContentDetailPage() {
         {showingAd ? (
           <AdInterstitial onSkip={() => setShowingAd(false)} />
         ) : (
-          <div className="overflow-hidden rounded-xl bg-black">
-            {/* eslint-disable-next-line jsx-a11y/media-has-caption -- placeholder demo media, no captions available */}
-            <video key={content.id} src={content.videoUrl} controls autoPlay className="aspect-video w-full" />
-          </div>
+          <PlaybackStage content={content} />
         )}
 
-        <h1 className="mt-4 text-lg font-semibold text-foreground md:text-xl">{content.title}</h1>
+        <h1 className="mt-5 text-xl font-semibold leading-tight tracking-tight text-foreground md:text-2xl">
+          {content.title}
+        </h1>
 
         <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-3">
@@ -77,19 +100,27 @@ export function ContentDetailPage() {
           </div>
         </div>
 
-        <div className="surface-glass-base mt-4 p-4">
-          <p className="text-xs font-medium text-muted-foreground">
-            {formatViews(content.views)} · Placeholder description
-          </p>
-          <p className="mt-2 text-sm text-foreground/90">{content.description}</p>
+        <div className="surface-glass-base mt-4 p-5">
+          <div className="flex flex-wrap items-center gap-2">
+            <Chip tone="meta">{content.category}</Chip>
+            <Chip tone="meta">{content.type === "audio" ? "Audio" : "Video"}</Chip>
+            <span className="text-xs font-semibold tabular-nums text-muted-foreground">
+              {formatViews(content.views)}
+            </span>
+          </div>
+          <p className="mt-3 text-sm leading-relaxed text-foreground/90">{content.description}</p>
         </div>
       </div>
 
-      <div className="flex w-full flex-col gap-3 xl:w-80 xl:shrink-0">
-        <p className="text-sm font-semibold text-foreground">More like this</p>
-        {upNext.map((item) => (
-          <VideoCard key={item.id} content={item} />
-        ))}
+      <div className="w-full xl:w-80 xl:shrink-0">
+        <div className="surface-glass-base flex flex-col gap-4 p-4">
+          <p className="text-sm font-semibold text-foreground">More like this</p>
+          <div className="flex flex-col gap-3.5">
+            {upNext.map((item) => (
+              <ListRowCard key={item.id} content={item} />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   )

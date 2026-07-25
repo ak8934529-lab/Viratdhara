@@ -1,8 +1,7 @@
-import { ArrowLeft, CreditCard } from "lucide-react"
-import { Link } from "react-router-dom"
+import { CreditCard } from "lucide-react"
 
-import { Button } from "@dhara/ui/button"
 import { EmptyState } from "@/components/content/EmptyState"
+import { PageHeader } from "@/components/ui/StatTile"
 
 /**
  * Subscriptions (`/settings/subscriptions`) — a pushed screen that deliberately
@@ -31,14 +30,7 @@ import { EmptyState } from "@/components/content/EmptyState"
 export function SubscriptionsPage() {
   return (
     <div className="mx-auto flex max-w-[720px] flex-col gap-5">
-      <div className="flex items-center gap-2">
-        <Button variant="ghost" size="icon-sm" asChild aria-label="Back to settings">
-          <Link to="/settings">
-            <ArrowLeft className="size-5" />
-          </Link>
-        </Button>
-        <h1 className="text-xl font-semibold leading-tight text-foreground">Subscriptions</h1>
-      </div>
+      <PageHeader title="Subscriptions" backTo="/settings" backLabel="Back to settings" />
 
       <EmptyState
         icon={CreditCard}

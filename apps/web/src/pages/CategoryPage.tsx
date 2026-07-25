@@ -1,13 +1,14 @@
-import { ArrowLeft, FolderOpen } from "lucide-react"
+import { FolderOpen } from "lucide-react"
 import { useMemo, useState } from "react"
-import { Link, Navigate, useParams } from "react-router-dom"
+import { Navigate, useParams } from "react-router-dom"
 
-import { Button } from "@dhara/ui/button"
-import { cn } from "@dhara/utils"
 import { EmptyState } from "@/components/content/EmptyState"
+import { Chip } from "@/components/ui/Chip"
+import { PageHeader } from "@/components/ui/StatTile"
 import { categoryFromSlug } from "@/lib/category-slug"
 import { VideoCard } from "@/components/content/VideoCard"
 import { CONTENT_CATEGORIES, getContentByCategory } from "@/lib/mock-content"
+import { CATEGORY_GLYPH, posterBackground } from "@/lib/poster-art"
 
 /**
  * Category browse (`/category/:id`) — a pushed/detail screen, per
@@ -35,45 +36,50 @@ export function CategoryPage() {
   if (!category) return <Navigate to="/" replace />
 
   return (
-    <div className="mx-auto flex max-w-[1400px] flex-col gap-5">
-      <div className="flex items-center gap-2">
-        <Button variant="ghost" size="icon-sm" asChild aria-label="Back">
-          <Link to="/">
-            <ArrowLeft className="size-5" />
-          </Link>
-        </Button>
-        <h1 className="text-xl font-semibold leading-tight text-foreground">{category}</h1>
+    <div className="mx-auto flex max-w-[1400px] flex-col gap-6">
+      {/* Category banner — the same generated artwork the cards use, so a browse
+          screen reads as part of the catalogue rather than a bare list. */}
+      <div
+        className="relative -mx-4 -mt-5 overflow-hidden md:-mx-6 md:mt-0 md:rounded-2xl lg:-mx-8"
+        style={{
+          backgroundImage: posterBackground(category, `${category}-banner`, "landscape"),
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div aria-hidden className="scrim-left absolute inset-0" />
+        <span
+          aria-hidden
+          className="pointer-events-none absolute -right-1 bottom-0 select-none text-[clamp(4rem,12vw,9rem)] font-semibold leading-none text-white/[0.07]"
+        >
+          {CATEGORY_GLYPH[category]}
+        </span>
+        <div className="relative p-5 md:p-8">
+          <PageHeader
+            title={category}
+            subtitle={`${items.length} item${items.length === 1 ? "" : "s"} in this category`}
+            backTo="/"
+          />
+        </div>
       </div>
 
-      {/* Optional Tag filter row — same chip pattern as the inline Category row. */}
+      {/* Optional Tag filter row — same chip primitive as every other filter row. */}
       {tags.length > 0 ? (
         <div
-          className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 md:mx-0 md:px-0"
+          className="scrollbar-none -mx-4 flex gap-2 overflow-x-auto px-4 md:mx-0 md:px-0"
           role="tablist"
           aria-label="Filter by tag"
         >
           {[null, ...tags].map((tag) => (
-            <button
-              key={tag ?? "all"}
-              type="button"
-              role="tab"
-              aria-selected={activeTag === tag}
-              onClick={() => setActiveTag(tag)}
-              className={cn(
-                "shrink-0 rounded-full border px-3.5 py-1.5 text-xs font-semibold transition-colors",
-                activeTag === tag
-                  ? "border-accent bg-accent/20 text-foreground"
-                  : "border-border/60 bg-card/20 text-muted-foreground hover:text-foreground"
-              )}
-            >
+            <Chip key={tag ?? "all"} active={activeTag === tag} onClick={() => setActiveTag(tag)}>
               {tag ?? "All"}
-            </button>
+            </Chip>
           ))}
         </div>
       ) : null}
 
       {filtered.length > 0 ? (
-        <div className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-x-5 gap-y-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {filtered.map((item) => (
             <VideoCard key={item.id} content={item} />
           ))}

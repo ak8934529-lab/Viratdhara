@@ -1,10 +1,10 @@
 import { ArrowUpRight, ExternalLink, Eye, ListVideo, Share2, Upload } from "lucide-react"
-import type { LucideIcon } from "lucide-react"
 import { Link } from "react-router-dom"
 
 import { Button } from "@dhara/ui/button"
 import { EmptyState } from "@/components/content/EmptyState"
 import { GlassPanel } from "@/components/glass/GlassPanel"
+import { PageHeader, StatTile } from "@/components/ui/StatTile"
 import { CURRENT_CREATOR, STUDIO_ANALYTICS, STUDIO_CONTENT, creatorSlug } from "@/lib/mock-creator"
 
 /**
@@ -22,20 +22,6 @@ import { CURRENT_CREATOR, STUDIO_ANALYTICS, STUDIO_CONTENT, creatorSlug } from "
  * management specs, per the user's decision to extrapolate the design language
  * where designs are absent. It is not specified, and is flagged as such.
  */
-function SummaryTile({ icon: Icon, label, value }: { icon: LucideIcon; label: string; value: string }) {
-  return (
-    <GlassPanel tier="base" className="flex items-center gap-3 p-4">
-      <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/20 text-primary">
-        <Icon className="size-5" />
-      </span>
-      <div className="min-w-0">
-        <p className="text-lg font-semibold tabular-nums leading-tight text-foreground">{value}</p>
-        <p className="truncate text-xs text-muted-foreground">{label}</p>
-      </div>
-    </GlassPanel>
-  )
-}
-
 export function StudioHomePage() {
   const published = STUDIO_CONTENT.filter((row) => row.state === "published")
   const drafts = STUDIO_CONTENT.filter((row) => row.state === "draft")
@@ -57,16 +43,10 @@ export function StudioHomePage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <h1 className="text-xl font-semibold leading-tight text-foreground">
-            {CURRENT_CREATOR.displayName}
-          </h1>
-          <p className="mt-1 text-xs text-muted-foreground">
-            {published.length} published · {drafts.length} draft
-          </p>
-        </div>
-
+      <PageHeader
+        title={CURRENT_CREATOR.displayName}
+        subtitle={`${published.length} published · ${drafts.length} draft`}
+      >
         {/* Preview link to the public-facing counterpart, per CreatorProfile/UI.md
             ("reached from … Creator Studio's own preview link"). */}
         <Button size="sm" variant="outline" asChild className="gap-1.5">
@@ -74,12 +54,12 @@ export function StudioHomePage() {
             <ExternalLink className="size-4" /> View public profile
           </Link>
         </Button>
-      </div>
+      </PageHeader>
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-        <SummaryTile icon={Eye} label="Total views" value={STUDIO_ANALYTICS.views.toLocaleString()} />
-        <SummaryTile icon={Share2} label="Total shares" value={STUDIO_ANALYTICS.shares.toLocaleString()} />
-        <SummaryTile icon={ListVideo} label="Published items" value={String(published.length)} />
+        <StatTile icon={Eye} label="Total views" value={STUDIO_ANALYTICS.views.toLocaleString()} />
+        <StatTile icon={Share2} label="Total shares" value={STUDIO_ANALYTICS.shares.toLocaleString()} />
+        <StatTile icon={ListVideo} label="Published items" value={String(published.length)} />
       </div>
 
       <GlassPanel tier="base" className="flex flex-col gap-3 p-4">

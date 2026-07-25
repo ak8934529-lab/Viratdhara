@@ -15,31 +15,45 @@ body,
 }
 
 /*
- * Same color tokens as apps/showcase (docs/02_DESIGN/DESIGN_SYSTEM_RULES.md) —
- * this file does not introduce a new palette, only the glass/depth surface
- * treatment on top of it (docs/02_DESIGN/SURFACE_SYSTEM.md).
+ * Brand hues are unchanged from apps/showcase — terracotta --primary and gold
+ * --accent are the same values (docs/02_DESIGN/DESIGN_SYSTEM_RULES.md). What this
+ * pass changes is the *range*: a deeper near-black base and a darker card tone so
+ * glass surfaces and poster artwork have more contrast to sit against, plus
+ * elevation/glow tokens the previous flat treatment lacked.
+ *
+ * packages/mobile and apps/showcase are untouched — they do not import this file.
  */
 :root {
-    --background: #0d0d0d;
-    --foreground: oklch(0.96 0.01 70);
-    --card: #271611;
-    --card-foreground: oklch(0.96 0.01 70);
-    --popover: #271611;
-    --popover-foreground: oklch(0.96 0.01 70);
+    --background: #08060a;
+    --foreground: oklch(0.97 0.01 70);
+    --card: #1b0f0c;
+    --card-foreground: oklch(0.97 0.01 70);
+    --popover: #1b0f0c;
+    --popover-foreground: oklch(0.97 0.01 70);
     --primary: #be5339;
     --primary-foreground: oklch(0.98 0.01 70);
     --accent: #d3932f;
-    --accent-foreground: #271611;
-    --secondary: oklch(0.24 0.02 40);
-    --secondary-foreground: oklch(0.96 0.01 70);
-    --muted: oklch(0.24 0.02 40);
-    --muted-foreground: oklch(0.65 0.02 50);
+    --accent-foreground: #1b0f0c;
+    --secondary: oklch(0.22 0.02 40);
+    --secondary-foreground: oklch(0.97 0.01 70);
+    --muted: oklch(0.21 0.015 40);
+    --muted-foreground: oklch(0.68 0.02 55);
     --destructive: oklch(0.58 0.22 27);
     --destructive-foreground: oklch(0.98 0.02 27);
     --border: oklch(1 0 0 / 10%);
     --input: oklch(1 0 0 / 12%);
     --ring: #d3932f;
     --radius: 1rem;
+
+    /* Elevation — one shadow ramp, so cards and panels stop inventing their own. */
+    --shadow-sink: 0 1px 2px rgb(0 0 0 / 0.4);
+    --shadow-lift: 0 8px 24px -6px rgb(0 0 0 / 0.55);
+    --shadow-float: 0 18px 48px -12px rgb(0 0 0 / 0.7);
+    --shadow-cinema: 0 32px 80px -24px rgb(0 0 0 / 0.85);
+
+    /* Accent glow, for focused/active media surfaces. */
+    --glow-accent: 0 0 0 1px color-mix(in oklch, var(--accent) 45%, transparent),
+        0 12px 40px -12px color-mix(in oklch, var(--accent) 55%, transparent);
 }
 
 @theme inline {
@@ -68,6 +82,24 @@ body,
     --radius-lg: var(--radius);
     --radius-xl: calc(var(--radius) + 4px);
     --radius-2xl: calc(var(--radius) + 8px);
+
+    /*
+     * Display scale for cinematic hero titles. TYPOGRAPHY.md's existing scale tops
+     * out at text-xl, which cannot carry a full-bleed hero — these sit above it and
+     * are reserved for hero titles only.
+     */
+    --text-display-sm: 1.875rem;
+    --text-display-sm--line-height: 1.05;
+    --text-display-sm--letter-spacing: -0.02em;
+    --text-display: 2.75rem;
+    --text-display--line-height: 1;
+    --text-display--letter-spacing: -0.025em;
+    --text-display-lg: 4rem;
+    --text-display-lg--line-height: 0.96;
+    --text-display-lg--letter-spacing: -0.03em;
+    --text-display-xl: 5.25rem;
+    --text-display-xl--line-height: 0.94;
+    --text-display-xl--letter-spacing: -0.035em;
 }
 
 @layer base {
@@ -84,25 +116,80 @@ body,
  * apps/web only — packages/mobile's opaque surface-card/surface-tonal are untouched.
  */
 @utility surface-glass-base {
-  background-color: color-mix(in oklch, var(--card) 40%, transparent);
-  backdrop-filter: blur(24px);
-  border: 1px solid rgb(255 255 255 / 0.1);
-  border-radius: var(--radius-lg);
+  background-color: color-mix(in oklch, var(--card) 38%, transparent);
+  backdrop-filter: blur(28px) saturate(1.3);
+  border: 1px solid rgb(255 255 255 / 0.08);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sink);
 }
 
 @utility surface-glass-raised {
-  background-color: color-mix(in oklch, var(--card) 60%, transparent);
-  backdrop-filter: blur(40px);
-  border: 1px solid rgb(255 255 255 / 0.15);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+  background-color: color-mix(in oklch, var(--card) 62%, transparent);
+  backdrop-filter: blur(44px) saturate(1.4);
+  border: 1px solid rgb(255 255 255 / 0.14);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-float);
 }
 
 @utility surface-glass-accent {
-  background-color: color-mix(in oklch, var(--accent) 20%, transparent);
-  backdrop-filter: blur(16px);
-  border: 1px solid color-mix(in oklch, var(--accent) 30%, transparent);
-  border-radius: var(--radius-lg);
+  background-color: color-mix(in oklch, var(--accent) 18%, transparent);
+  backdrop-filter: blur(20px) saturate(1.2);
+  border: 1px solid color-mix(in oklch, var(--accent) 32%, transparent);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lift);
+}
+
+/*
+ * A top inner highlight, the detail that makes the reference designs' panels read
+ * as glass rather than as flat translucent fills — light catching the top edge.
+ * Composed onto a glass tier, never used alone.
+ */
+@utility surface-sheen {
+  position: relative;
+  isolation: isolate;
+}
+
+@utility surface-sheen-line {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(255 255 255 / 0.22) 22%,
+    rgb(255 255 255 / 0.22) 78%,
+    transparent
+  );
+}
+
+/* Film-grain overlay for media surfaces — kills gradient banding. */
+@utility texture-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* Bottom-up scrim for text laid over artwork. Used by heroes and poster cards. */
+@utility scrim-bottom {
+  background-image: linear-gradient(
+    to top,
+    rgb(0 0 0 / 0.92) 0%,
+    rgb(0 0 0 / 0.72) 22%,
+    rgb(0 0 0 / 0.32) 48%,
+    transparent 78%
+  );
+}
+
+/* Left-to-right scrim for cinematic heroes, so titles stay legible over artwork. */
+@utility scrim-left {
+  background-image: linear-gradient(
+    to right,
+    rgb(0 0 0 / 0.9) 0%,
+    rgb(0 0 0 / 0.7) 32%,
+    rgb(0 0 0 / 0.28) 62%,
+    transparent 100%
+  );
 }
 
 /* Background gradient bloom — fixed layer behind everything, per SURFACE_SYSTEM.md depth ordering */
@@ -112,10 +199,19 @@ body,
   z-index: -1;
   pointer-events: none;
   background-image:
-    radial-gradient(ellipse 80% 50% at 20% -10%, color-mix(in oklch, var(--primary) 25%, transparent), transparent),
-    radial-gradient(ellipse 60% 40% at 90% 20%, color-mix(in oklch, var(--accent) 18%, transparent), transparent),
-    radial-gradient(ellipse 70% 50% at 50% 110%, color-mix(in oklch, var(--primary) 15%, transparent), transparent);
+    radial-gradient(ellipse 70% 45% at 12% -8%, color-mix(in oklch, var(--primary) 30%, transparent), transparent),
+    radial-gradient(ellipse 52% 38% at 92% 12%, color-mix(in oklch, var(--accent) 20%, transparent), transparent),
+    radial-gradient(ellipse 60% 45% at 50% 108%, color-mix(in oklch, var(--primary) 16%, transparent), transparent);
   background-color: var(--background);
+}
+
+/* Carousel rows scroll horizontally without showing a track. */
+@utility scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 * {

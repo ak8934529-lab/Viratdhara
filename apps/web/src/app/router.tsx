@@ -13,7 +13,6 @@ import { ContentDetailPage } from "@/pages/ContentDetailPage"
 import { CreatorProfilePage } from "@/pages/CreatorProfilePage"
 import { DekhoPage } from "@/pages/DekhoPage"
 import { HomePage } from "@/pages/HomePage"
-import { PlayingNowPage } from "@/pages/PlayingNowPage"
 import { SearchPage } from "@/pages/SearchPage"
 import { ShortsPage } from "@/pages/ShortsPage"
 import { SunoPage } from "@/pages/SunoPage"
@@ -49,7 +48,6 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: "suno", element: <SunoPage /> },
-      { path: "playing-now", element: <PlayingNowPage /> },
       { path: "dekho", element: <DekhoPage /> },
       { path: "shorts", element: <ShortsPage /> },
       { path: "search", element: <SearchPage /> },

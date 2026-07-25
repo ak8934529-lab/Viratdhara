@@ -20,6 +20,13 @@ interface PlayerContextValue {
   shuffle: boolean
   repeat: boolean
   play: (id: string) => void
+  /**
+   * Makes an item the current session without starting playback. Used when a
+   * Content page is opened: the item becomes current (so the mini player tracks
+   * it) but nothing auto-plays, which browsers would block anyway without a
+   * user gesture.
+   */
+  load: (id: string) => void
   togglePlay: () => void
   stop: () => void
   seek: (seconds: number) => void
@@ -63,6 +70,18 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
     setCurrent(item)
     setElapsedSeconds(0)
     setPlayback("playing")
+  }, [])
+
+  const load = useCallback((id: string) => {
+    const item = getContentById(id)
+    if (!item) return
+    setCurrent((existing) => {
+      // Re-opening the item already loaded must not reset its position.
+      if (existing?.id === item.id) return existing
+      setElapsedSeconds(0)
+      return item
+    })
+    setPlayback((state) => (state === "playing" ? state : "paused"))
   }, [])
 
   const togglePlay = useCallback(() => {
@@ -154,6 +173,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
       shuffle,
       repeat,
       play,
+      load,
       togglePlay,
       stop,
       seek,
@@ -172,6 +192,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
       shuffle,
       repeat,
       play,
+      load,
       togglePlay,
       stop,
       seek,

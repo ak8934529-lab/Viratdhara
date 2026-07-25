@@ -1,7 +1,7 @@
 ---
 document_id: CONTENTDISCOVERY_README
 title: Content Discovery — Overview
-version: 1.0.0
+version: 1.1.0
 status: active
 priority: critical
 depends_on:
@@ -55,7 +55,7 @@ This feature owns the Home, Suno, Dekho, and Shorts tab screens (`NAVIGATION_MOD
 
 ## Relationships
 
-- `NAVIGATION_MODEL.md` — 4 of the 5 bottom-nav tabs (Home, Suno, Dekho, Shorts) belong to this feature; "Playing Now" belongs to Video Player.
+- `NAVIGATION_MODEL.md` — **all 4 bottom-nav tabs (Home, Suno, Dekho, Shorts) belong to this feature.** No tab belongs to Video Player, and no tab represents playback. Video Player is reached from a Content card in one of these feeds, or from the docked mini player, which opens `/content/:id` — this feature hands off to it, it does not share the tab bar with it.
 
 ## Constraints
 

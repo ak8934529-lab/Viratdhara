@@ -2,10 +2,9 @@ import { Link } from "react-router-dom"
 
 import { Badge } from "@dhara/ui/badge"
 import { Button } from "@dhara/ui/button"
-import { cn } from "@dhara/utils"
-import { CATEGORY_GRADIENT } from "@/components/content/category-visuals"
 import { GlassPanel } from "@/components/glass/GlassPanel"
 import { categorySlug } from "@/lib/category-slug"
+import { posterBackground } from "@/lib/poster-art"
 import { ADMIN_CATEGORIES } from "@/lib/mock-admin"
 
 /**
@@ -49,7 +48,12 @@ export function AdminCategoriesPage() {
         {ADMIN_CATEGORIES.map(({ category, itemCount, totalViews }) => (
           <div key={category} className="flex items-center gap-3 p-3 md:gap-4 md:p-4">
             <span
-              className={cn("size-10 shrink-0 rounded-lg bg-gradient-to-br", CATEGORY_GRADIENT[category])}
+              className="size-10 shrink-0 rounded-lg ring-1 ring-white/10"
+              style={{
+                backgroundImage: posterBackground(category, `${category}-swatch`, "square"),
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
               aria-hidden
             />
 

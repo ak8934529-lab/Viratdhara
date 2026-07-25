@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom"
 
 import { Button } from "@dhara/ui/button"
 import { cn } from "@dhara/utils"
-import { CATEGORY_GRADIENT } from "@/components/content/category-visuals"
+import { posterBackground } from "@/lib/poster-art"
 import { usePlayer } from "@/lib/player-context"
 
 /**
@@ -12,10 +12,14 @@ import { usePlayer } from "@/lib/player-context"
  * "artwork thumbnail, title, artist/creator, play/pause, skip". Deliberately no
  * seek bar — UI.md's mini-player list doesn't include one.
  *
+ * Tapping it opens `/content/:id` — the Content detail page is the single
+ * playback surface now that the standalone "Playing Now" tab has been removed, so
+ * the bar surfaces the full stage for whatever is loaded. It hides while already
+ * on that item's page, where `PlaybackStage` supersedes it.
+ *
  * UI.md constraint: it "never disappears due to navigation alone — only an
  * explicit stop or playback completion removes it." Hence the explicit close
- * control, and hiding only on `/playing-now` (where the full player supersedes
- * it rather than replacing playback).
+ * control.
  *
  * FLAGGED: UI.md specifies the docked position for mobile only. Its Medium/Wide
  * placement is undefined; the mirrored bottom-docked position below is an
@@ -26,7 +30,8 @@ export function MiniPlayer() {
   const { current, playback, togglePlay, stop, next } = usePlayer()
 
   if (!current || playback === "idle") return null
-  if (pathname === "/playing-now") return null
+  // Already on this item's own page — the full stage is on screen.
+  if (pathname === `/content/${current.id}`) return null
 
   return (
     <div
@@ -38,9 +43,14 @@ export function MiniPlayer() {
         "md:bottom-3 md:left-[4.5rem] md:right-4 xl:left-[16rem]"
       )}
     >
-      <Link to="/playing-now" className="flex min-w-0 flex-1 items-center gap-3">
+      <Link to={`/content/${current.id}`} className="flex min-w-0 flex-1 items-center gap-3">
         <span
-          className={cn("size-10 shrink-0 rounded-lg bg-gradient-to-br", CATEGORY_GRADIENT[current.category])}
+          className="size-10 shrink-0 rounded-lg ring-1 ring-white/10"
+          style={{
+            backgroundImage: posterBackground(current.category, current.id, "square"),
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
           aria-hidden
         />
         <span className="min-w-0">

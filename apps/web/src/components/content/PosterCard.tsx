@@ -1,67 +1,128 @@
+import { Play } from "lucide-react"
 import { Link } from "react-router-dom"
 
 import { cn } from "@dhara/utils"
-import { CATEGORY_GRADIENT } from "@/components/content/category-visuals"
 import { ShareButton } from "@/components/content/ShareButton"
+import { RatingBadge } from "@/components/ui/Chip"
 import type { ContentItem } from "@/lib/mock-content"
+import { formatDuration } from "@/lib/mock-content"
+import { categoryGlyph, posterBackground } from "@/lib/poster-art"
 
 export interface PosterCardProps {
   content: ContentItem
   /**
-   * "landscape" — Dekho's wide section cards. "portrait" — Suno's taller
-   * playlist cards. Both take the mobile design's treatment: image fills the
-   * card, title overlaid at the bottom over a scrim, hairline light border.
+   * "portrait"  — true 2:3 poster, the "MY LIST" treatment from the reference.
+   * "landscape" — 16:9, for episode/section rows.
    */
-  shape?: "landscape" | "portrait"
-  /** Optional bottom-right meta, e.g. Dekho's Podcast row showing "10 Episodes (2021)". */
-  meta?: string
+  shape?: "portrait" | "landscape"
+  size?: "sm" | "default" | "lg"
+  /** Optional index badge, for the numbered rows in the reference designs. */
+  rank?: number
+}
+
+const PORTRAIT_WIDTH = {
+  sm: "w-[128px] sm:w-[136px]",
+  default: "w-[152px] sm:w-[168px] xl:w-[184px]",
+  lg: "w-[176px] sm:w-[196px] xl:w-[214px]",
+}
+
+const LANDSCAPE_WIDTH = {
+  sm: "w-[240px] sm:w-[260px]",
+  default: "w-[280px] sm:w-[320px] xl:w-[360px]",
+  lg: "w-[320px] sm:w-[380px] xl:w-[420px]",
 }
 
 /**
- * Overlay-title Content card, matching the mobile design's Suno/Dekho section
- * rows (real imagery with the title set over it, rather than the metadata-below
- * treatment of `VideoCard`). Thumbnails are the per-category placeholder
- * gradients — no real thumbnail assets exist yet.
+ * Poster card — generated artwork, title beneath, hover lift and play overlay.
  *
- * Sized for a horizontally-scrolling row: a fixed width that lets the next card
- * peek in at Compact, widening at Medium/Wide per RESPONSIVE_SYSTEM.md.
+ * Artwork comes from lib/poster-art.ts rather than a flat category gradient, so a
+ * row of cards reads as a real catalogue. Text sits *below* the poster (not over
+ * it) at portrait size, which is what keeps a dense poster row legible; the
+ * landscape variant overlays the title since it has the width for it.
+ *
+ * The card is deliberately not one large `<Link>` — it carries a share action, and
+ * a `<button>` may not nest inside an `<a>`. See Sharing/UI.md for why the share
+ * affordance has to be present on Content cards.
  */
-export function PosterCard({ content, shape = "landscape", meta }: PosterCardProps) {
+export function PosterCard({ content, shape = "portrait", size = "default", rank }: PosterCardProps) {
+  const isPortrait = shape === "portrait"
+  const artwork = posterBackground(content.category, content.id, isPortrait ? "portrait" : "landscape")
+
   return (
-    /* The share button sits outside the Link (a button may not nest in an anchor)
-       while still reading as part of the card's action area, per Sharing/UI.md. */
     <div
       className={cn(
-        "group relative shrink-0",
-        shape === "landscape"
-          ? "aspect-[16/10] w-[76vw] max-w-[340px] sm:w-[340px] xl:w-[380px]"
-          : "aspect-[3/4] w-[42vw] max-w-[190px] sm:w-[190px] xl:w-[210px]"
+        "group/card relative shrink-0 snap-start",
+        isPortrait ? PORTRAIT_WIDTH[size] : LANDSCAPE_WIDTH[size]
       )}
     >
       <Link
         to={`/content/${content.id}`}
         aria-label={content.title}
         className={cn(
-          "absolute inset-0 overflow-hidden rounded-xl border border-white/15",
-          "bg-gradient-to-br transition-transform group-hover:scale-[1.015]",
-          CATEGORY_GRADIENT[content.category]
+          "relative block w-full overflow-hidden rounded-xl ring-1 ring-white/10",
+          "shadow-[var(--shadow-lift)] transition-all duration-300",
+          "group-hover/card:-translate-y-1 group-hover/card:shadow-[var(--shadow-float)] group-hover/card:ring-white/25",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
+          isPortrait ? "aspect-[2/3]" : "aspect-video"
         )}
+        style={{ backgroundImage: artwork, backgroundSize: "cover", backgroundPosition: "center" }}
       >
-        {/* Scrim so the overlaid title stays legible against any thumbnail. */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
+        {/* Devanagari accent — HTML text, so the page font stack applies. */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-[18%] text-center text-3xl font-semibold text-white/25 drop-shadow-lg"
+        >
+          {categoryGlyph(content.category, content.id)}
+        </span>
 
-        <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-2 p-3">
-          <div className="min-w-0">
-            <p className="line-clamp-2 text-sm font-semibold leading-snug text-white drop-shadow">{content.title}</p>
-            <p className="mt-0.5 truncate text-[11px] text-white/70">{content.creator}</p>
-          </div>
-          {meta ? <span className="shrink-0 text-[11px] font-medium text-white/80">{meta}</span> : null}
-        </div>
+        {rank !== undefined ? (
+          <span className="absolute left-2 top-2 text-2xl font-bold leading-none text-white/85 drop-shadow-lg tabular-nums">
+            {String(rank).padStart(2, "0")}
+          </span>
+        ) : null}
+
+        <span className="absolute right-2 top-2">
+          <RatingBadge>{content.type === "audio" ? "Audio" : "Video"}</RatingBadge>
+        </span>
+
+        {/* Play affordance on hover. */}
+        <span className="absolute inset-0 flex items-center justify-center bg-black/25 opacity-0 backdrop-blur-[1px] transition-opacity duration-300 group-hover/card:opacity-100">
+          <span className="flex size-11 items-center justify-center rounded-full bg-accent text-accent-foreground shadow-lg">
+            <Play className="size-5 translate-x-px fill-current" />
+          </span>
+        </span>
+
+        <span className="scrim-bottom pointer-events-none absolute inset-x-0 bottom-0 h-1/3" />
+
+        <span className="absolute bottom-2 right-2 rounded-md bg-black/65 px-1.5 py-0.5 text-[10px] font-semibold tabular-nums text-white/90 backdrop-blur-sm">
+          {formatDuration(content.durationSeconds)}
+        </span>
+
+        {!isPortrait ? (
+          <span className="absolute inset-x-0 bottom-0 p-3">
+            <span className="line-clamp-2 block text-sm font-semibold leading-snug text-white drop-shadow">
+              {content.title}
+            </span>
+            <span className="mt-0.5 block truncate text-[11px] text-white/70">{content.creator}</span>
+          </span>
+        ) : null}
       </Link>
 
-      <div className="absolute right-1 top-1 text-white opacity-100 transition-opacity md:opacity-0 md:group-hover:opacity-100 md:focus-within:opacity-100">
-        <ShareButton contentId={content.id} title={content.title} />
-      </div>
+      {isPortrait ? (
+        <div className="mt-2.5 flex items-start gap-1.5">
+          <Link to={`/content/${content.id}`} className="min-w-0 flex-1">
+            <p className="line-clamp-2 text-[13px] font-semibold leading-snug text-foreground">{content.title}</p>
+            <p className="mt-0.5 truncate text-[11px] text-muted-foreground">{content.creator}</p>
+          </Link>
+          <div className="-mt-1 shrink-0 opacity-100 transition-opacity md:opacity-0 md:group-hover/card:opacity-100 md:focus-within:opacity-100">
+            <ShareButton contentId={content.id} title={content.title} />
+          </div>
+        </div>
+      ) : (
+        <div className="absolute right-1.5 top-1.5 opacity-100 transition-opacity md:opacity-0 md:group-hover/card:opacity-100 md:focus-within:opacity-100">
+          <ShareButton contentId={content.id} title={content.title} />
+        </div>
+      )}
     </div>
   )
 }
