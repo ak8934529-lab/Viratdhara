@@ -39,10 +39,17 @@ export function CinematicHero({ content, eyebrow, size = "full" }: CinematicHero
   return (
     <section
       className={cn(
-        "relative -mx-4 -mt-5 overflow-hidden md:-mx-6 md:rounded-2xl lg:-mx-8",
-        // Reclaim the shell's top padding so the hero sits flush under the top bar.
-        "md:mt-0",
-        size === "full" ? "min-h-[clamp(360px,52vh,560px)]" : "min-h-[clamp(260px,34vh,380px)]"
+        "relative overflow-hidden",
+        // Bleed past the shell's horizontal padding to reach the viewport edge.
+        "-mx-4 md:-mx-6 lg:-mx-8",
+        /*
+         * Slide up behind the top bar. The bar is transparent until scrolled, so
+         * the artwork runs to the very top of the viewport and the bar floats over
+         * it — the reference's treatment. 5.25rem = the bar's 4rem plus the shell's
+         * 1.25rem top padding.
+         */
+        "-mt-[5.25rem] md:rounded-b-2xl",
+        size === "full" ? "min-h-[clamp(420px,58vh,620px)]" : "min-h-[clamp(320px,40vh,440px)]"
       )}
     >
       <div
