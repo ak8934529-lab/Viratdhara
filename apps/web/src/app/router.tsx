@@ -2,10 +2,24 @@ import type { ReactNode } from "react"
 import { Navigate, createBrowserRouter } from "react-router-dom"
 
 import { AppShell } from "@/components/layout/AppShell"
+import { StudioShell } from "@/components/layout/StudioShell"
 import { useAuth } from "@/lib/auth-context"
+import { CategoryPage } from "@/pages/CategoryPage"
 import { ContentDetailPage } from "@/pages/ContentDetailPage"
+import { CreatorProfilePage } from "@/pages/CreatorProfilePage"
+import { DekhoPage } from "@/pages/DekhoPage"
 import { HomePage } from "@/pages/HomePage"
-import { PlaceholderPage } from "@/pages/PlaceholderPage"
+import { PlayingNowPage } from "@/pages/PlayingNowPage"
+import { SearchPage } from "@/pages/SearchPage"
+import { ShortsPage } from "@/pages/ShortsPage"
+import { SunoPage } from "@/pages/SunoPage"
+import { DownloadsPage } from "@/pages/settings/DownloadsPage"
+import { NotificationsPage } from "@/pages/settings/NotificationsPage"
+import { SettingsPage } from "@/pages/settings/SettingsPage"
+import { SubscriptionsPage } from "@/pages/settings/SubscriptionsPage"
+import { StudioAnalyticsPage } from "@/pages/studio/StudioAnalyticsPage"
+import { StudioContentPage } from "@/pages/studio/StudioContentPage"
+import { StudioHomePage } from "@/pages/studio/StudioHomePage"
 import { LoginPage } from "@/pages/auth/LoginPage"
 import { OnboardingFormatPage } from "@/pages/auth/OnboardingFormatPage"
 import { OnboardingLanguagePage } from "@/pages/auth/OnboardingLanguagePage"
@@ -30,16 +44,32 @@ export const router = createBrowserRouter([
     element: <RootRoute />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: "suno", element: <PlaceholderPage title="Suno" note="Audio discovery not yet built in apps/web." /> },
-      {
-        path: "playing-now",
-        element: <PlaceholderPage title="Playing Now" note="Persistent player tab not yet built in apps/web." />,
-      },
-      { path: "dekho", element: <PlaceholderPage title="Dekho" note="Video discovery not yet built in apps/web." /> },
-      { path: "shorts", element: <PlaceholderPage title="Shorts" note="Shorts feed not yet built in apps/web." /> },
-      { path: "search", element: <PlaceholderPage title="Search" note="Search not yet built in apps/web." /> },
+      { path: "suno", element: <SunoPage /> },
+      { path: "playing-now", element: <PlayingNowPage /> },
+      { path: "dekho", element: <DekhoPage /> },
+      { path: "shorts", element: <ShortsPage /> },
+      { path: "search", element: <SearchPage /> },
       { path: "content/:id", element: <ContentDetailPage /> },
-      { path: "settings", element: <PlaceholderPage title="Settings" note="User Settings not yet built in apps/web." /> },
+      { path: "category/:id", element: <CategoryPage /> },
+      { path: "creator/:id", element: <CreatorProfilePage /> },
+      { path: "settings", element: <SettingsPage /> },
+      { path: "settings/notifications", element: <NotificationsPage /> },
+      { path: "settings/downloads", element: <DownloadsPage /> },
+      { path: "settings/subscriptions", element: <SubscriptionsPage /> },
+    ],
+  },
+  /**
+   * Creator Studio — its own structural area with its own navigation, NOT nested
+   * under AppShell, per NAVIGATION_MODEL.md ("Not the same navigation instance as
+   * Main App") and INFORMATION_ARCHITECTURE.md.
+   */
+  {
+    path: "/creator-studio",
+    element: <StudioShell />,
+    children: [
+      { index: true, element: <StudioHomePage /> },
+      { path: "content", element: <StudioContentPage /> },
+      { path: "analytics", element: <StudioAnalyticsPage /> },
     ],
   },
   { path: "/login", element: <GuestOnly><LoginPage /></GuestOnly> },

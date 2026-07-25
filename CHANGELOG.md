@@ -17,6 +17,30 @@ owner: Product Architecture
 
 One entry per milestone/commit. Newest first.
 
+> Milestones 19–21 were code-only passes on `apps/web` and were not logged here. This entry resumes the log because it records unresolved documentation conflicts that must not live only in code comments.
+
+## Milestone 22 — Web screens for the remaining V1 features (design pass)
+
+Built `apps/web` screens for every V1 feature that was still a `PlaceholderPage`, in the priority order of `MASTER_PRD.md`'s Feature Scope table. **Design-only**: no backend, no real session, no media pipeline — all screens read placeholder data from `lib/mock-content.ts` / `lib/mock-creator.ts`.
+
+**Screens added**: `/suno`, `/dekho`, `/shorts`, `/search`, `/playing-now`, `/category/:id`, `/creator/:id`, `/settings` + `/settings/{notifications,downloads,subscriptions}`, and the Creator Studio area (`/creator-studio`, `/creator-studio/content`, `/creator-studio/analytics`). Every route in `URL_STRUCTURE.md` is now implemented except `/playlist/:id`.
+
+**Source**: 31 mobile design screens supplied by the user (`Designs/`, gitignored) plus the feature knowledge bases. The designs resolved several previously-undefined specs — most usefully the **Shorts overlay rail** (Like + count, Save, Share, More), which `ContentDiscovery/COMPONENTS.md` had left entirely open, and the **Video-vs-Audio player presentation** (landscape 16:9 surface for Video, square artwork for Audio), which `VideoPlayer/UI.md` never distinguished.
+
+**Design-vs-documentation conflicts — flagged, not silently resolved** (per `AI_INSTRUCTIONS.md`: documentation wins; when unsure, ask):
+
+- **Home is designed as a Panchang dashboard** (greeting, auspicious/inauspicious timings, Rahu Kaal, sunrise/sunset, आज का पंचांग) but `ContentDiscovery/SPEC.md` says Home is "composed entirely of Recommendation Engine output". Panchang is **not one of the 11 V1 features** and appears nowhere in `FEATURE_REGISTRY.md`. **Resolved by user decision: documentation wins** — Home stays the content feed; Panchang is deferred as a candidate 12th feature and would require `FEATURE_REGISTRY.md` + `CONTENT_ARCHITECTURE.md` updates before it could be built.
+- **Dekho's designed sections** are Festival Pooja / Podcast / Television Shows; **Suno's chip row** is Lofi bhajan / On drive / Sleep music / Meditation music. Neither set matches the 5 placeholder Categories, and `CONTENT_ARCHITECTURE.md` forbids inventing Category names beyond that list. Built from the documented Categories instead; Suno's chip row filters on **Tags** (which the doc does define) rather than an invented genre taxonomy. **Reconciling genre vs. Tag vs. Category is still open.**
+- **Player deviations**: the seek bar shows elapsed/**remaining** per `VideoPlayer/UI.md`, not the design's total duration. The design's **Download** control is omitted — `VideoPlayer/README.md` states offline/download is "not specified". A **share** control was added, which the design lacks but `Sharing/UI.md` requires. A **minimize** control was added, which the design lacks but `NAVIGATION_MODEL.md` requires.
+- **`UserSettings/COMPONENTS.md` lists a "Subscription upgrade CTA"**, contradicting the deliberate full deferral of Subscriptions recorded in that feature's `SPEC.md` and `EDGE_CASES.md`. The deferral wins (later and more specific) — the screen renders an unavailable state with no tier, pricing, or billing UI.
+- **The Settings hub's Account row has no route.** `UserSettings/TEST_CASES.md` requires the row; `URL_STRUCTURE.md` defines no `/settings/account`. Account info is rendered inline as read-only display rather than inventing a route.
+- **Creator Studio's internal navigation and its Studio-home composition are undefined.** `NAVIGATION_MODEL.md` says the nav is "owned by the Creator Studio feature" without specifying its form, and `CreatorStudio/UI.md` gives Studio home a route and nothing else. Both are inferences, flagged in-code.
+- **No create/upload route exists** for Creator Studio, yet `SPEC.md` requires the behaviour and `COMPONENTS.md` says "Content creation is a form". The Upload button currently has nowhere documented to go.
+
+**Deliberate absences** (each would have been invented UI): no charts, sparklines, trend arrows, or time-range selector in Studio analytics; no banner, bio, or stats row on Creator Profile; no storage meter in Downloads; no ad-failure or ad-retry UI; no share toast; no search autocomplete, suggestions, or history.
+
+**New components**: `SectionRow`, `PosterCard`, `CategoryTile`, `EmptyState`, `ShareButton`, `MiniPlayer`, `StudioShell`, `SettingsRow`, `AdInterstitial`, and the Shorts item renderer. These need registering in `COMPONENT_REGISTRY.md` — **not done in this commit**, and outstanding.
+
 ## Commit 18 — Gap Resolution Pass
 
 Resolved nearly every open gap flagged across Commits 6–17, split into two categories per `AI_GLOBAL_RULES.md`'s never-invent principle:
