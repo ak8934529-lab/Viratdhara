@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 
 import { cn } from "@dhara/utils"
 import { CATEGORY_GRADIENT } from "@/components/content/category-visuals"
+import { ShareButton } from "@/components/content/ShareButton"
 import type { ContentItem } from "@/lib/mock-content"
 
 export interface PosterCardProps {
@@ -27,27 +28,40 @@ export interface PosterCardProps {
  */
 export function PosterCard({ content, shape = "landscape", meta }: PosterCardProps) {
   return (
-    <Link
-      to={`/content/${content.id}`}
+    /* The share button sits outside the Link (a button may not nest in an anchor)
+       while still reading as part of the card's action area, per Sharing/UI.md. */
+    <div
       className={cn(
-        "group relative shrink-0 overflow-hidden rounded-xl border border-white/15",
-        "bg-gradient-to-br transition-transform hover:scale-[1.015]",
-        CATEGORY_GRADIENT[content.category],
+        "group relative shrink-0",
         shape === "landscape"
           ? "aspect-[16/10] w-[76vw] max-w-[340px] sm:w-[340px] xl:w-[380px]"
           : "aspect-[3/4] w-[42vw] max-w-[190px] sm:w-[190px] xl:w-[210px]"
       )}
     >
-      {/* Scrim so the overlaid title stays legible against any thumbnail. */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
+      <Link
+        to={`/content/${content.id}`}
+        aria-label={content.title}
+        className={cn(
+          "absolute inset-0 overflow-hidden rounded-xl border border-white/15",
+          "bg-gradient-to-br transition-transform group-hover:scale-[1.015]",
+          CATEGORY_GRADIENT[content.category]
+        )}
+      >
+        {/* Scrim so the overlaid title stays legible against any thumbnail. */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
 
-      <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-2 p-3">
-        <div className="min-w-0">
-          <p className="line-clamp-2 text-sm font-semibold leading-snug text-white drop-shadow">{content.title}</p>
-          <p className="mt-0.5 truncate text-[11px] text-white/70">{content.creator}</p>
+        <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-2 p-3">
+          <div className="min-w-0">
+            <p className="line-clamp-2 text-sm font-semibold leading-snug text-white drop-shadow">{content.title}</p>
+            <p className="mt-0.5 truncate text-[11px] text-white/70">{content.creator}</p>
+          </div>
+          {meta ? <span className="shrink-0 text-[11px] font-medium text-white/80">{meta}</span> : null}
         </div>
-        {meta ? <span className="shrink-0 text-[11px] font-medium text-white/80">{meta}</span> : null}
+      </Link>
+
+      <div className="absolute right-1 top-1 text-white opacity-100 transition-opacity md:opacity-0 md:group-hover:opacity-100 md:focus-within:opacity-100">
+        <ShareButton contentId={content.id} title={content.title} />
       </div>
-    </Link>
+    </div>
   )
 }

@@ -44,7 +44,22 @@ import { usePlayer } from "@/lib/player-context"
  */
 export function PlayingNowPage() {
   const navigate = useNavigate()
-  const { current, playback, elapsedSeconds, togglePlay, seek } = usePlayer()
+  const {
+    current,
+    playback,
+    elapsedSeconds,
+    shuffle,
+    repeat,
+    togglePlay,
+    seek,
+    syncTime,
+    handleEnded,
+    next,
+    previous,
+    toggleShuffle,
+    toggleRepeat,
+    setMediaElement,
+  } = usePlayer()
 
   /**
    * `idle` with nothing loaded. No document specifies what this tab shows when
@@ -94,22 +109,37 @@ export function PlayingNowPage() {
             isAudio ? "aspect-square" : "aspect-video"
           )}
         >
-          {!isAudio ? (
-            <button
-              type="button"
-              onClick={togglePlay}
-              aria-label={playback === "playing" ? "Pause" : "Play"}
-              className="absolute inset-0 flex items-center justify-center"
+          {isAudio ? (
+            <>
+              {/* Real audio playback. Placeholder media is .mp4, whose audio track
+                  plays fine through an <audio> element. */}
+              <audio
+                key={current.id}
+                ref={setMediaElement}
+                src={current.videoUrl}
+                onTimeUpdate={(event) => syncTime(Math.floor(event.currentTarget.currentTime))}
+                onEnded={handleEnded}
+              />
+              <button
+                type="button"
+                onClick={togglePlay}
+                aria-label={playback === "playing" ? "Pause" : "Play"}
+                className="absolute inset-0"
+              />
+            </>
+          ) : (
+            <video
+              key={current.id}
+              ref={setMediaElement}
+              src={current.videoUrl}
+              controls
+              className="absolute inset-0 size-full"
+              onTimeUpdate={(event) => syncTime(Math.floor(event.currentTarget.currentTime))}
+              onEnded={handleEnded}
             >
-              <span className="flex size-16 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg">
-                {playback === "playing" ? (
-                  <Pause className="size-7" />
-                ) : (
-                  <Play className="size-7 translate-x-0.5" />
-                )}
-              </span>
-            </button>
-          ) : null}
+              <track kind="captions" />
+            </video>
+          )}
         </div>
 
         {/* Metadata + secondary actions. */}
@@ -152,10 +182,17 @@ export function PlayingNowPage() {
 
         {/* Transport row — order per UI.md: shuffle, previous, play/pause, next, repeat. */}
         <div className="flex items-center justify-between">
-          <Button variant="ghost" size="icon-sm" aria-label="Shuffle">
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            aria-label="Shuffle"
+            aria-pressed={shuffle}
+            onClick={toggleShuffle}
+            className={shuffle ? "text-accent" : undefined}
+          >
             <Shuffle className="size-4" />
           </Button>
-          <Button variant="ghost" size="icon" aria-label="Previous">
+          <Button variant="ghost" size="icon" aria-label="Previous" onClick={previous}>
             <SkipBack className="size-6" />
           </Button>
 
@@ -168,10 +205,17 @@ export function PlayingNowPage() {
             {playback === "playing" ? <Pause className="size-6" /> : <Play className="size-6 translate-x-0.5" />}
           </button>
 
-          <Button variant="ghost" size="icon" aria-label="Next">
+          <Button variant="ghost" size="icon" aria-label="Next" onClick={next}>
             <SkipForward className="size-6" />
           </Button>
-          <Button variant="ghost" size="icon-sm" aria-label="Repeat">
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            aria-label="Repeat"
+            aria-pressed={repeat}
+            onClick={toggleRepeat}
+            className={repeat ? "text-accent" : undefined}
+          >
             <Repeat className="size-4" />
           </Button>
           <Button variant="ghost" size="icon-sm" aria-label="Add to playlist">

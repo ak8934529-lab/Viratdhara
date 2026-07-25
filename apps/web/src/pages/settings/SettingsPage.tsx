@@ -1,4 +1,4 @@
-import { ArrowLeft, Bell, CreditCard, Download, LayoutDashboard, LogOut, User } from "lucide-react"
+import { ArrowLeft, Bell, CreditCard, Download, LayoutDashboard, LogOut, ShieldAlert, User } from "lucide-react"
 import { Link } from "react-router-dom"
 
 import { Button } from "@dhara/ui/button"
@@ -80,6 +80,23 @@ export function SettingsPage() {
           icon={User}
           title="Your public profile"
           to={`/creator/${creatorSlug(CURRENT_CREATOR.displayName)}`}
+        />
+      </GlassPanel>
+
+      {/*
+        ⚠️ BEYOND SPECIFICATION. No Administrator entry point is documented
+        anywhere — PERMISSION_MATRIX.md defines the role but URL_STRUCTURE.md has
+        no admin routes. Placed here by analogy with Creator Studio's documented
+        "entered from Settings/Profile" entry. A real implementation must gate
+        this on the Administrator role; there is no role check here because no
+        role model exists in the demo session.
+      */}
+      <GlassPanel tier="base" className="p-0">
+        <SettingsRow
+          icon={ShieldAlert}
+          title="Administration"
+          subtitle="Moderation, categories, platform analytics"
+          to="/admin"
         />
       </GlassPanel>
 

@@ -23,7 +23,7 @@ import { usePlayer } from "@/lib/player-context"
  */
 export function MiniPlayer() {
   const { pathname } = useLocation()
-  const { current, playback, togglePlay, stop } = usePlayer()
+  const { current, playback, togglePlay, stop, next } = usePlayer()
 
   if (!current || playback === "idle") return null
   if (pathname === "/playing-now") return null
@@ -58,7 +58,7 @@ export function MiniPlayer() {
         >
           {playback === "playing" ? <Pause className="size-4" /> : <Play className="size-4 translate-x-px" />}
         </Button>
-        <Button variant="ghost" size="icon-sm" aria-label="Skip">
+        <Button variant="ghost" size="icon-sm" aria-label="Skip" onClick={next}>
           <SkipForward className="size-4" />
         </Button>
         <Button variant="ghost" size="icon-sm" onClick={stop} aria-label="Stop playback">

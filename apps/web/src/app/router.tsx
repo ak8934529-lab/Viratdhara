@@ -1,9 +1,13 @@
 import type { ReactNode } from "react"
 import { Navigate, createBrowserRouter } from "react-router-dom"
 
+import { AdminShell } from "@/components/layout/AdminShell"
 import { AppShell } from "@/components/layout/AppShell"
 import { StudioShell } from "@/components/layout/StudioShell"
 import { useAuth } from "@/lib/auth-context"
+import { AdminCategoriesPage } from "@/pages/admin/AdminCategoriesPage"
+import { AdminModerationPage } from "@/pages/admin/AdminModerationPage"
+import { AdminOverviewPage } from "@/pages/admin/AdminOverviewPage"
 import { CategoryPage } from "@/pages/CategoryPage"
 import { ContentDetailPage } from "@/pages/ContentDetailPage"
 import { CreatorProfilePage } from "@/pages/CreatorProfilePage"
@@ -70,6 +74,21 @@ export const router = createBrowserRouter([
       { index: true, element: <StudioHomePage /> },
       { path: "content", element: <StudioContentPage /> },
       { path: "analytics", element: <StudioAnalyticsPage /> },
+    ],
+  },
+  /**
+   * ⚠️ Administration — BEYOND SPECIFICATION. URL_STRUCTURE.md explicitly does
+   * not define administrator routes, and FEATURE_REGISTRY.md has no admin
+   * feature. These routes are invented per user direction; see
+   * lib/mock-admin.ts for what must be documented before this ships.
+   */
+  {
+    path: "/admin",
+    element: <AdminShell />,
+    children: [
+      { index: true, element: <AdminOverviewPage /> },
+      { path: "moderation", element: <AdminModerationPage /> },
+      { path: "categories", element: <AdminCategoriesPage /> },
     ],
   },
   { path: "/login", element: <GuestOnly><LoginPage /></GuestOnly> },

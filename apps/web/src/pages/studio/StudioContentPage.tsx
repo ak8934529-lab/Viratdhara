@@ -1,4 +1,5 @@
 import { Upload } from "lucide-react"
+import { useState } from "react"
 
 import { Badge } from "@dhara/ui/badge"
 import { Button } from "@dhara/ui/button"
@@ -46,7 +47,29 @@ function StateBadge({ state }: { state: ContentLifecycle }) {
 }
 
 export function StudioContentPage() {
-  if (STUDIO_CONTENT.length === 0) {
+  const [rows, setRows] = useState(STUDIO_CONTENT)
+
+  /**
+   * The two transitions this feature owns, per STATES.md:
+   *   draft ──(Creator publishes, fires creator_content_published)──> published
+   *   published ──(Creator removes)──> removed_by_creator
+   *
+   * Hard constraint: this feature NEVER triggers published → removed_by_moderation
+   * (Administrator-only), and no Creator-facing action moves Content out of
+   * `removed_by_moderation`. Both guarded below.
+   */
+  function transition(id: string, next: ContentLifecycle) {
+    setRows((current) =>
+      current.map((row) => {
+        if (row.content.id !== id) return row
+        if (row.state === "removed_by_moderation") return row // irreversible from here
+        if (next === "removed_by_moderation") return row // Administrator-only
+        return { ...row, state: next }
+      })
+    )
+  }
+
+  if (rows.length === 0) {
     return (
       <EmptyState
         icon={Upload}
@@ -78,7 +101,7 @@ export function StudioContentPage() {
       </div>
 
       <GlassPanel tier="base" className="divide-y divide-white/5 p-0">
-        {STUDIO_CONTENT.map(({ content, state }) => {
+        {rows.map(({ content, state }) => {
           const isModerated = state === "removed_by_moderation"
 
           return (
@@ -117,7 +140,7 @@ export function StudioContentPage() {
                   Creator has no action available to reverse that transition. */}
               <div className="flex shrink-0 items-center gap-1.5">
                 {state === "draft" ? (
-                  <Button size="sm" variant="gold">
+                  <Button size="sm" variant="gold" onClick={() => transition(content.id, "published")}>
                     Publish
                   </Button>
                 ) : null}
@@ -126,10 +149,21 @@ export function StudioContentPage() {
                     <Button size="sm" variant="outline">
                       Edit
                     </Button>
-                    <Button size="sm" variant="destructive">
+                    <Button
+                      size="sm"
+                      variant="destructive"
+                      onClick={() => transition(content.id, "removed_by_creator")}
+                    >
                       Remove
                     </Button>
                   </>
+                ) : null}
+                {/* The Creator's own removal is reversible by re-publishing;
+                    moderation removal is not, and offers no action at all. */}
+                {state === "removed_by_creator" ? (
+                  <Button size="sm" variant="outline" onClick={() => transition(content.id, "published")}>
+                    Republish
+                  </Button>
                 ) : null}
                 {isModerated ? (
                   <span className="text-[11px] font-medium text-muted-foreground">Read-only</span>

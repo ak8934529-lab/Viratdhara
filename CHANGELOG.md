@@ -19,6 +19,32 @@ One entry per milestone/commit. Newest first.
 
 > Milestones 19–21 were code-only passes on `apps/web` and were not logged here. This entry resumes the log because it records unresolved documentation conflicts that must not live only in code comments.
 
+## Milestone 23 — Administration area + close out Milestone 22's partials
+
+**Scope changes by user direction**: the Recommendation Engine ("Video Streaming Algorithm") and Advertisements ("Ads Between video") are both **out of scope** and were not worked on further. The Studio analytics dashboard was directed to serve **both Creator and Administrator** profiles.
+
+**⚠️ New Administration area — entirely beyond specification.** Added `/admin`, `/admin/moderation`, `/admin/categories` with their own shell (`AdminShell`), mirroring Creator Studio's structure. This is built on explicit user direction and is **not documented anywhere**:
+
+- `URL_STRUCTURE.md` states outright that administrator routes are **not defined**.
+- `FEATURE_REGISTRY.md`'s 11 V1 features contain **no admin/moderation feature**, so there is no knowledge base to build from.
+- `INFORMATION_ARCHITECTURE.md` defines three structural areas (Auth Area, Main App, Creator Studio) — there is no Administration area.
+- `DOMAIN_MODEL.md` / `ENTITY_REGISTRY.md` define **no report/flag entity**, so the moderation queue's report counts and reasons are invented.
+
+**Before this ships**, an Administration feature must be added to `FEATURE_REGISTRY.md`, its routes to `URL_STRUCTURE.md`, and a knowledge base authored under `docs/03_FEATURES/` — with `PROJECT_INDEX.md`, `DOCUMENT_GRAPH.md`, and `CHANGELOG.md` updated in the same commit. The unspecified status is surfaced in the product itself via an "Unspecified scope" badge in the admin header, not just in code comments.
+
+The one part that **is** documented and drove this area's existence: `published → removed_by_moderation` is an Administrator-only, Creator-irreversible transition (`STATE_REGISTRY.md`). The moderation queue is now the only place it can be triggered, and the Creator-side consequence (read-only moderated rows) was already in place. Whether an Administrator may *reinstate* moderated Content is **undefined** — this implementation allows it, which is a guess.
+
+Category control is deliberately **read-only**: `CONTENT_ARCHITECTURE.md` marks the 5-category V1 list a placeholder that "must be replaced with a confirmed list before launch", and is the authoritative source. Making it editable in-product would let it drift from the document, so the screen states the placeholder status instead.
+
+**Milestone 22 partials closed:**
+
+- **Share placement (was a spec violation)** — `Sharing/UI.md` requires the affordance on "any Content card's overflow/action area" across Content Discovery, Search results, and Category browse; it was on none of them. `VideoCard` and `PosterCard` now carry it. Both were restructured so the share button is a *sibling* of the card's links rather than a descendant — a `<button>` inside an `<a>` is invalid HTML. Verified: 0 nested interactive elements across all card surfaces.
+- **Creator Studio actions** — Publish / Remove / Republish now perform the documented transitions (`draft → published`, `published → removed_by_creator`). Guarded both ways so nothing can enter or leave `removed_by_moderation` from the Creator side.
+- **Audio playback** — the player rendered artwork with no media element, so Audio produced no sound. Now plays for real via an `<audio>` element driven by playback state, with working seek, `timeupdate` sync, and end-of-track handling (`content_completed → idle`, or restart when repeat is on).
+- **Player transport** — previous/next now step tracks, shuffle and repeat toggle with visible pressed state, and the mini player's skip works. Download remains omitted (`VideoPlayer/README.md`: offline playback "not specified").
+
+Still outstanding: the new components remain unregistered in `COMPONENT_REGISTRY.md`; Creator Studio's Upload button still has no documented route; `/playlist/:id` is still unimplemented; there is no role gating on the admin entry point because the demo session has no role model.
+
 ## Milestone 22 — Web screens for the remaining V1 features (design pass)
 
 Built `apps/web` screens for every V1 feature that was still a `PlaceholderPage`, in the priority order of `MASTER_PRD.md`'s Feature Scope table. **Design-only**: no backend, no real session, no media pipeline — all screens read placeholder data from `lib/mock-content.ts` / `lib/mock-creator.ts`.
