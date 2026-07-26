@@ -12,7 +12,7 @@ import { NAV_ITEMS } from "@/lib/nav-items"
 export function SideNav() {
   return (
     <nav
-      className="sticky top-16 z-20 hidden h-[calc(100svh-4rem)] w-16 shrink-0 flex-col items-center gap-1 border-r border-white/10 bg-card/15 py-4 backdrop-blur-xl md:flex"
+      className="hidden"
       aria-label="Main navigation"
     >
       {NAV_ITEMS.map((item) => {

@@ -42,10 +42,10 @@ export function AppShell() {
         <main
           className={cn(
             "min-w-0 flex-1 px-4 pt-5 md:px-6 lg:px-8",
-            // Compact clears the floating bottom nav; wider viewports have none.
-            "pb-24 md:pb-10",
+            // Always clear the floating bottom nav at every breakpoint.
+            "pb-24",
             // Extra clearance for the fixed mini player when a session exists.
-            hasMiniPlayer && "pb-40 md:pb-28"
+            hasMiniPlayer && "pb-40"
           )}
         >
           <Outlet />

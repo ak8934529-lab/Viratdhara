@@ -11,7 +11,7 @@ import { NAV_ITEMS } from "@/lib/nav-items"
 export function BottomNav() {
   return (
     <nav
-      className="surface-glass-raised fixed inset-x-3 bottom-3 z-20 flex h-16 items-center justify-around rounded-2xl md:hidden"
+      className="surface-glass-raised fixed inset-x-3 bottom-3 z-20 flex h-16 items-center justify-around rounded-2xl"
       aria-label="Main navigation"
     >
       {NAV_ITEMS.map((item) => {

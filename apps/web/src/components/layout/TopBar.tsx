@@ -1,10 +1,9 @@
-import { Bell, ChevronDown, LayoutGrid, Menu, Search, ShieldAlert, SlidersHorizontal, Sparkles } from "lucide-react"
+import { Bell, ChevronDown, Menu, Search, ShieldAlert, SlidersHorizontal, Sparkles } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 
 import { Avatar, AvatarFallback } from "@dhara/ui/avatar"
 import { cn } from "@dhara/utils"
-import { BrandMark } from "@/components/layout/BrandMark"
 import { CURRENT_CREATOR } from "@/lib/mock-creator"
 
 export interface TopBarProps {
@@ -78,22 +77,7 @@ export function TopBar({ title }: TopBarProps) {
           : "border-b border-transparent bg-transparent"
       )}
     >
-      <Link to="/" className="shrink-0" aria-label="Viratdhara home">
-        <BrandMark size="sm" />
-      </Link>
-
-      {/* Browse-everything pill. Targets /search, whose idle state IS the
-          browse-all surface — not a new route. */}
-      <Link
-        to="/search"
-        className="hidden shrink-0 items-center gap-2 rounded-full border border-white/20 px-3.5 py-1.5 text-xs font-semibold text-foreground/85 backdrop-blur-sm transition-colors hover:border-white/40 hover:bg-white/10 hover:text-foreground md:inline-flex"
-      >
-        <LayoutGrid className="size-3.5" aria-hidden />
-        Browse all
-      </Link>
-
-      <p className="min-w-0 flex-1 truncate text-sm font-semibold text-muted-foreground md:hidden">{title}</p>
-      <span className="hidden flex-1 md:block" />
+      <span className="flex-1" />
 
       <div className="flex shrink-0 items-center gap-1">
         {/* Identity block — avatar + name, per the reference's two-line treatment. */}
