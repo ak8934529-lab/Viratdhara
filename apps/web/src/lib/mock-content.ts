@@ -58,6 +58,13 @@ export interface ContentItem {
    * problem a real CMS solves with a focal-point picker.
    */
   imageFocus?: string
+  /**
+   * Set when `imageUrl` only holds up at card size — too low-resolution to
+   * enlarge, or carrying baked-in overlay text that reads as broken full-bleed.
+   * Full-bleed surfaces (the hero backdrop) then use the generated poster art
+   * instead, which is resolution-independent.
+   */
+  imageCardOnly?: boolean
 }
 
 /** Verified-reachable public CC0/demo sample videos (the old gtv-videos-bucket is no longer public — returns 403). */
@@ -96,6 +103,8 @@ export const MOCK_CONTENT: ContentItem[] = [
     imageUrl: "/media/card-singer.jpg",
     /* Subject sits on the right; the left of the frame is a tracklist overlay. */
     imageFocus: "92% center",
+    /* 640x360 with that tracklist burned in — a card crop hides it, a hero cannot. */
+    imageCardOnly: true,
   },
   {
     id: "2",
