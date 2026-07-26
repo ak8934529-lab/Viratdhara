@@ -58,7 +58,15 @@ export function SunoPage() {
 
   return (
     <div className="flex flex-col gap-8">
-      {hero ? <CinematicHero content={hero} eyebrow="Listen now" size="compact" /> : null}
+      {hero ? (
+        <CinematicHero
+          content={hero}
+          eyebrow="Listen now"
+          size="compact"
+          related={recent.slice(1, 4)}
+          slotNumber={1}
+        />
+      ) : null}
 
       <div className="flex flex-col gap-3">
         <SectionHeader title="Genre" />

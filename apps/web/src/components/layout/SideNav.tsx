@@ -4,21 +4,15 @@ import { cn } from "@dhara/utils"
 import { NAV_ITEMS } from "@/lib/nav-items"
 
 /**
- * Medium (icon-rail) and Wide (expanded, labeled) breakpoint navigation, per
+ * Medium (icon-rail) and Wide navigation, per
  * docs/02_DESIGN/RESPONSIVE_SYSTEM.md. Hidden below md (BottomNav takes over).
- * Flush against the left edge (border-right, no floating card/margin) so the
- * desktop layout reads as a web app, not a mobile app centered in a frame.
- *
- * Always offset by the top bar's height, which is now present on every Main App
- * screen — the full-player exception that needed a full-height rail was removed
- * along with the Playing Now tab.
+ * Always an icon-only rail — labels surface as tooltips on hover rather than
+ * expanding the rail width, which keeps the content area wide at all breakpoints.
  */
 export function SideNav() {
   return (
     <nav
-      className={cn(
-        "sticky top-16 hidden h-[calc(100svh-4rem)] w-16 shrink-0 flex-col items-center gap-1 overflow-y-auto border-r border-white/10 bg-card/15 py-4 backdrop-blur-xl md:flex xl:w-60 xl:items-stretch xl:px-3"
-      )}
+      className="sticky top-16 z-20 hidden h-[calc(100svh-4rem)] w-16 shrink-0 flex-col items-center gap-1 border-r border-white/10 bg-card/15 py-4 backdrop-blur-xl md:flex"
       aria-label="Main navigation"
     >
       {NAV_ITEMS.map((item) => {
@@ -28,7 +22,8 @@ export function SideNav() {
             key={item.id}
             to={item.path}
             end={item.path === "/"}
-            className="flex w-full items-center justify-center gap-3 rounded-xl px-2 py-2.5 xl:justify-start xl:px-3"
+            aria-label={item.label}
+            className="group/nav relative flex w-full items-center justify-center rounded-xl px-2 py-2.5"
           >
             {({ isActive }) => (
               <>
@@ -40,11 +35,11 @@ export function SideNav() {
                 >
                   <Icon className="size-5" aria-hidden />
                 </span>
+
+                {/* Tooltip — floats to the right of the icon on hover */}
                 <span
-                  className={cn(
-                    "hidden truncate text-sm xl:block",
-                    isActive ? "font-semibold text-foreground" : "font-medium text-muted-foreground"
-                  )}
+                  aria-hidden
+                  className="pointer-events-none absolute left-full z-50 ml-2 whitespace-nowrap rounded-xl border border-white/10 bg-card px-3 py-1.5 text-sm font-medium text-foreground opacity-0 shadow-lg backdrop-blur-xl transition-opacity duration-150 group-hover/nav:opacity-100"
                 >
                   {item.label}
                 </span>

@@ -47,7 +47,14 @@ export function DekhoPage() {
 
   return (
     <div className="flex flex-col gap-8">
-      {hero ? <CinematicHero content={hero} eyebrow="Now streaming" /> : null}
+      {hero ? (
+        <CinematicHero
+          content={hero}
+          eyebrow="Now streaming"
+          related={recent.slice(1, 5)}
+          slotNumber={1}
+        />
+      ) : null}
 
       {sections.map((section) => (
         <CarouselRow

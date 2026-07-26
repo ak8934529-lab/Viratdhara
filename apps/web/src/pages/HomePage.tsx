@@ -44,7 +44,14 @@ export function HomePage() {
 
   return (
     <div className="flex flex-col gap-8">
-      {hero ? <CinematicHero content={hero} eyebrow="Featured today" /> : null}
+      {hero ? (
+        <CinematicHero
+          content={hero}
+          eyebrow="Featured today"
+          related={continueWatching.slice(0, 4)}
+          slotNumber={1}
+        />
+      ) : null}
 
       <div
         className="scrollbar-none -mx-4 flex gap-2 overflow-x-auto px-4 md:mx-0 md:px-0"
