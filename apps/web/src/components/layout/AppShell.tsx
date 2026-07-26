@@ -2,8 +2,6 @@ import { Outlet, useLocation } from "react-router-dom"
 
 import { cn } from "@dhara/utils"
 import { BackgroundBloom } from "@/components/glass/BackgroundBloom"
-import { SideNav } from "@/components/layout/SideNav"
-import { BottomNav } from "@/components/layout/BottomNav"
 import { MiniPlayer } from "@/components/layout/MiniPlayer"
 import { TopBar } from "@/components/layout/TopBar"
 import { NAV_ITEMS } from "@/lib/nav-items"
@@ -38,7 +36,6 @@ export function AppShell() {
       <BackgroundBloom />
       <TopBar title={current?.label ?? "Viratdhara"} />
       <div className="flex">
-        <SideNav />
         <main
           className={cn(
             "min-w-0 flex-1 px-4 pt-5 md:px-6 lg:px-8",
@@ -52,7 +49,6 @@ export function AppShell() {
         </main>
       </div>
       <MiniPlayer />
-      <BottomNav />
     </div>
   )
 }

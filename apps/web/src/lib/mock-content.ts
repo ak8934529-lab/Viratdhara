@@ -40,6 +40,24 @@ export interface ContentItem {
   publishedDaysAgo: number
   description: string
   videoUrl: string
+  /**
+   * Real artwork for this item, served from `public/media`. Optional: items
+   * without one fall back to the generated poster art in lib/poster-art.ts.
+   *
+   * These are the exact assets from the supplied design file, so the screens
+   * that showcase them match the design rather than approximating it. Real
+   * thumbnails still have no backend (CONTENT_ARCHITECTURE.md — no media
+   * pipeline yet); this is design-fidelity placeholder data, same as the rest
+   * of this module.
+   */
+  imageUrl?: string
+  /**
+   * CSS `object-position` / `background-position` for `imageUrl`, defaulting to
+   * `center`. A landscape asset cropped into a portrait card loses its edges, so
+   * assets whose subject is off-centre need their focal point named — the same
+   * problem a real CMS solves with a focal-point picker.
+   */
+  imageFocus?: string
 }
 
 /** Verified-reachable public CC0/demo sample videos (the old gtv-videos-bucket is no longer public — returns 403). */
@@ -75,6 +93,9 @@ export const MOCK_CONTENT: ContentItem[] = [
     publishedDaysAgo: 2,
     description: "A soulful, complete recitation of the Hanuman Chalisa with on-screen meaning for daily devotion.",
     videoUrl: SAMPLE_VIDEOS[0],
+    imageUrl: "/media/card-singer.jpg",
+    /* Subject sits on the right; the left of the frame is a tracklist overlay. */
+    imageFocus: "92% center",
   },
   {
     id: "2",
@@ -103,6 +124,7 @@ export const MOCK_CONTENT: ContentItem[] = [
     publishedDaysAgo: 1,
     description: "The traditional evening aarti performed live from the temple sanctum.",
     videoUrl: SAMPLE_VIDEOS[2],
+    imageUrl: "/media/hero-vishnu.jpg",
   },
   {
     id: "4",
@@ -173,6 +195,7 @@ export const MOCK_CONTENT: ContentItem[] = [
     publishedDaysAgo: 1,
     description: "Sunrise Ganga aarti broadcast live from the ghats of Varanasi.",
     videoUrl: SAMPLE_VIDEOS[0],
+    imageUrl: "/media/card-krishna-flute.jpg",
   },
   {
     id: "9",
@@ -288,6 +311,7 @@ export const MOCK_CONTENT: ContentItem[] = [
     publishedDaysAgo: 1,
     description: "A single verse, unpacked in under a minute.",
     videoUrl: SAMPLE_VIDEOS[1],
+    imageUrl: "/media/card-buddha.jpg",
   },
   {
     id: "17",
@@ -302,6 +326,7 @@ export const MOCK_CONTENT: ContentItem[] = [
     publishedDaysAgo: 2,
     description: "The meaning behind the pre-dawn lamp, in brief.",
     videoUrl: SAMPLE_VIDEOS[2],
+    imageUrl: "/media/card-shiva-mandala.jpg",
   },
   {
     id: "18",

@@ -20,7 +20,10 @@ import { categoryGlyph, posterBackground } from "@/lib/poster-art"
  * Content cards).
  */
 export function VideoCard({ content }: { content: ContentItem }) {
-  const artwork = posterBackground(content.category, content.id, "landscape")
+  /* Real artwork wins over the generated poster when the item supplies one. */
+  const artwork = content.imageUrl
+    ? `url("${content.imageUrl}")`
+    : posterBackground(content.category, content.id, "landscape")
 
   /** Derived from views so it's stable per item — no rating field exists. */
   const rating = (7.4 + ((content.views % 23) / 23) * 2.4).toFixed(1)
@@ -36,14 +39,21 @@ export function VideoCard({ content }: { content: ContentItem }) {
           "group-hover/card:-translate-y-0.5 group-hover/card:shadow-[var(--shadow-float)] group-hover/card:ring-white/25",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
         )}
-        style={{ backgroundImage: artwork, backgroundSize: "cover", backgroundPosition: "center" }}
+        style={{
+          backgroundImage: artwork,
+          backgroundSize: "cover",
+          backgroundPosition: content.imageFocus ?? "center",
+        }}
       >
-        <span
-          aria-hidden
-          className="pointer-events-none absolute inset-0 flex items-center justify-center text-4xl font-semibold text-white/[0.18] drop-shadow-lg"
-        >
-          {categoryGlyph(content.category, content.id)}
-        </span>
+        {/* Skipped over real photography, which already has its own subject. */}
+        {!content.imageUrl && (
+          <span
+            aria-hidden
+            className="pointer-events-none absolute inset-0 flex items-center justify-center text-4xl font-semibold text-white/[0.18] drop-shadow-lg"
+          >
+            {categoryGlyph(content.category, content.id)}
+          </span>
+        )}
 
         <span className="absolute left-2 top-2">
           <RatingBadge>{content.type === "audio" ? "Audio" : "Video"}</RatingBadge>

@@ -47,8 +47,8 @@ export function HomePage() {
       {hero ? (
         <CinematicHero
           content={hero}
-          eyebrow="Featured today"
-          related={continueWatching.slice(0, 4)}
+          eyebrow="Featured Today"
+          related={continueWatching}
           slotNumber={1}
         />
       ) : null}

@@ -63,7 +63,7 @@ export function SunoPage() {
           content={hero}
           eyebrow="Listen now"
           size="compact"
-          related={recent.slice(1, 4)}
+          related={recent.slice(1, 9)}
           slotNumber={1}
         />
       ) : null}

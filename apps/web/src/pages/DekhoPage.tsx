@@ -51,7 +51,7 @@ export function DekhoPage() {
         <CinematicHero
           content={hero}
           eyebrow="Now streaming"
-          related={recent.slice(1, 5)}
+          related={recent.slice(1, 9)}
           slotNumber={1}
         />
       ) : null}

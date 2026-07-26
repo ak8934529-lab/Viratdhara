@@ -214,21 +214,28 @@ body,
   }
 }
 
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--muted-foreground) transparent;
-}
+/*
+ * Wrapped in `base` so `scrollbar-none` can win. Unlayered rules outrank every
+ * layer in the cascade, so as bare `*` selectors these silently overrode the
+ * utility above and every "hidden" carousel track stayed visible.
+ */
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--muted-foreground) transparent;
+  }
 
-*::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
-}
+  *::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
 
-*::-webkit-scrollbar-thumb {
-  border-radius: 9999px;
-  background-color: var(--muted-foreground);
-}
+  *::-webkit-scrollbar-thumb {
+    border-radius: 9999px;
+    background-color: var(--muted-foreground);
+  }
 
-*::-webkit-scrollbar-track {
-  background-color: transparent;
+  *::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
 }

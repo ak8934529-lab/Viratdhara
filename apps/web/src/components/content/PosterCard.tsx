@@ -46,7 +46,10 @@ const LANDSCAPE_WIDTH = {
  */
 export function PosterCard({ content, shape = "portrait", size = "default", rank }: PosterCardProps) {
   const isPortrait = shape === "portrait"
-  const artwork = posterBackground(content.category, content.id, isPortrait ? "portrait" : "landscape")
+  /* Real artwork wins over the generated poster when the item supplies one. */
+  const artwork = content.imageUrl
+    ? `url("${content.imageUrl}")`
+    : posterBackground(content.category, content.id, isPortrait ? "portrait" : "landscape")
 
   return (
     <div
@@ -65,15 +68,22 @@ export function PosterCard({ content, shape = "portrait", size = "default", rank
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
           isPortrait ? "aspect-[2/3]" : "aspect-video"
         )}
-        style={{ backgroundImage: artwork, backgroundSize: "cover", backgroundPosition: "center" }}
+        style={{
+          backgroundImage: artwork,
+          backgroundSize: "cover",
+          backgroundPosition: content.imageFocus ?? "center",
+        }}
       >
-        {/* Devanagari accent — HTML text, so the page font stack applies. */}
-        <span
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-[18%] text-center text-3xl font-semibold text-white/25 drop-shadow-lg"
-        >
-          {categoryGlyph(content.category, content.id)}
-        </span>
+        {/* Devanagari accent — HTML text, so the page font stack applies. Skipped
+            over real photography, which already has its own subject. */}
+        {!content.imageUrl && (
+          <span
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 top-[18%] text-center text-3xl font-semibold text-white/25 drop-shadow-lg"
+          >
+            {categoryGlyph(content.category, content.id)}
+          </span>
+        )}
 
         {rank !== undefined ? (
           <span className="absolute left-2 top-2 text-2xl font-bold leading-none text-white/85 drop-shadow-lg tabular-nums">
